@@ -1,8 +1,9 @@
-#an n3 example of a bug description using the latest ontology
-
 [http://www.w3.org/2000/10/swap/doc/Overview.html N3] makes it much easier to write out RDF graphs. Here are a few examples of real bugs written out using the N3 notation
 
 = Netbeans Bug 59890 =
+
+[http://www.netbeans.org/issues/show_bug.cgi?id=59890 Bug 59890] is a real bug and can be browsed on the web. All URLs below were correctly dereferenceable.
+
 {{{
 @prefix : <http://xmlns.com/baetle/0.1/ns#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
