@@ -1,0 +1,54 @@
+#summary N3 examples of real bugs
+
+[http://www.w3.org/2000/10/swap/doc/Overview.html N3] makes it much easier to write out RDF graphs. Here are a few examples of real bugs written out using the N3 notation
+
+= Netbeans Bug 59890 =
+
+[http://www.netbeans.org/issues/show_bug.cgi?id=59890 Bug 59890] is a real bug and can be browsed on the web. All URLs below were correctly dereferenceable.
+
+{{{
+@prefix : <http://xmlns.com/baetle/0.1/ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28>
+       a foaf:Document, :Version;
+       :previous <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.27> .
+
+<http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?r1=1.27&r2=1.28>
+      a :Diff;
+      :from <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.27>;
+      :to <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28> .
+
+//There is no url currently for the commit events (I think one would have to search through the email archives to extract the groups of these events
+//this is a really simple commit event (only one file in there)
+[] a :Committing;
+   :contains <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28>;
+   :message "#59890: The arguments for event's constructor aren't provided into the fire method" 
+   :relates-to <http://www.netbeans.org/issues/show_bug.cgi?id=59890#it>.
+
+
+//from the above message we can relate the bug to the ?commit events or versions?
+//I suppose it is easier to relate it to source code versions for the moment. It is easy to find which commit events it is part of later
+//Here it occured to me that the fix should be the place which links all the source code changes. But probably this is not a real big deal, since O suppose there would only be one fix per bug report.
+
+<http://www.netbeans.org/issues/show_bug.cgi?id=59890#it>
+    a :Defect ;
+    :status :Closed;
+    :resolution [ a :Fix;
+                  :code <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28>;
+                ];
+    :assignedTo [ foaf:mbox <mailto:issues@openide.sun.com> ];
+    :contact  [ foaf:mbox <mailto:issues@openide.sun.com> ];
+    :reporter [ :nick "bryonabbott"];
+    :summary [ :body "The arguments for event's constructor aren't provided into the fire method" ];
+    :hasDuplicate <http://www.netbeans.org/issues/show_bug.cgi?id=48123#it>;
+    :comment <http://www.netbeans.org/issues/show_bug.cgi?id=59890#desc2>,
+             <http://www.netbeans.org/issues/show_bug.cgi?id=59890#desc3>,
+             <http://www.netbeans.org/issues/show_bug.cgi?id=59890#desc4>,
+             <http://www.netbeans.org/issues/show_bug.cgi?id=59890#desc5>,
+             <http://www.netbeans.org/issues/show_bug.cgi?id=59890#desc6>;
+    :platform <http://wiki.netbeans.org/baetle/PC#it>;
+    :operatingSystem <http://wiki.netbeans.org/baetle/Linux#it>;
+    :targetMilestone <http://wiki.netbeans.org/baetle/Future>;
+    :priority <http://wiki.netbeans.org/baetle/priority#P3> .
+}}}
