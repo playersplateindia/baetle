@@ -10,9 +10,13 @@ The aim of this is to enable a number of things:
   * Relating bugs to software artifacts so that these issues can be tracked
   * others?
 
+= Licence =
+
+An ontology such as this is of no use if it is not done communally, fully openly and without any desire to collect royalties of any sort from anyone. This is a language to help diverse groups communicate. As such it should belong to everyone. Currently the license is new BSD. A CC license seems to be very common with Ontology developers. Probably it should be both. A CC license for the ontology and a BSD license for the testing code.
+
 = History =
 
-This idea has been developing for some time.  Henry Story (bblfish) first outlined the advantages such an ontology can have in [http://onesearch.sun.com/search/blog/index.jsp?col=blog&charset=utf-8&weblog=bblfish&qt=video semantic web video]. The first details of this ontology were written out in the blog entry [http://blogs.sun.com/bblfish/entry/baetle_bug_and_enhancement_tracking Baetle: Bug And Enhancement Tracking LanguagE]
+This idea has been developing for some time.  Henry Story (bblfish) first outlined the advantages such an ontology can have in [http://onesearch.sun.com/search/blog/index.jsp?col=blog&charset=utf-8&weblog=bblfish&qt=video Goolge Video introduces the semantic web]. The first details of this ontology were written out in the blog entry [http://blogs.sun.com/bblfish/entry/baetle_bug_and_enhancement_tracking Baetle: Bug And Enhancement Tracking LanguagE]
 
 = Details =
 
