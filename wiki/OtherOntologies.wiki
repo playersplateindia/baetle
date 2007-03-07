@@ -1,0 +1,14 @@
+#summary Ontologies to look at
+
+
+Listed here are some ontologies that we should look at and work with
+
+  * [http://xmlns.com/foaf/0.1/ FOAF]: The Friend of a Friend Ontology is very important to identify people and relations between them
+  * [http://usefulinc.com/ns/doap DOAP]: To describe bugs the Description of a Project ontology is clearly very handy
+
+
+Suggested one we can work with or should be compatible with
+  * [http://dannyayers.com:88/xmlns/project/ Project Vocabulary] Danny Ayers started a Project Vocabulary. Software projects are projects, so this looks useful.
+  * [http://bblfish.net/work/atom/2006-06-06 AtomOwl] When looking at bug reports such as [http://www.netbeans.org/issues/show_bug.cgi?id=21365 Netbeans bug id 21365] the bug looks very much like a feed, with the comments looking very much like entries. It also seems obvious that one could use the [http://bitworking.org/projects/atom/ Atom Publication Protocol] to publish replies to a bug or to create new issues.
+
+
