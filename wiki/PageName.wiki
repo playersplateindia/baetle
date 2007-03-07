@@ -1,0 +1,18 @@
+#summary Overview of Baetle
+= Introduction =
+
+Baetle stands for Bug And Enhancement Tracking LanguagE. It is an ontology that describes what bug repositories such as Bugzilla, Jira and others do.
+
+The aim of this is to enable a number of things:
+  * SPARQL end points on a bug database that can be queried
+  * Bugs in one open source project that refer to bugs in other open source projects, and that specify their dependency on these
+  * A format for bug databases to exchange their bug data
+  * Relating bugs to software artifacts so that these issues can be tracked
+  * others?
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
