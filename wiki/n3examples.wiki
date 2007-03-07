@@ -1,3 +1,5 @@
+#summary N3 examples of real bugs
+
 [http://www.w3.org/2000/10/swap/doc/Overview.html N3] makes it much easier to write out RDF graphs. Here are a few examples of real bugs written out using the N3 notation
 
 = Netbeans Bug 59890 =
