@@ -26,6 +26,6 @@ This idea has been developing for some time.  Henry Story (bblfish) first outlin
 
 = Details =
 
-Current thinking (version 0.00000002) is that the ontology should look something like this
+Current thinking (version 0.00002) is that the ontology should look something like this
 
 http://blogs.sun.com/bblfish/resource/BaetleUML2.jpg
