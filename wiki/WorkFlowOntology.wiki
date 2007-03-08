@@ -1,7 +1,8 @@
 #summary One-sentence summary of this page.
 
 
-Tim Berners Lee wrote a [http://www.w3.org/2005/01/wf/ Workflow ontology], that could be useful for us, since bugs affect workflows. In order to get a quick overview of it I drew up a UML diagram:
+Tim Berners Lee wrote a [http://www.w3.org/2005/01/wf/ Workflow ontology], that could be useful for us. Bugs are tasks that are in certain states. Fixing bugs is transition their state to a terminal state. In order to get a quick overview of it I drew up a UML diagram:
 
 http://baetle.googlecode.com/svn/trunk/uml/W3C_WorkFlowOntology.jpg
 
+Todo: explain N3 Work Flow rules
