@@ -1,6 +1,6 @@
-#summary One-sentence summary of this page.
+#summary Blogs, wikis, papers referring to Baetle
 
 Some blogs that refer to or think along the same lines:
 
-* [http://blogs.sun.com/bblfish/entry/baetle_bug_and_enhancement_tracking Baetle: Bug and enhancement Tracking] the original blog posting
-* [http://bewest.wordpress.com/2006/09/20/idea-todo-bug-database-service-like-evdbcom/ IDEA todo bug database service like evdb.com]
+ * [http://blogs.sun.com/bblfish/entry/baetle_bug_and_enhancement_tracking Baetle: Bug and enhancement Tracking] the original blog posting
+ * [http://bewest.wordpress.com/2006/09/20/idea-todo-bug-database-service-like-evdbcom/ IDEA todo bug database service like evdb.com]
