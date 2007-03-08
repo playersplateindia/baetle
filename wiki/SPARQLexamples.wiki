@@ -11,7 +11,7 @@ Using the latest ontology here are some examples of SPARQL queries
 Return all bugs that depend on the Netbeans bug 59890
 
 {{{
-PREFIX : <http://xmlns.com/baetle/0.1/ns#> 
+PREFIX \: <http://xmlns.com/baetle/0.1/ns#> 
 SELECT {
     ?bug :dependsOn <http://www.netbeans.org/issues/show_bug.cgi?id=59890#it> .
 
@@ -23,7 +23,7 @@ SELECT {
 Return all bugs that are about some source code and that are open (here we may not wish to identify the source code by version, but rather all versions of it).
 
 {{{
-PREFIX : <http://xmlns.com/baetle/0.1/ns#> 
+PREFIX \: <http://xmlns.com/baetle/0.1/ns#> 
 SELECT {
     ?bug :about [ :id <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java>
                 ];
