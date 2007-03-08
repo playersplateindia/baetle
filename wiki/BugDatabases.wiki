@@ -18,3 +18,4 @@ Oops a full list is [http://en.wikipedia.org/wiki/Comparison_of_issue_tracking_s
 
 Not listed at wikipedia:
  * [http://www.w3.org/2005/06/tracker/ tracker] from w3.
+ * [http://www.w3.org/2000/03/rdf-tracking/ simple list] simple list of bugs.
