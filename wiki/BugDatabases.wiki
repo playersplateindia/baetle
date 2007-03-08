@@ -2,9 +2,18 @@
 
 There are a number of Bug Databases that may be interested in this ontology. It would be useful to develop a D2RQ mapping for each of these databases. Here is a partial list:
 
- * [http://www.bugzilla.org/ Bugzilla]: one of the most widely used open source bug tracking systems
- * [http://www.atlassian.com/software/jira/ JIRA]: A closed source bug tracking system which I have seen used on a number of open source software projects, such as [http://rollerweblogger.org Roller]
+ * [http://www.bugzilla.org/ Bugzilla]: one of the most widely used open source bug tracking systems: bblfish contacted them
+ * [http://www.atlassian.com/software/jira/ JIRA]: A closed source bug tracking system which I have seen used on a number of open source software projects, such as [http://rollerweblogger.org Roller]. Contacted by bblfish.
  * [http://www.mantisbt.org/ Mantis Bug Tracker]: open source (GPL) PHP-based system, with a fairly large feature list
+ * [http://www.mantisbt.org/ Mantis Bug Track]
+ * [http://www.websina.com/bugzero/ BugZero]
+ * [http://www.issueview.com/default.asp?source=Google Issue View]
+ * [http://www.problemtracker.com/ Problem Tracker]
+ * [http://www.rallydev.com/?ppc=google&kw=bug_tracking Rally Software Development]
+ * [http://www.fogcreek.com/FogBugz/ Fog Bugz]
+ * [http://www.intland.com/ Intland Software]
+ 
 
+Oops a full list is [http://en.wikipedia.org/wiki/Comparison_of_issue_tracking_systems available on Wikipedia]
 
 
