@@ -3,5 +3,5 @@
 Some blogs that refer to or think along the same lines:
 
  * [http://blogs.sun.com/bblfish/entry/baetle_bug_and_enhancement_tracking Baetle: Bug and enhancement Tracking] the original blog posting
- * [http://bewest.wordpress.com/2006/09/20/idea-todo-bug-database-service-like-evdbcom/ IDEA todo bug database service like evdb.com]
+ * [http://bewest.wordpress.com/2006/09/20/idea-todo-bug-database-service-like-evdbcom/ IDEA todo bug database service like evdb.com] on the Imaginings blog
  * [http://www.semergence.com/archives/2007/03/07/11/41/35/ baetle - Ontology for Software Bugs] on the Semergence blog (thanks for the links to the other bug databases)
