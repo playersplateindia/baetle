@@ -4,5 +4,7 @@ There are a number of Bug Databases that may be interested in this ontology. It 
 
  * [http://www.bugzilla.org/ Bugzilla]: one of the most widely used open source bug tracking systems
  * [http://www.atlassian.com/software/jira/ JIRA]: A closed source bug tracking system which I have seen used on a number of open source software projects, such as [http://rollerweblogger.org Roller]
+ * [http://www.mantisbt.org/ Mantis Bug Tracker]: open source (GPL) PHP-based system, with a fairly large feature list
+
 
 
