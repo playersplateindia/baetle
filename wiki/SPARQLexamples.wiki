@@ -12,7 +12,8 @@ Return all bugs that depend on the Netbeans bug 59890
 
 {{{
 PREFIX beatle: <http://xmlns.com/baetle/0.1/ns#> 
-SELECT {
+SELECT ?bug
+WHERE {
     ?bug baetle:dependsOn <http://www.netbeans.org/issues/show_bug.cgi?id=59890#it> .
 
 }
@@ -24,7 +25,8 @@ Return all bugs that are about some source code and that are open (here we may n
 
 {{{
 PREFIX baetle: <http://xmlns.com/baetle/0.1/ns#> 
-SELECT {
+SELECT ?bug
+WHERE {
     ?bug beatle:about [ :id <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java>
                 ];
          baetle:status :open .
