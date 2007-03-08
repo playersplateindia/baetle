@@ -1,0 +1,8 @@
+#summary Bug Databases
+
+There are a number of Bug Databases that may be interested in this ontology. It would be useful to develop a D2RQ mapping for each of these databases. Here is a partial list:
+
+ * [http://www.bugzilla.org/ Bugzilla]: one of the most widely used open source bug tracking systems
+ * [http://www.atlassian.com/software/jira/ JIRA]: A closed source bug tracking system which I have seen used on a number of open source software projects, such as [http://rollerweblogger.org Roller]
+
+
