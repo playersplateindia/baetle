@@ -4,7 +4,7 @@
 
 = Netbeans Bug 59890 =
 
-[http://www.netbeans.org/issues/show_bug.cgi?id=59890 Bug 59890] is a real bug and can be browsed on the web. All URLs below were correctly dereferenceable.
+[http://www.netbeans.org/issues/show_bug.cgi?id=59890 Bug 59890] is a real bug and can be browsed on the web. Most URLs below are correctly dereferenceable. (there are some imaginary URLS for things that should be specific to NetBeans bug database)
 
 {{{
 @prefix : <http://xmlns.com/baetle/0.1/ns#> .
@@ -54,4 +54,55 @@ _:commit1
     :operatingSystem <http://wiki.netbeans.org/baetle/Linux#it>;
     :targetMilestone <http://wiki.netbeans.org/baetle/Future>;
     :priority <http://wiki.netbeans.org/baetle/priority#P3> .
+}}}
+
+== Netbeans bug 51486 ==
+
+[http://www.netbeans.org/issues/show_bug.cgi?id=51486 Bug 51486] is a real bug and can be browsed on the web. Most URLs below are correctly dereferenceable. (there are some imaginary URLS for things that should be specific to NetBeans bug database)
+
+
+{{{
+@prefix : <http://xmlns.com/baetle/0.1/ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<http://www.netbeans.org/source/browse/editor/plain/src/org/netbeans/modules/editor/plain/PlainEditorModule.java?rev=1.2>
+     a foaf:Document, :Version;
+     :previous <http://www.netbeans.org/source/browse/editor/plain/src/org/netbeans/modules/editor/plain/PlainEditorModule.java?rev=1.1.2.1> . 
+ 
+
+_:commit2 
+    a :Commit;
+    :author [ a foaf:Person;
+              foaf:mbox <mailto:mmetelka@netbeans.org>;
+            ];
+    :contains <http://www.netbeans.org/source/browse/editor/plain/src/org/netbeans/modules/editor/plain/PlainEditorModule.java?rev=1.2>;
+    :message "Fixed #51486 - editor module split implemented - editor/plain, java/editor, html/editor created";
+    :relates-to <http://www.netbeans.org/issues/show_bug.cgi?id=51486>;
+    :date "2005-01-12T07:35:12+0000"^^xsd:dateTime 
+    .
+
+
+<http://www.netbeans.org/issues/show_bug.cgi?id=51486#it>
+    a :Task ;
+    :state [ a :Fix;
+             :resolvedWith _:commit2;
+           ];
+    :component <http://www.netbeans.org/source/browse/editor/>;
+    :assignedTo [ foaf:mbox <mailto:issues@openide.sun.com> ];
+    :contact  [ foaf:mbox <mailto:issues@openide.sun.com> ],
+              [ foaf:mbox <mailto:apireviews@netbeans.org> ],
+              [ foaf:mbox <mailto:tor@netbeans.org> ];
+    :reporter [ foaf:mbox <mailto:mmetelka@netbeans.org ];
+    :summary [ :body "Split of the editor module into multiple modules" ];
+    :hasDuplicate <http://www.netbeans.org/issues/show_bug.cgi?id=27138#it>;
+    :comment <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc2>,
+             <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc3>,
+             <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc4>,
+             <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc5>,
+             <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc6>;
+    :platform <http://wiki.netbeans.org/baetle/platform/#All>; //imaginary url
+    :operatingSystem <http://wiki.netbeans.org/baetle/OS#Linux>;
+    :targetMilestone <http://wiki.netbeans.org/baetle/Milestones/4.1>;
+    :priority <http://wiki.netbeans.org/baetle/priority#P1> .
+             
 }}}
