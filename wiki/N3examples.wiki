@@ -33,10 +33,14 @@
 
 <http://www.netbeans.org/issues/show_bug.cgi?id=59890#it>
     a :Defect ;
-    :status :Closed;
-    :resolution [ a :Fix;
-                  :code <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28>;
-                ];
+    :status :Fix;
+    :state [ a :Fix;
+             :resolvedWith [ 
+                 a :Committing;
+                 :contains <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28>;
+                 :message "#59890: The arguments for event's constructor aren't provided into the fire method";
+              ]
+           ];
     :assignedTo [ foaf:mbox <mailto:issues@openide.sun.com> ];
     :contact  [ foaf:mbox <mailto:issues@openide.sun.com> ];
     :reporter [ :nick "bryonabbott"];
