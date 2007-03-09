@@ -23,9 +23,11 @@
 //this is a really simple commit event (only one file in there)
 _:commit1 
    a :Committing;
+   :author [ a foaf:Person;
+             foaf:nick "jtulach" ];
    :contains <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28>;
-   :message "#59890: The arguments for event's constructor aren't provided into the fire method" 
-   :relates-to <http://www.netbeans.org/issues/show_bug.cgi?id=59890#it>.
+   :message "#59890: The arguments for event's constructor aren't provided into the fire method";
+   :relates-to <http://www.netbeans.org/issues/show_bug.cgi?id=59890#it> .
 
 
 //from the above message we can relate the bug to the ?commit events or versions?
