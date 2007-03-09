@@ -2,7 +2,45 @@
 
 [http://www.w3.org/2000/10/swap/doc/Overview.html N3] makes it much easier to write out RDF graphs. Here are a few examples of real bugs written out using the N3 notation
 
-= Netbeans Bug 59890 =
+== Simple html bug tracking system: Issue rdfms-abouteachprefix ==
+
+[http://www.w3.org/2000/03/rdf-tracking/#rdfms-abouteachprefix Issue rdfms-about eachprefix] is writen out in simple html, in the you-can-get-no-simpler-than-this-bug-tracking-system (patent pending) of the w3c.
+
+{{{
+@prefix : <http://xmlns.com/baetle/0.1/ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix awol: <http://bblfish.net/work/atom-owl/2006-06-06/#> .
+
+
+<http://www.w3.org/2000/03/rdf-tracking/#rdfms-abouteachprefix>
+    a :Issue ; 
+    :title "Issue rdfms-abouteachprefix: Something should be done about aboutEachPrefix construct"; 
+    :reporter <http://www.w3.org/People/Berners-Lee/card#i>;
+    :raised "2000-02-29T00:00:00T"^^xsd:dateTime;
+    :summary "Split of the editor module into multiple modules"@en;
+    :state [ a :Solution;
+             :comment [ a awol:Content;
+                        awol:body "<div>On 1st June 2001, the WG decided that aboutEachPrefix would be removed from the RDF Model and Syntax Recommendation on the grounds that there is a lack of implementation experience, and it therefore should not be in the recommendation. A future version of RDF may consider support for this feature.</div>";
+                        awol:type "text/html";
+                      ];
+           ];
+    :comment [ a awol:Content;
+               awol:body "<div><p>See also:</p>
+<ul>
+  <li>search of RDF list archives for <a href="http://search.w3.org/Public/cgi-bin/query?mss=simple&amp;pg=q&amp;what=web&amp;filter=lists&amp;fmt=.&amp;q=%2Bwww-rdf+%2BaboutEachPrefix">"aboutEachPrefix"</a></li>
+  <li><a href="http://www.w3.org/TR/1999/REC-rdf-syntax-19990222/#URIPrefix">Model+Syntax
+    REC, 3.4. Containers Defined By A URI Pattern</a></li>
+</ul>
+</div>""";
+            awol:type "text/html";
+            ];
+    .
+
+}}}
+
+Note: there is a problem here a Comment can't be an awol:Content. There has to be something in between, that gives the author of the comment and the date at which it was made at least (though this would not be used here)
+
+== Netbeans Bug 59890 ==
 
 [http://www.netbeans.org/issues/show_bug.cgi?id=59890 Bug 59890] is a real bug and can be browsed on the web. Most URLs below are correctly dereferenceable. (there are some imaginary URLS for things that should be specific to NetBeans bug database)
 
