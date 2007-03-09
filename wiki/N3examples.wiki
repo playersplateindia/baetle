@@ -21,7 +21,8 @@
 
 //There is no url currently for the commit events (I think one would have to search through the email archives to extract the groups of these events
 //this is a really simple commit event (only one file in there)
-[] a :Committing;
+_:commit1 
+   a :Committing;
    :contains <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28>;
    :message "#59890: The arguments for event's constructor aren't provided into the fire method" 
    :relates-to <http://www.netbeans.org/issues/show_bug.cgi?id=59890#it>.
@@ -35,11 +36,7 @@
     a :Defect ;
     :status :Fix;
     :state [ a :Fix;
-             :resolvedWith [ 
-                 a :Committing;
-                 :contains <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28>;
-                 :message "#59890: The arguments for event's constructor aren't provided into the fire method";
-              ]
+             :resolvedWith _:commit1;
            ];
     :assignedTo [ foaf:mbox <mailto:issues@openide.sun.com> ];
     :contact  [ foaf:mbox <mailto:issues@openide.sun.com> ];
