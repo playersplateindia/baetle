@@ -77,13 +77,13 @@ _:commit2
             ];
     :contains <http://www.netbeans.org/source/browse/editor/plain/src/org/netbeans/modules/editor/plain/PlainEditorModule.java?rev=1.2>;
     :message "Fixed #51486 - editor module split implemented - editor/plain, java/editor, html/editor created";
-    :relates-to <http://www.netbeans.org/issues/show_bug.cgi?id=51486>;
+    :relates-to <http://www.netbeans.org/issues/show_bug.cgi?id=51486#it>;
     :date "2005-01-12T07:35:12+0000"^^xsd:dateTime 
     .
 
 
 <http://www.netbeans.org/issues/show_bug.cgi?id=51486#it>
-    a :Task ;
+    a :Task ;  //This class should probably be NetBeans specific
     :state [ a :Fix;
              :resolvedWith _:commit2;
            ];
@@ -100,7 +100,7 @@ _:commit2
              <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc4>,
              <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc5>,
              <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc6>;
-    :platform <http://wiki.netbeans.org/baetle/platform/#All>; //imaginary url
+    :platform <http://wiki.netbeans.org/baetle/platform/#All>; //imaginary url and below
     :operatingSystem <http://wiki.netbeans.org/baetle/OS#Linux>;
     :targetMilestone <http://wiki.netbeans.org/baetle/Milestones/4.1>;
     :priority <http://wiki.netbeans.org/baetle/priority#P1> .
