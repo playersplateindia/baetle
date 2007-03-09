@@ -38,7 +38,7 @@
 
 }}}
 
-Note: there is a problem here a Comment can't be an awol:Content. There has to be something in between, that gives the author of the comment and the date at which it was made at least (though this would not be used here)
+Note: there is a problem here. A Comment can't be an awol:Content. There has to be something in between, that gives the author of the comment and the date at which it was made at least (though this would not be used here). Is this where we would need an awol:Entry? The annoying thing about an awol:Entry is that it forces us to take too much: a title and an id.... 
 
 == Netbeans Bug 59890 ==
 
