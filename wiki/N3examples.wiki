@@ -10,6 +10,7 @@
 @prefix : <http://xmlns.com/baetle/0.1/ns#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix awol: <http://bblfish.net/work/atom-owl/2006-06-06/#> .
+@prefix wf:   <http://www.w3.org/2005/01/wf/flow#> .
 
 
 <http://www.w3.org/2000/03/rdf-tracking/#rdfms-abouteachprefix>
@@ -18,14 +19,14 @@
     :reporter <http://www.w3.org/People/Berners-Lee/card#i>;
     :raised "2000-02-29T00:00:00T"^^xsd:dateTime;
     :summary "Split of the editor module into multiple modules"@en;
-    :state [ a :Solution;
-             :comment [ a awol:Content;
-                        awol:body "<div>On 1st June 2001, the WG decided that aboutEachPrefix would be removed from the RDF Model and Syntax Recommendation on the grounds that there is a lack of implementation experience, and it therefore should not be in the recommendation. A future version of RDF may consider support for this feature.</div>";
-                        awol:type "text/html";
+    wf:state [ a :Solution;
+               :comment [ a awol:Content;
+                          awol:body """<div>On 1st June 2001, the WG decided that aboutEachPrefix would be removed from the RDF Model and Syntax Recommendation on the grounds that there is a lack of implementation experience, and it therefore should not be in the recommendation. A future version of RDF may consider support for this feature.</div>""";
+                         awol:type "text/html";
                       ];
            ];
     :comment [ a awol:Content;
-               awol:body "<div><p>See also:</p>
+               awol:body """<div><p>See also:</p>
 <ul>
   <li>search of RDF list archives for <a href="http://search.w3.org/Public/cgi-bin/query?mss=simple&amp;pg=q&amp;what=web&amp;filter=lists&amp;fmt=.&amp;q=%2Bwww-rdf+%2BaboutEachPrefix">"aboutEachPrefix"</a></li>
   <li><a href="http://www.w3.org/TR/1999/REC-rdf-syntax-19990222/#URIPrefix">Model+Syntax
