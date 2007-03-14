@@ -15,3 +15,4 @@ Suggested one we can work with or should be compatible with
   * [http://www.metalinker.org/ MetaLink ] has an xml format for helping mirroring of downloads and helping clients selecting the best mirror. [http://chatlogs.planetrdf.com/swig/2007-03-06.html#T17-05-23 twanj is working on an Ontology] for it.
   * [http://sw.nokia.com/WebArch-1/ Web Archictecture] There may be more standard one coming about
   * [http://www.w3.org/TR/test-metadata/ Test Metadata] a rdf vocabulary for describing tests
+  * [http://www.w3.org/TR/EARL10/ EARL] Evaluation and Report Language, ontology to test resources (could tie test classes to source code?)
