@@ -13,6 +13,6 @@ Suggested one we can work with or should be compatible with
   * [http://bblfish.net/work/atom/2006-06-06 AtomOwl] When looking at bug reports such as [http://www.netbeans.org/issues/show_bug.cgi?id=21365 Netbeans bug id 21365] the bug looks very much like a feed, with the comments looking very much like entries. It also seems obvious that one could use the [http://bitworking.org/projects/atom/ Atom Publication Protocol] to publish replies to a bug or to create new issues.
   * [http://www.holygoat.co.uk/projects/tags/ Tag Ontology] every bug system allows one to assign keywords to bugs. Keywords are similar to tags which are similar to Atom Categories as argued in  [http://blogs.sun.com/bblfish/entry/folksonomies_ontologies_atom_and_the Folksonomies, Ontologies and Atom]
   * [http://www.metalinker.org/ MetaLink ] has an xml format for helping mirroring of downloads and helping clients selecting the best mirror. [http://chatlogs.planetrdf.com/swig/2007-03-06.html#T17-05-23 twanj is working on an Ontology] for it.
-  * [http://sw.nokia.com/WebArch-1/ Web Archictecture] There may be more standard one coming about
-  * [http://www.w3.org/TR/test-metadata/ Test Metadata] a rdf vocabulary for describing tests
-  * [http://www.w3.org/TR/EARL10/ EARL] Evaluation and Report Language, ontology to test resources (could tie test classes to source code?)
+  * [http://sw.nokia.com/WebArch-1/ Web Archictecture] very helpful vocabulary. It would be nice to have it backed by a standards body.
+  * [http://www.w3.org/TR/test-metadata/ Test Metadata] a w3c approved rdf vocabulary for describing tests
+  * [http://www.w3.org/TR/EARL10/ EARL] Evaluation and Report Language, a w3c approved ontology to test resources (could tie test classes to source code?)
