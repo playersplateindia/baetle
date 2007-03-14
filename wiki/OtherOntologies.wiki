@@ -4,7 +4,7 @@
 Listed here are some ontologies that we should look at and work with
 
   * [http://xmlns.com/foaf/0.1/ FOAF]: The Friend of a Friend Ontology is very important to identify people and relations between them
-  * [http://usefulinc.com/ns/doap DOAP]: To describe bugs the Description of a Project ontology is clearly very handy
+  * [http://usefulinc.com/ns/doap DOAP]: To describe bugs the Description of a Project ontology is clearly very handy. Local UML diagram at: [DoapOntology]
   * [http://www.w3.org/2004/02/skos/ SKOS]: there are many ways of organising projects and classifying bugs. The SKOS ontology gives a very lightweigh way of creating metadata for wiki powered ontologies that are project specific, without requiring a full blown ontology such as this one to be designed.
   * WorkFlowOntology: Tim Berners Lee wrote out a WorkFlowOntology. Bugs affect workflows. They are in certain states and can have state transitions.
 
