@@ -8,6 +8,7 @@ Listed here are some ontologies that we should look at and work with
   * [http://www.w3.org/2004/02/skos/ SKOS]: there are many ways of organising projects and classifying bugs. The SKOS ontology gives a very lightweigh way of creating metadata for wiki powered ontologies that are project specific, without requiring a full blown ontology such as this one to be designed.
   * WorkFlowOntology: Tim Berners Lee wrote out a WorkFlowOntology. Bugs affect workflows. They are in certain states and can have state transitions.
   * [http://rdfs.org/sioc/spec/ SIOC] Semantically Interlinked Online Communities. We have a bug tracking community to interlink here. Things get Posted to Issues too.
+  * [http://purl.org/dc/terms/ dcterms]: Dublin Core Terms. Very basic but useful vocabulary
 
 Suggested one we can work with or should be compatible with
   * [http://dannyayers.com:88/xmlns/project/ Project Vocabulary] Danny Ayers started a Project Vocabulary. Software projects are projects, so this looks useful.
