@@ -330,6 +330,15 @@
 					<dict>
 						<key>fill</key>
 						<dict>
+							<key>Color</key>
+							<dict>
+								<key>b</key>
+								<string>1</string>
+								<key>g</key>
+								<string>0.844444</string>
+								<key>r</key>
+								<string>0.922222</string>
+							</dict>
 							<key>GradientAngle</key>
 							<real>304</real>
 							<key>GradientCenter</key>
@@ -366,6 +375,15 @@
 					<dict>
 						<key>fill</key>
 						<dict>
+							<key>Color</key>
+							<dict>
+								<key>b</key>
+								<string>1</string>
+								<key>g</key>
+								<string>0.844444</string>
+								<key>r</key>
+								<string>0.922222</string>
+							</dict>
 							<key>GradientAngle</key>
 							<real>304</real>
 							<key>GradientCenter</key>
@@ -382,8 +400,8 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
-\f0\fs24 \cf0 author\
-date\
+\f0\fs24 \cf0 has_creator\
+dct:created\
 content}</string>
 					</dict>
 					<key>TextPlacement</key>
@@ -5823,7 +5841,7 @@ schema}</string>
 		</dict>
 	</array>
 	<key>ModificationDate</key>
-	<string>2007-03-15 17:14:16 +0100</string>
+	<string>2007-03-15 18:41:41 +0100</string>
 	<key>Modifier</key>
 	<string>Henry Story</string>
 	<key>NotesVisible</key>
