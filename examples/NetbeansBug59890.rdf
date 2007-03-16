@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:db="http://localhost:2020/resource/"
+    xmlns:baetle="http://xmlns.com/baetle/#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:vocab="http://localhost:2020/resource/vocab/"
+    xmlns:map="file:///Users/hjs/Programming/D2RQ/d2r-server-0.3.2/netbeans-local.n3#"
+    xmlns:awol="http://bblfish.net/work/atom-owl/2006-06-06/#"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:sioc="http://rdfs.org/sioc/ns#"
+    xmlns:j.0="http://wiki.netbeans.org/issuetypes#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=59890#comment_18642443">
+    <sioc:content>*** Issue 48123 has been marked as a duplicate of this issue. ***</sioc:content>
+    <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2005-10-07 05:09:34.0</dcterms:created>
+    <rdfs:label>Netbeans comment on 59890 with id 18642443</rdfs:label>
+    <sioc:has_creator rdf:resource="http://netbeans.org/people/983"/>
+  </sioc:Post>
+
+  <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=59890#comment_18642446">
+    <sioc:has_creator rdf:resource="http://netbeans.org/people/4632"/>
+    <sioc:content>verified</sioc:content>
+    <rdfs:label>Netbeans comment on 59890 with id 18642446</rdfs:label>
+    <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2005-10-25 09:52:37.0</dcterms:created>
+  </sioc:Post>
+  <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=59890#comment_18642445">
+
+    <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2005-06-13 03:01:25.0</dcterms:created>
+    <sioc:content>NB 4.1 (200505031930)
+JDK 1.5.0_03
+
+The arguments for the even's constructor aren't provided to the fire method. 
+
+Steps:
+1) select Bean Patterns node
+2) select Add | Unicast Event Source from the popup menu
+3) select java.beans.PropertyChangeListener as a type
+4) select Generate Implementation and check Generate Event firing methods
+5) press OK
+
+-&gt; the firePropertyChangeListenerPropertyChange() method is generated without
+arguments. Inside it, the new event is created but the constructor is called
+without required arguments.</sioc:content>
+    <rdfs:label>Netbeans comment on 59890 with id 18642445</rdfs:label>
+    <sioc:has_creator rdf:resource="http://netbeans.org/people/4632"/>
+  </sioc:Post>
+  <baetle:Issue rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=59890#it">
+
+    <baetle:reporter rdf:resource="http://netbeans.org/people/4632"/>
+    <baetle:about rdf:resource="http://download.netbeans.org/beans/4.1"/>
+    <sioc:container_of>
+      <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=59890#comment_18642444">
+        <sioc:content>Checking in BeanPatternGenerator.java;
+/cvs/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java,v  &lt;-- 
+BeanPatternGenerator.java
+new revision: 1.28; previous revision: 1.27
+done</sioc:content>
+        <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+        >2005-10-07 05:31:05.0</dcterms:created>
+        <rdfs:label>Netbeans comment on 59890 with id 18642444</rdfs:label>
+
+        <sioc:has_creator rdf:resource="http://netbeans.org/people/983"/>
+      </sioc:Post>
+    </sioc:container_of>
+    <baetle:operating_system rdf:resource="http://wiki.netbeans.org/os/Windows XP"/>
+    <sioc:container_of rdf:resource="http://www.netbeans.org/issues/show_bug.cgi?id=59890#comment_18642446"/>
+    <sioc:container_of rdf:resource="http://www.netbeans.org/issues/show_bug.cgi?id=59890#comment_18642443"/>
+    <baetle:status rdf:resource="http://wiki.netbeans.org/baetle/status#CLOSED"/>
+    <baetle:raised rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2005-06-13 03:01:25.0</baetle:raised>
+
+    <baetle:votes rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal"
+    >0</baetle:votes>
+    <baetle:resolution rdf:resource="http://wiki.netbeans.org/baetle/resolution#FIXED"/>
+    <baetle:summary>The arguments for event's constructor aren't provided into the fire method</baetle:summary>
+    <baetle:platform rdf:resource="http://wiki.netbeans.org/platforms#PC"/>
+    <awol:category rdf:resource="http://wiki.netbeans.org/components/code"/>
+    <baetle:priority rdf:resource="http://wiki.netbeans.org/baetle/priorities#P3"/>
+    <rdf:type rdf:resource="http://wiki.netbeans.org/issuetypes#DEFECT"/>
+    <awol:category rdf:resource="http://wiki.netbeans.org/components/beans"/>
+
+    <sioc:container_of rdf:resource="http://www.netbeans.org/issues/show_bug.cgi?id=59890#comment_18642445"/>
+    <baetle:updated rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2006-03-27 22:29:00.0</baetle:updated>
+    <baetle:target_milestone rdf:resource="http://wiki.netbeans.org/milestones/#5.0"/>
+    <rdfs:label>NetBeans issue #59890</rdfs:label>
+  </baetle:Issue>
+</rdf:RDF>
+
