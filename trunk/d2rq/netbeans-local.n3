@@ -20,52 +20,54 @@ map:database a d2rq:Database;
 	.
 
 # Table activity
-map:activity a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	# because the table doesn't have a primary key
-	d2rq:uriPattern "activity";
-	d2rq:class vocab:activity;
-	.
-map:activity__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:activity;
-	d2rq:property rdfs:label;
-	d2rq:pattern "activity #";
-	.
-map:activity_issue_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:activity;
-	d2rq:property vocab:activity_issue_id;
-	d2rq:refersToClassMap map:issue;
-	d2rq:join "activity.issue_id = issue.issue_id";
-	.
-map:activity_who a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:activity;
-	d2rq:property vocab:activity_who;
-	d2rq:column "activity.who";
-	.
-map:activity_what a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:activity;
-	d2rq:property vocab:activity_what;
-	d2rq:column "activity.what";
-	.
-map:activity_oldvalue a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:activity;
-	d2rq:property vocab:activity_oldvalue;
-	d2rq:column "activity.oldvalue";
-	.
-map:activity_newvalue a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:activity;
-	d2rq:property vocab:activity_newvalue;
-	d2rq:column "activity.newvalue";
-	.
-map:activity_whn a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:activity;
-	d2rq:property vocab:activity_whn;
-	d2rq:column "activity.whn";
-	d2rq:datatype xsd:dateTime;
-	d2rq:condition "activity.whn != '0000'";
-	.
-
+# how does this relate to the history table?
+# when the ontology gets refined.
+#map:activity a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	# Sorry, I don't know which columns to put into the uriPattern
+#	# because the table doesn't have a primary key
+#	d2rq:uriPattern "activity";
+#	d2rq:class vocab:activity;
+#	.
+#map:activity__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:activity;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "activity #";
+#	.
+#map:activity_issue_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:activity;
+#	d2rq:property vocab:activity_issue_id;
+#	d2rq:refersToClassMap map:issue;
+#	d2rq:join "activity.issue_id = issue.issue_id";
+#	.
+#map:activity_who a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:activity;
+#	d2rq:property vocab:activity_who;
+#	d2rq:column "activity.who";
+#	.
+#map:activity_what a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:activity;
+#	d2rq:property vocab:activity_what;
+#	d2rq:column "activity.what";
+#	.
+#map:activity_oldvalue a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:activity;
+#	d2rq:property vocab:activity_oldvalue;
+#	d2rq:column "activity.oldvalue";
+#	.
+#map:activity_newvalue a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:activity;
+#	d2rq:property vocab:activity_newvalue;
+#	d2rq:column "activity.newvalue";
+#	.
+#map:activity_whn a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:activity;
+#	d2rq:property vocab:activity_whn;
+#	d2rq:column "activity.whn";
+#	d2rq:datatype xsd:dateTime;
+#	d2rq:condition "activity.whn != '0000'";
+#	.
+#
 # Table attachment
 
 ## First we create the content classes
@@ -140,61 +142,63 @@ map:attachment_description a d2rq:PropertyBridge;
 #	d2rq:column "block.block";
 #	.
 
-# Table bug_age
-map:bug_age a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	# because the table doesn't have a primary key
-	d2rq:uriPattern "bug_age";
-	d2rq:class vocab:bug_age;
-	.
-map:bug_age__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bug_age;
-	d2rq:property rdfs:label;
-	d2rq:pattern "bug_age #";
-	.
-map:bug_age_mdate a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bug_age;
-	d2rq:property vocab:bug_age_mdate;
-	d2rq:column "bug_age.mdate";
-	d2rq:datatype xsd:dateTime;
-	d2rq:condition "bug_age.mdate != '0000'";
-	.
-map:bug_age_component a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bug_age;
-	d2rq:property vocab:bug_age_component;
-	d2rq:column "bug_age.component";
-	.
-map:bug_age_prio a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bug_age;
-	d2rq:property vocab:bug_age_prio;
-	d2rq:column "bug_age.prio";
-	.
-map:bug_age_age1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bug_age;
-	d2rq:property vocab:bug_age_age1;
-	d2rq:column "bug_age.age1";
-	d2rq:datatype xsd:decimal;
-	.
-map:bug_age_age2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bug_age;
-	d2rq:property vocab:bug_age_age2;
-	d2rq:column "bug_age.age2";
-	d2rq:datatype xsd:decimal;
-	.
-map:bug_age_age3 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bug_age;
-	d2rq:property vocab:bug_age_age3;
-	d2rq:column "bug_age.age3";
-	d2rq:datatype xsd:decimal;
-	.
-map:bug_age_age4 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bug_age;
-	d2rq:property vocab:bug_age_age4;
-	d2rq:column "bug_age.age4";
-	d2rq:datatype xsd:decimal;
-	.
 
+# Table bug_age
+# not really sure what this table is for
+#map:bug_age a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	# Sorry, I don't know which columns to put into the uriPattern
+#	# because the table doesn't have a primary key
+#	d2rq:uriPattern "bug_age";
+#	d2rq:class vocab:bug_age;
+#	.
+#map:bug_age__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:bug_age;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "bug_age #";
+#	.
+#map:bug_age_mdate a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:bug_age;
+#	d2rq:property vocab:bug_age_mdate;
+#	d2rq:column "bug_age.mdate";
+#	d2rq:datatype xsd:dateTime;
+#	d2rq:condition "bug_age.mdate != '0000'";
+#	.
+#map:bug_age_component a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:bug_age;
+#	d2rq:property vocab:bug_age_component;
+#	d2rq:column "bug_age.component";
+#	.
+#map:bug_age_prio a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:bug_age;
+#	d2rq:property vocab:bug_age_prio;
+#	d2rq:column "bug_age.prio";
+#	.
+#map:bug_age_age1 a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:bug_age;
+#	d2rq:property vocab:bug_age_age1;
+#	d2rq:column "bug_age.age1";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:bug_age_age2 a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:bug_age;
+#	d2rq:property vocab:bug_age_age2;
+#	d2rq:column "bug_age.age2";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:bug_age_age3 a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:bug_age;
+#	d2rq:property vocab:bug_age_age3;
+#	d2rq:column "bug_age.age3";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:bug_age_age4 a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:bug_age;
+#	d2rq:property vocab:bug_age_age4;
+#	d2rq:column "bug_age.age4";
+#	d2rq:datatype xsd:decimal;
+#	.
+#
 # Table cc
 # we use this from the Issue class Map
 #map:cc a d2rq:ClassMap;
@@ -245,82 +249,82 @@ map:bug_age_age4 a d2rq:PropertyBridge;
 #	.
 
 # Table history
-map:history a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	# because the table doesn't have a primary key
-	d2rq:uriPattern "history";
-	d2rq:class vocab:history;
-	.
-map:history__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property rdfs:label;
-	d2rq:pattern "history #";
-	.
-map:history_whn a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_whn;
-	d2rq:column "history.whn";
-	d2rq:datatype xsd:dateTime;
-	d2rq:condition "history.whn != '0000'";
-	.
-map:history_issue_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_issue_id;
-	d2rq:refersToClassMap map:issue;
-	d2rq:join "history.issue_id = issue.issue_id";
-	.
-map:history_component a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_component;
-	d2rq:column "history.component";
-	.
-map:history_priority a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_priority;
-	d2rq:column "history.priority";
-	.
-map:history_issue_status a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_issue_status;
-	d2rq:column "history.issue_status";
-	.
-map:history_issue_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_issue_type;
-	d2rq:column "history.issue_type";
-	.
-map:history_resolution a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_resolution;
-	d2rq:column "history.resolution";
-	.
-map:history_version a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_version;
-	d2rq:column "history.version";
-	.
-map:history_subcomponent a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_subcomponent;
-	d2rq:column "history.subcomponent";
-	.
-map:history_target_milestone a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_target_milestone;
-	d2rq:column "history.target_milestone";
-	.
-map:history_short_desc a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_short_desc;
-	d2rq:column "history.short_desc";
-	.
-map:history_keyword a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:history;
-	d2rq:property vocab:history_keyword;
-	d2rq:column "history.keyword";
-	.
-
+#map:history a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	# Sorry, I don't know which columns to put into the uriPattern
+#	# because the table doesn't have a primary key
+#	d2rq:uriPattern "history";
+#	d2rq:class vocab:history;
+#	.
+#map:history__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "history #";
+#	.
+#map:history_whn a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_whn;
+#	d2rq:column "history.whn";
+#	d2rq:datatype xsd:dateTime;
+#	d2rq:condition "history.whn != '0000'";
+#	.
+#map:history_issue_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_issue_id;
+#	d2rq:refersToClassMap map:issue;
+#	d2rq:join "history.issue_id = issue.issue_id";
+#	.
+#map:history_component a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_component;
+#	d2rq:column "history.component";
+#	.
+#map:history_priority a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_priority;
+#	d2rq:column "history.priority";
+#	.
+#map:history_issue_status a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_issue_status;
+#	d2rq:column "history.issue_status";
+#	.
+#map:history_issue_type a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_issue_type;
+#	d2rq:column "history.issue_type";
+#	.
+#map:history_resolution a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_resolution;
+#	d2rq:column "history.resolution";
+#	.
+#map:history_version a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_version;
+#	d2rq:column "history.version";
+#	.
+#map:history_subcomponent a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_subcomponent;
+#	d2rq:column "history.subcomponent";
+#	.
+#map:history_target_milestone a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_target_milestone;
+#	d2rq:column "history.target_milestone";
+#	.
+#map:history_short_desc a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_short_desc;
+#	d2rq:column "history.short_desc";
+#	.
+#map:history_keyword a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:history;
+#	d2rq:property vocab:history_keyword;
+#	d2rq:column "history.keyword";
+#	.
+#
 # Table issue
 map:issue a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
@@ -579,479 +583,480 @@ map:long_desc_thetext a d2rq:PropertyBridge;
 	.
 
 # Table testbuild
-map:testbuild a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "testbuild/@@testbuild.xtestresults_id@@";
-	d2rq:class vocab:testbuild;
-	.
-map:testbuild__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property rdfs:label;
-	d2rq:pattern "testbuild #@@testbuild.xtestresults_id@@";
-	.
-map:testbuild_build_number a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property vocab:testbuild_build_number;
-	d2rq:column "testbuild.build_number";
-	.
-map:testbuild_host_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property vocab:testbuild_host_name;
-	d2rq:column "testbuild.host_name";
-	.
-map:testbuild_state a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property vocab:testbuild_state;
-	d2rq:column "testbuild.state";
-	d2rq:datatype xsd:decimal;
-	.
-map:testbuild_xtestresults_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property vocab:testbuild_xtestresults_id;
-	d2rq:column "testbuild.xtestresults_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:testbuild_weblink a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property vocab:testbuild_weblink;
-	d2rq:column "testbuild.weblink";
-	.
-map:testbuild_jdk_version a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property vocab:testbuild_jdk_version;
-	d2rq:column "testbuild.jdk_version";
-	.
-map:testbuild_project_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property vocab:testbuild_project_id;
-	d2rq:column "testbuild.project_id";
-	.
-map:testbuild_project a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property vocab:testbuild_project;
-	d2rq:column "testbuild.project";
-	.
-map:testbuild_osname a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property vocab:testbuild_osname;
-	d2rq:column "testbuild.osname";
-	.
-map:testbuild_time a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property vocab:testbuild_time;
-	d2rq:column "testbuild.time";
-	d2rq:datatype xsd:dateTime;
-	d2rq:condition "testbuild.time != '0000'";
-	.
-map:testbuild_testedtype a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testbuild;
-	d2rq:property vocab:testbuild_testedtype;
-	d2rq:column "testbuild.testedtype";
-	.
-
-# Table testcase
-map:testcase a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "testcase/@@testcase.testcase_id@@";
-	d2rq:class vocab:testcase;
-	.
-map:testcase__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcase;
-	d2rq:property rdfs:label;
-	d2rq:pattern "testcase #@@testcase.testcase_id@@";
-	.
-map:testcase_testcase_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcase;
-	d2rq:property vocab:testcase_testcase_id;
-	d2rq:column "testcase.testcase_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:testcase_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcase;
-	d2rq:property vocab:testcase_name;
-	d2rq:column "testcase.name";
-	.
-map:testcase_classname a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcase;
-	d2rq:property vocab:testcase_classname;
-	d2rq:column "testcase.classname";
-	.
-map:testcase_suite_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcase;
-	d2rq:property vocab:testcase_suite_id;
-	d2rq:column "testcase.suite_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:testcase_result a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcase;
-	d2rq:property vocab:testcase_result;
-	d2rq:column "testcase.result";
-	.
-map:testcase_testtype a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcase;
-	d2rq:property vocab:testcase_testtype;
-	d2rq:column "testcase.testtype";
-	.
-map:testcase_lastxtestresults_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcase;
-	d2rq:property vocab:testcase_lastxtestresults_id;
-	d2rq:column "testcase.lastxtestresults_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:testcase_testproject_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcase;
-	d2rq:property vocab:testcase_testproject_id;
-	d2rq:column "testcase.testproject_id";
-	d2rq:datatype xsd:int;
-	.
-
-# Table testcaseissue
-map:testcaseissue a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "testcaseissue/@@testcaseissue.s1s_testcase_id@@";
-	d2rq:class vocab:testcaseissue;
-	.
-map:testcaseissue__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcaseissue;
-	d2rq:property rdfs:label;
-	d2rq:pattern "testcaseissue #@@testcaseissue.s1s_testcase_id@@";
-	.
-map:testcaseissue_issue_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcaseissue;
-	d2rq:property vocab:testcaseissue_issue_id;
-	d2rq:column "testcaseissue.issue_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:testcaseissue_testcase_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcaseissue;
-	d2rq:property vocab:testcaseissue_testcase_id;
-	d2rq:column "testcaseissue.testcase_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:testcaseissue_s1s_testcase_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcaseissue;
-	d2rq:property vocab:testcaseissue_s1s_testcase_id;
-	d2rq:column "testcaseissue.s1s_testcase_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:testcaseissue_xtestresults_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcaseissue;
-	d2rq:property vocab:testcaseissue_xtestresults_id;
-	d2rq:column "testcaseissue.xtestresults_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:testcaseissue_evaluation_time a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testcaseissue;
-	d2rq:property vocab:testcaseissue_evaluation_time;
-	d2rq:column "testcaseissue.evaluation_time";
-	d2rq:datatype xsd:dateTime;
-	d2rq:condition "testcaseissue.evaluation_time != '0000'";
-	.
-
-# Table testmail
-map:testmail a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	# because the table doesn't have a primary key
-	d2rq:uriPattern "testmail";
-	d2rq:class vocab:testmail;
-	.
-map:testmail__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testmail;
-	d2rq:property rdfs:label;
-	d2rq:pattern "testmail #";
-	.
-map:testmail_user_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testmail;
-	d2rq:property vocab:testmail_user_id;
-	d2rq:column "testmail.user_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:testmail_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testmail;
-	d2rq:property vocab:testmail_type;
-	d2rq:column "testmail.type";
-	.
-map:testmail_type_value a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testmail;
-	d2rq:property vocab:testmail_type_value;
-	d2rq:column "testmail.type_value";
-	.
-map:testmail_testedtype a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testmail;
-	d2rq:property vocab:testmail_testedtype;
-	d2rq:column "testmail.testedtype";
-	.
-map:testmail_testinggroup a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testmail;
-	d2rq:property vocab:testmail_testinggroup;
-	d2rq:column "testmail.testinggroup";
-	.
-map:testmail_team a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testmail;
-	d2rq:property vocab:testmail_team;
-	d2rq:column "testmail.team";
-	.
-map:testmail_testproject_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testmail;
-	d2rq:property vocab:testmail_testproject_id;
-	d2rq:column "testmail.testproject_id";
-	d2rq:datatype xsd:int;
-	.
-
-# Table testproject
-map:testproject a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "testproject/@@testproject.id@@";
-	d2rq:class vocab:testproject;
-	.
-map:testproject__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testproject;
-	d2rq:property rdfs:label;
-	d2rq:pattern "testproject #@@testproject.id@@";
-	.
-map:testproject_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testproject;
-	d2rq:property vocab:testproject_id;
-	d2rq:column "testproject.id";
-	d2rq:datatype xsd:int;
-	.
-map:testproject_project_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testproject;
-	d2rq:property vocab:testproject_project_name;
-	d2rq:column "testproject.project_name";
-	.
-map:testproject_project_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testproject;
-	d2rq:property vocab:testproject_project_id;
-	d2rq:column "testproject.project_id";
-	.
-
-# Table testsuitecase
-map:testsuitecase a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "testsuitecase/@@testsuitecase.testsuitecase_id@@";
-	d2rq:class vocab:testsuitecase;
-	.
-map:testsuitecase__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testsuitecase;
-	d2rq:property rdfs:label;
-	d2rq:pattern "testsuitecase #@@testsuitecase.testsuitecase_id@@";
-	.
-map:testsuitecase_testsuitecase_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testsuitecase;
-	d2rq:property vocab:testsuitecase_testsuitecase_id;
-	d2rq:column "testsuitecase.testsuitecase_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:testsuitecase_module_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testsuitecase;
-	d2rq:property vocab:testsuitecase_module_name;
-	d2rq:column "testsuitecase.module_name";
-	.
-map:testsuitecase_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testsuitecase;
-	d2rq:property vocab:testsuitecase_name;
-	d2rq:column "testsuitecase.name";
-	.
-
-# Table testuser
-map:testuser a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "testuser/@@testuser.user_id@@";
-	d2rq:class vocab:testuser;
-	.
-map:testuser__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testuser;
-	d2rq:property rdfs:label;
-	d2rq:pattern "testuser #@@testuser.user_id@@";
-	.
-map:testuser_user_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testuser;
-	d2rq:property vocab:testuser_user_id;
-	d2rq:column "testuser.user_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:testuser_user_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testuser;
-	d2rq:property vocab:testuser_user_name;
-	d2rq:column "testuser.user_name";
-	.
-map:testuser_user_email a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:testuser;
-	d2rq:property vocab:testuser_user_email;
-	d2rq:column "testuser.user_email";
-	.
-
-# Table user_category
-map:user_category a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "user_category/@@user_category.cat_id@@";
-	d2rq:class vocab:user_category;
-	.
-map:user_category__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:user_category;
-	d2rq:property rdfs:label;
-	d2rq:pattern "user_category #@@user_category.cat_id@@";
-	.
-map:user_category_cat_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:user_category;
-	d2rq:property vocab:user_category_cat_id;
-	d2rq:column "user_category.cat_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:user_category_cat_cat_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:user_category;
-	d2rq:property vocab:user_category_cat_cat_id;
-	d2rq:column "user_category.cat_cat_id";
-	d2rq:datatype xsd:decimal;
-	.
-map:user_category_cat_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:user_category;
-	d2rq:property vocab:user_category_cat_name;
-	d2rq:column "user_category.cat_name";
-	.
-
-# Table util
-map:util a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	# because the table doesn't have a primary key
-	d2rq:uriPattern "util";
-	d2rq:class vocab:util;
-	.
-map:util__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:util;
-	d2rq:property rdfs:label;
-	d2rq:pattern "util #";
-	.
-map:util_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:util;
-	d2rq:property vocab:util_name;
-	d2rq:column "util.name";
-	.
-map:util_datevalue a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:util;
-	d2rq:property vocab:util_datevalue;
-	d2rq:column "util.datevalue";
-	d2rq:datatype xsd:dateTime;
-	d2rq:condition "util.datevalue != '0000'";
-	.
-
-# Table webstat_email
-map:webstat_email a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "webstat_email/@@webstat_email.ID@@";
-	d2rq:class vocab:webstat_email;
-	.
-map:webstat_email__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:webstat_email;
-	d2rq:property rdfs:label;
-	d2rq:pattern "webstat_email #@@webstat_email.ID@@";
-	.
-map:webstat_email_ID a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:webstat_email;
-	d2rq:property vocab:webstat_email_ID;
-	d2rq:column "webstat_email.ID";
-	d2rq:datatype xsd:long;
-	.
-map:webstat_email_LIST a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:webstat_email;
-	d2rq:property vocab:webstat_email_LIST;
-	d2rq:column "webstat_email.LIST";
-	d2rq:datatype xsd:int;
-	.
-map:webstat_email_SENDER a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:webstat_email;
-	d2rq:property vocab:webstat_email_SENDER;
-	d2rq:column "webstat_email.SENDER";
-	.
-map:webstat_email_SUBJECT a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:webstat_email;
-	d2rq:property vocab:webstat_email_SUBJECT;
-	d2rq:column "webstat_email.SUBJECT";
-	.
-map:webstat_email_SAVEDATE a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:webstat_email;
-	d2rq:property vocab:webstat_email_SAVEDATE;
-	d2rq:column "webstat_email.SAVEDATE";
-	d2rq:datatype xsd:dateTime;
-	d2rq:condition "webstat_email.SAVEDATE != '0000'";
-	.
-
-# Table webstat_sequence
-map:webstat_sequence a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "webstat_sequence/@@webstat_sequence.SEQ_NAME@@";
-	d2rq:class vocab:webstat_sequence;
-	.
-map:webstat_sequence__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:webstat_sequence;
-	d2rq:property rdfs:label;
-	d2rq:pattern "webstat_sequence #@@webstat_sequence.SEQ_NAME@@";
-	.
-map:webstat_sequence_SEQ_NAME a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:webstat_sequence;
-	d2rq:property vocab:webstat_sequence_SEQ_NAME;
-	d2rq:column "webstat_sequence.SEQ_NAME";
-	.
-map:webstat_sequence_SEQ_COUNT a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:webstat_sequence;
-	d2rq:property vocab:webstat_sequence_SEQ_COUNT;
-	d2rq:column "webstat_sequence.SEQ_COUNT";
-	d2rq:datatype xsd:decimal;
-	.
-
-# Table xmlactivity
-map:xmlactivity a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "xmlactivity/@@xmlactivity.id@@";
-	d2rq:class vocab:xmlactivity;
-	.
-map:xmlactivity__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:xmlactivity;
-	d2rq:property rdfs:label;
-	d2rq:pattern "xmlactivity #@@xmlactivity.id@@";
-	.
-map:xmlactivity_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:xmlactivity;
-	d2rq:property vocab:xmlactivity_id;
-	d2rq:column "xmlactivity.id";
-	d2rq:datatype xsd:decimal;
-	.
-map:xmlactivity_xml a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:xmlactivity;
-	d2rq:property vocab:xmlactivity_xml;
-	d2rq:column "xmlactivity.xml";
-	.
-
-# Table xmlissue
-map:xmlissue a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "xmlissue/@@xmlissue.id@@";
-	d2rq:class vocab:xmlissue;
-	.
-map:xmlissue__label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:xmlissue;
-	d2rq:property rdfs:label;
-	d2rq:pattern "xmlissue #@@xmlissue.id@@";
-	.
-map:xmlissue_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:xmlissue;
-	d2rq:property vocab:xmlissue_id;
-	d2rq:column "xmlissue.id";
-	d2rq:datatype xsd:decimal;
-	.
-map:xmlissue_xml a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:xmlissue;
-	d2rq:property vocab:xmlissue_xml;
-	d2rq:column "xmlissue.xml";
-	.
-map:xmlissue_readtime a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:xmlissue;
-	d2rq:property vocab:xmlissue_readtime;
-	d2rq:column "xmlissue.readtime";
-	d2rq:datatype xsd:dateTime;
-	d2rq:condition "xmlissue.readtime != '0000'";
-	.
-
+# no idea what this table is for
+#map:testbuild a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	d2rq:uriPattern "testbuild/@@testbuild.xtestresults_id@@";
+#	d2rq:class vocab:testbuild;
+#	.
+#map:testbuild__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "testbuild #@@testbuild.xtestresults_id@@";
+#	.
+#map:testbuild_build_number a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property vocab:testbuild_build_number;
+#	d2rq:column "testbuild.build_number";
+#	.
+#map:testbuild_host_name a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property vocab:testbuild_host_name;
+#	d2rq:column "testbuild.host_name";
+#	.
+#map:testbuild_state a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property vocab:testbuild_state;
+#	d2rq:column "testbuild.state";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testbuild_xtestresults_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property vocab:testbuild_xtestresults_id;
+#	d2rq:column "testbuild.xtestresults_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testbuild_weblink a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property vocab:testbuild_weblink;
+#	d2rq:column "testbuild.weblink";
+#	.
+#map:testbuild_jdk_version a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property vocab:testbuild_jdk_version;
+#	d2rq:column "testbuild.jdk_version";
+#	.
+#map:testbuild_project_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property vocab:testbuild_project_id;
+#	d2rq:column "testbuild.project_id";
+#	.
+#map:testbuild_project a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property vocab:testbuild_project;
+#	d2rq:column "testbuild.project";
+#	.
+#map:testbuild_osname a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property vocab:testbuild_osname;
+#	d2rq:column "testbuild.osname";
+#	.
+#map:testbuild_time a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property vocab:testbuild_time;
+#	d2rq:column "testbuild.time";
+#	d2rq:datatype xsd:dateTime;
+#	d2rq:condition "testbuild.time != '0000'";
+#	.
+#map:testbuild_testedtype a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testbuild;
+#	d2rq:property vocab:testbuild_testedtype;
+#	d2rq:column "testbuild.testedtype";
+#	.
+#
+## Table testcase
+#map:testcase a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	d2rq:uriPattern "testcase/@@testcase.testcase_id@@";
+#	d2rq:class vocab:testcase;
+#	.
+#map:testcase__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcase;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "testcase #@@testcase.testcase_id@@";
+#	.
+#map:testcase_testcase_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcase;
+#	d2rq:property vocab:testcase_testcase_id;
+#	d2rq:column "testcase.testcase_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testcase_name a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcase;
+#	d2rq:property vocab:testcase_name;
+#	d2rq:column "testcase.name";
+#	.
+#map:testcase_classname a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcase;
+#	d2rq:property vocab:testcase_classname;
+#	d2rq:column "testcase.classname";
+#	.
+#map:testcase_suite_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcase;
+#	d2rq:property vocab:testcase_suite_id;
+#	d2rq:column "testcase.suite_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testcase_result a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcase;
+#	d2rq:property vocab:testcase_result;
+#	d2rq:column "testcase.result";
+#	.
+#map:testcase_testtype a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcase;
+#	d2rq:property vocab:testcase_testtype;
+#	d2rq:column "testcase.testtype";
+#	.
+#map:testcase_lastxtestresults_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcase;
+#	d2rq:property vocab:testcase_lastxtestresults_id;
+#	d2rq:column "testcase.lastxtestresults_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testcase_testproject_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcase;
+#	d2rq:property vocab:testcase_testproject_id;
+#	d2rq:column "testcase.testproject_id";
+#	d2rq:datatype xsd:int;
+#	.
+#
+## Table testcaseissue
+#map:testcaseissue a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	d2rq:uriPattern "testcaseissue/@@testcaseissue.s1s_testcase_id@@";
+#	d2rq:class vocab:testcaseissue;
+#	.
+#map:testcaseissue__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcaseissue;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "testcaseissue #@@testcaseissue.s1s_testcase_id@@";
+#	.
+#map:testcaseissue_issue_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcaseissue;
+#	d2rq:property vocab:testcaseissue_issue_id;
+#	d2rq:column "testcaseissue.issue_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testcaseissue_testcase_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcaseissue;
+#	d2rq:property vocab:testcaseissue_testcase_id;
+#	d2rq:column "testcaseissue.testcase_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testcaseissue_s1s_testcase_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcaseissue;
+#	d2rq:property vocab:testcaseissue_s1s_testcase_id;
+#	d2rq:column "testcaseissue.s1s_testcase_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testcaseissue_xtestresults_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcaseissue;
+#	d2rq:property vocab:testcaseissue_xtestresults_id;
+#	d2rq:column "testcaseissue.xtestresults_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testcaseissue_evaluation_time a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testcaseissue;
+#	d2rq:property vocab:testcaseissue_evaluation_time;
+#	d2rq:column "testcaseissue.evaluation_time";
+#	d2rq:datatype xsd:dateTime;
+#	d2rq:condition "testcaseissue.evaluation_time != '0000'";
+#	.
+#
+## Table testmail
+#map:testmail a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	# Sorry, I don't know which columns to put into the uriPattern
+#	# because the table doesn't have a primary key
+#	d2rq:uriPattern "testmail";
+#	d2rq:class vocab:testmail;
+#	.
+#map:testmail__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testmail;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "testmail #";
+#	.
+#map:testmail_user_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testmail;
+#	d2rq:property vocab:testmail_user_id;
+#	d2rq:column "testmail.user_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testmail_type a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testmail;
+#	d2rq:property vocab:testmail_type;
+#	d2rq:column "testmail.type";
+#	.
+#map:testmail_type_value a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testmail;
+#	d2rq:property vocab:testmail_type_value;
+#	d2rq:column "testmail.type_value";
+#	.
+#map:testmail_testedtype a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testmail;
+#	d2rq:property vocab:testmail_testedtype;
+#	d2rq:column "testmail.testedtype";
+#	.
+#map:testmail_testinggroup a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testmail;
+#	d2rq:property vocab:testmail_testinggroup;
+#	d2rq:column "testmail.testinggroup";
+#	.
+#map:testmail_team a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testmail;
+#	d2rq:property vocab:testmail_team;
+#	d2rq:column "testmail.team";
+#	.
+#map:testmail_testproject_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testmail;
+#	d2rq:property vocab:testmail_testproject_id;
+#	d2rq:column "testmail.testproject_id";
+#	d2rq:datatype xsd:int;
+#	.
+#
+## Table testproject
+#map:testproject a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	d2rq:uriPattern "testproject/@@testproject.id@@";
+#	d2rq:class vocab:testproject;
+#	.
+#map:testproject__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testproject;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "testproject #@@testproject.id@@";
+#	.
+#map:testproject_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testproject;
+#	d2rq:property vocab:testproject_id;
+#	d2rq:column "testproject.id";
+#	d2rq:datatype xsd:int;
+#	.
+#map:testproject_project_name a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testproject;
+#	d2rq:property vocab:testproject_project_name;
+#	d2rq:column "testproject.project_name";
+#	.
+#map:testproject_project_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testproject;
+#	d2rq:property vocab:testproject_project_id;
+#	d2rq:column "testproject.project_id";
+#	.
+#
+## Table testsuitecase
+#map:testsuitecase a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	d2rq:uriPattern "testsuitecase/@@testsuitecase.testsuitecase_id@@";
+#	d2rq:class vocab:testsuitecase;
+#	.
+#map:testsuitecase__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testsuitecase;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "testsuitecase #@@testsuitecase.testsuitecase_id@@";
+#	.
+#map:testsuitecase_testsuitecase_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testsuitecase;
+#	d2rq:property vocab:testsuitecase_testsuitecase_id;
+#	d2rq:column "testsuitecase.testsuitecase_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testsuitecase_module_name a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testsuitecase;
+#	d2rq:property vocab:testsuitecase_module_name;
+#	d2rq:column "testsuitecase.module_name";
+#	.
+#map:testsuitecase_name a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testsuitecase;
+#	d2rq:property vocab:testsuitecase_name;
+#	d2rq:column "testsuitecase.name";
+#	.
+#
+## Table testuser
+#map:testuser a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	d2rq:uriPattern "testuser/@@testuser.user_id@@";
+#	d2rq:class vocab:testuser;
+#	.
+#map:testuser__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testuser;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "testuser #@@testuser.user_id@@";
+#	.
+#map:testuser_user_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testuser;
+#	d2rq:property vocab:testuser_user_id;
+#	d2rq:column "testuser.user_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:testuser_user_name a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testuser;
+#	d2rq:property vocab:testuser_user_name;
+#	d2rq:column "testuser.user_name";
+#	.
+#map:testuser_user_email a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:testuser;
+#	d2rq:property vocab:testuser_user_email;
+#	d2rq:column "testuser.user_email";
+#	.
+#
+## Table user_category
+#map:user_category a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	d2rq:uriPattern "user_category/@@user_category.cat_id@@";
+#	d2rq:class vocab:user_category;
+#	.
+#map:user_category__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:user_category;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "user_category #@@user_category.cat_id@@";
+#	.
+#map:user_category_cat_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:user_category;
+#	d2rq:property vocab:user_category_cat_id;
+#	d2rq:column "user_category.cat_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:user_category_cat_cat_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:user_category;
+#	d2rq:property vocab:user_category_cat_cat_id;
+#	d2rq:column "user_category.cat_cat_id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:user_category_cat_name a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:user_category;
+#	d2rq:property vocab:user_category_cat_name;
+#	d2rq:column "user_category.cat_name";
+#	.
+#
+## Table util
+#map:util a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	# Sorry, I don't know which columns to put into the uriPattern
+#	# because the table doesn't have a primary key
+#	d2rq:uriPattern "util";
+#	d2rq:class vocab:util;
+#	.
+#map:util__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:util;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "util #";
+#	.
+#map:util_name a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:util;
+#	d2rq:property vocab:util_name;
+#	d2rq:column "util.name";
+#	.
+#map:util_datevalue a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:util;
+#	d2rq:property vocab:util_datevalue;
+#	d2rq:column "util.datevalue";
+#	d2rq:datatype xsd:dateTime;
+#	d2rq:condition "util.datevalue != '0000'";
+#	.
+#
+## Table webstat_email
+#map:webstat_email a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	d2rq:uriPattern "webstat_email/@@webstat_email.ID@@";
+#	d2rq:class vocab:webstat_email;
+#	.
+#map:webstat_email__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:webstat_email;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "webstat_email #@@webstat_email.ID@@";
+#	.
+#map:webstat_email_ID a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:webstat_email;
+#	d2rq:property vocab:webstat_email_ID;
+#	d2rq:column "webstat_email.ID";
+#	d2rq:datatype xsd:long;
+#	.
+#map:webstat_email_LIST a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:webstat_email;
+#	d2rq:property vocab:webstat_email_LIST;
+#	d2rq:column "webstat_email.LIST";
+#	d2rq:datatype xsd:int;
+#	.
+#map:webstat_email_SENDER a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:webstat_email;
+#	d2rq:property vocab:webstat_email_SENDER;
+#	d2rq:column "webstat_email.SENDER";
+#	.
+#map:webstat_email_SUBJECT a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:webstat_email;
+#	d2rq:property vocab:webstat_email_SUBJECT;
+#	d2rq:column "webstat_email.SUBJECT";
+#	.
+#map:webstat_email_SAVEDATE a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:webstat_email;
+#	d2rq:property vocab:webstat_email_SAVEDATE;
+#	d2rq:column "webstat_email.SAVEDATE";
+#	d2rq:datatype xsd:dateTime;
+#	d2rq:condition "webstat_email.SAVEDATE != '0000'";
+#	.
+#
+## Table webstat_sequence
+#map:webstat_sequence a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	d2rq:uriPattern "webstat_sequence/@@webstat_sequence.SEQ_NAME@@";
+#	d2rq:class vocab:webstat_sequence;
+#	.
+#map:webstat_sequence__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:webstat_sequence;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "webstat_sequence #@@webstat_sequence.SEQ_NAME@@";
+#	.
+#map:webstat_sequence_SEQ_NAME a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:webstat_sequence;
+#	d2rq:property vocab:webstat_sequence_SEQ_NAME;
+#	d2rq:column "webstat_sequence.SEQ_NAME";
+#	.
+#map:webstat_sequence_SEQ_COUNT a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:webstat_sequence;
+#	d2rq:property vocab:webstat_sequence_SEQ_COUNT;
+#	d2rq:column "webstat_sequence.SEQ_COUNT";
+#	d2rq:datatype xsd:decimal;
+#	.
+#
+## Table xmlactivity
+#map:xmlactivity a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	d2rq:uriPattern "xmlactivity/@@xmlactivity.id@@";
+#	d2rq:class vocab:xmlactivity;
+#	.
+#map:xmlactivity__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:xmlactivity;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "xmlactivity #@@xmlactivity.id@@";
+#	.
+#map:xmlactivity_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:xmlactivity;
+#	d2rq:property vocab:xmlactivity_id;
+#	d2rq:column "xmlactivity.id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:xmlactivity_xml a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:xmlactivity;
+#	d2rq:property vocab:xmlactivity_xml;
+#	d2rq:column "xmlactivity.xml";
+#	.
+#
+## Table xmlissue
+#map:xmlissue a d2rq:ClassMap;
+#	d2rq:dataStorage map:database;
+#	d2rq:uriPattern "xmlissue/@@xmlissue.id@@";
+#	d2rq:class vocab:xmlissue;
+#	.
+#map:xmlissue__label a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:xmlissue;
+#	d2rq:property rdfs:label;
+#	d2rq:pattern "xmlissue #@@xmlissue.id@@";
+#	.
+#map:xmlissue_id a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:xmlissue;
+#	d2rq:property vocab:xmlissue_id;
+#	d2rq:column "xmlissue.id";
+#	d2rq:datatype xsd:decimal;
+#	.
+#map:xmlissue_xml a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:xmlissue;
+#	d2rq:property vocab:xmlissue_xml;
+#	d2rq:column "xmlissue.xml";
+#	.
+#map:xmlissue_readtime a d2rq:PropertyBridge;
+#	d2rq:belongsToClassMap map:xmlissue;
+#	d2rq:property vocab:xmlissue_readtime;
+#	d2rq:column "xmlissue.readtime";
+#	d2rq:datatype xsd:dateTime;
+#	d2rq:condition "xmlissue.readtime != '0000'";
+#	.
+#
