@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:db="http://localhost:2020/resource/"
+    xmlns:baetle="http://xmlns.com/baetle/#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:vocab="http://localhost:2020/resource/vocab/"
+    xmlns:map="file:///Users/hjs/Programming/D2RQ/d2r-server-0.3.2/netbeans-local.n3#"
+    xmlns:awol="http://bblfish.net/work/atom-owl/2006-06-06/#"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:sioc="http://rdfs.org/sioc/ns#"
+    xmlns:j.0="http://wiki.netbeans.org/issuetypes#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125579">
+    <sioc:content>Thanks, I will try to work out the rest of the stuff.</sioc:content>
+    <sioc:has_creator rdf:resource="http://netbeans.org/people/1020"/>
+    <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2001-01-26 06:14:59.0</dcterms:created>
+    <rdfs:label>Netbeans comment on 8997 with id 13125579</rdfs:label>
+  </sioc:Post>
+
+  <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125583">
+    <rdfs:label>Netbeans comment on 8997 with id 13125583</rdfs:label>
+    <sioc:content>Ant/Java modules patched as well. Also JSP bug as mentioned. Does not seem to be
+any timing problem with Output Window with Ales's implementation.</sioc:content>
+    <sioc:has_creator rdf:resource="http://netbeans.org/people/1020"/>
+    <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2001-01-30 11:39:59.0</dcterms:created>
+  </sioc:Post>
+  <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125584">
+
+    <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2001-01-26 01:01:59.0</dcterms:created>
+    <sioc:has_creator rdf:resource="http://netbeans.org/people/267"/>
+    <rdfs:label>Netbeans comment on 8997 with id 13125584</rdfs:label>
+    <sioc:content>I made my part of the job - first two points.</sioc:content>
+  </sioc:Post>
+  <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125580">
+    <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2001-01-30 11:11:59.0</dcterms:created>
+
+    <sioc:has_creator rdf:resource="http://netbeans.org/people/1020"/>
+    <rdfs:label>Netbeans comment on 8997 with id 13125580</rdfs:label>
+    <sioc:content>Leaving documentation part to Patrick.</sioc:content>
+  </sioc:Post>
+  <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=8997#attach_427">
+    <dc:title>Suggested source patch to fix this bug</dc:title>
+    <awol:content>
+
+      <awol:Content>
+        <awol:src rdf:resource="http://www.netbeans.org/nonav/issues/showattachment.cgi/427/compilerpatch.diff"/>
+        <awol:type>text/plain</awol:type>
+      </awol:Content>
+    </awol:content>
+  </sioc:Post>
+  <baetle:Issue rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=8997#it">
+    <baetle:interested rdf:resource="http://netbeans.org/people/267"/>
+
+    <baetle:reporter rdf:resource="http://netbeans.org/people/1020"/>
+    <sioc:container_of rdf:resource="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125580"/>
+    <awol:category rdf:resource="http://wiki.netbeans.org/components/core"/>
+    <rdfs:label>NetBeans issue #8997</rdfs:label>
+    <baetle:assigned_to rdf:resource="http://netbeans.org/people/1020"/>
+    <sioc:container_of rdf:resource="http://www.netbeans.org/issues/show_bug.cgi?id=8997#attach_427"/>
+    <baetle:depends_on rdf:resource="http://www.netbeans.org/issues/show_bug.cgi?id=9304#it"/>
+    <baetle:summary>Proposed: F9 on single file: Build vs. Compile; compiler message display</baetle:summary>
+
+    <rdf:type rdf:resource="http://wiki.netbeans.org/issuetypes#DEFECT"/>
+    <baetle:platform rdf:resource="http://wiki.netbeans.org/platforms#PC"/>
+    <sioc:container_of rdf:resource="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125583"/>
+    <sioc:container_of rdf:resource="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125579"/>
+    <baetle:updated rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2002-07-20 10:28:00.0</baetle:updated>
+    <baetle:resolution rdf:resource="http://wiki.netbeans.org/baetle/resolution#FIXED"/>
+    <baetle:interested rdf:resource="http://netbeans.org/people/1692"/>
+    <baetle:priority rdf:resource="http://wiki.netbeans.org/baetle/priorities#P3"/>
+
+    <sioc:container_of>
+      <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125582">
+        <sioc:content>Cannot reproduce the problem with Java external compilation, assuming fine for
+now.</sioc:content>
+        <rdfs:label>Netbeans comment on 8997 with id 13125582</rdfs:label>
+        <sioc:has_creator rdf:resource="http://netbeans.org/people/1020"/>
+        <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+        >2001-01-30 11:21:59.0</dcterms:created>
+      </sioc:Post>
+
+    </sioc:container_of>
+    <awol:category rdf:resource="http://wiki.netbeans.org/components/ui"/>
+    <sioc:container_of>
+      <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125578">
+        <sioc:content>Created an attachment (id=427)
+Suggested source patch to fix this bug</sioc:content>
+        <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+        >2000-12-29 09:28:59.0</dcterms:created>
+        <sioc:has_creator rdf:resource="http://netbeans.org/people/1020"/>
+        <rdfs:label>Netbeans comment on 8997 with id 13125578</rdfs:label>
+
+      </sioc:Post>
+    </sioc:container_of>
+    <baetle:votes rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >0</baetle:votes>
+    <baetle:depends_on rdf:resource="http://www.netbeans.org/issues/show_bug.cgi?id=9276#it"/>
+    <baetle:about rdf:resource="http://download.netbeans.org/core/3.3 dev"/>
+    <baetle:blocks rdf:resource="http://www.netbeans.org/issues/show_bug.cgi?id=8342#it"/>
+    <baetle:status rdf:resource="http://wiki.netbeans.org/baetle/status#CLOSED"/>
+    <baetle:raised rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2000-12-29 05:19:02.0</baetle:raised>
+
+    <sioc:container_of>
+      <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125585">
+        <rdfs:label>Netbeans comment on 8997 with id 13125585</rdfs:label>
+        <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+        >2002-05-30 07:33:23.0</dcterms:created>
+        <sioc:has_creator rdf:resource="http://netbeans.org/people/1471"/>
+        <sioc:content>closed</sioc:content>
+      </sioc:Post>
+
+    </sioc:container_of>
+    <sioc:container_of>
+      <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125577">
+        <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+        >2000-12-29 05:19:02.0</dcterms:created>
+        <sioc:content>This is a proposed patch (patchfile attached) to make the behavior of F9
+(Compile) more consistent. Currently when applied to a single file, it actually
+runs the equivalent of Build. The patch makes it compile only if the file is not
+up-to-date. Also the patch displays more information in the Output Window about
+the results of compilation; basically the finish message is displayed both in
+the status bar and in the Output Window, to ensure that users are not confused
+about whether their file was really compiled or not.
+
+See the discussion on nbui started by:
+
+http://www.netbeans.org/www-nbui/msg00917.html
+
+The patch will be attached. Upon request a full build or binary patch could be
+made so more people can try it out. It consists of changes to:
+
+- org.openide.loaders.CompilerSupport: removing special case
+
+- org.netbeans.core.compiler.*: providing special message when no compilation
+occurred because everything was up to date; always printing final message in
+Output Window
+
+- Java module: adding Build to .java context menu, since it now does something
+different
+
+- Ant module: removing some workarounds needed to counteract the special case;
+adding Build to context menu
+
+- NetBeans Help: updating two docs pages to reflect behavior
+
+Some issues not covered by this patch:
+
+- "Build" name left as is. nbui folks can determine if this is still a good name
+or if something like "Recompile" or "Force Rebuild" is more recognizable.
+
+- #2 of the proposal on nbui, to make the display of the result messages
+optional, is not implemented. There is no existing place in Options to set
+global compiler behavior, anyway.
+
+- "up-to-date" message is not consistently displayed in the Output Window,
+though it is always shown in the status bar. I suspect this is an
+org.netbeans.core.output.* timing bug since the only thing making this message
+different is that it is displayed very soon after compilation starts.
+
+- JAR Packager: Compile on a *.jar seems to always Build included files, not
+Compile them, which is inconsistent.
+
+- Java compilation: external compilation does not seem to refresh folders after
+compilation anymore, so the IDE may think it needs to recompile a file even
+though you just compiled it. If you manually refresh the folder, it gets it
+right. Probably a bug in Java external compiler types.
+
+- JSP compilation: never seems to be up-to-date, not clear what is happening.</sioc:content>
+        <sioc:has_creator rdf:resource="http://netbeans.org/people/1020"/>
+        <rdfs:label>Netbeans comment on 8997 with id 13125577</rdfs:label>
+
+      </sioc:Post>
+    </sioc:container_of>
+    <baetle:interested rdf:resource="http://netbeans.org/people/8323"/>
+    <baetle:operating_system rdf:resource="http://wiki.netbeans.org/os/Linux"/>
+    <sioc:container_of>
+      <sioc:Post rdf:about="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125581">
+        <rdfs:label>Netbeans comment on 8997 with id 13125581</rdfs:label>
+        <sioc:content>Here is the JAR Packager bug as promised.</sioc:content>
+
+        <sioc:has_creator rdf:resource="http://netbeans.org/people/1020"/>
+        <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+        >2001-01-30 11:14:59.0</dcterms:created>
+      </sioc:Post>
+    </sioc:container_of>
+    <sioc:container_of rdf:resource="http://www.netbeans.org/issues/show_bug.cgi?id=8997#comment_13125584"/>
+  </baetle:Issue>
+</rdf:RDF>
+
