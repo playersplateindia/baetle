@@ -3722,7 +3722,7 @@ date}</string>
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{746.221, 56.6929}, {90, 14}}</string>
+					<string>{{790, 59.3858}, {90, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -3769,7 +3769,7 @@ date}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{746.221, 70.6929}, {90, 14}}</string>
+					<string>{{790, 73.3858}, {90, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -3838,8 +3838,8 @@ date}</string>
 			<integer>175</integer>
 			<key>Points</key>
 			<array>
-				<string>{791.221, 155.906}</string>
-				<string>{791.221, 84.6929}</string>
+				<string>{833.544, 155.906}</string>
+				<string>{834.753, 87.3858}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -5386,7 +5386,7 @@ contains}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{647.58, 168.374}, {85, 14}}</string>
+			<string>{{639.118, 151.745}, {85, 14}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -5410,7 +5410,7 @@ contains}</string>
 				<key>ID</key>
 				<integer>87</integer>
 				<key>Position</key>
-				<real>0.58301568031311035</real>
+				<real>0.36898842453956604</real>
 				<key>RotationType</key>
 				<integer>0</integer>
 			</dict>
@@ -5456,9 +5456,9 @@ contains}</string>
 			<integer>87</integer>
 			<key>Points</key>
 			<array>
-				<string>{653.386, 226.284}</string>
-				<string>{692, 174}</string>
-				<string>{732.047, 175.173}</string>
+				<string>{653.386, 213.296}</string>
+				<string>{694, 149}</string>
+				<string>{774, 165.041}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -5594,7 +5594,7 @@ operating_system}</string>
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{732.047, 155.906}, {118.347, 14}}</string>
+					<string>{{774, 155.906}, {118.347, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -5641,7 +5641,7 @@ operating_system}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{732.047, 169.906}, {118.347, 28}}</string>
+					<string>{{774, 169.906}, {118.347, 28}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -6051,7 +6051,7 @@ schema}</string>
 		</dict>
 	</array>
 	<key>ModificationDate</key>
-	<string>2007-03-17 15:58:58 +0100</string>
+	<string>2007-03-17 16:25:29 +0100</string>
 	<key>Modifier</key>
 	<string>Henry Story</string>
 	<key>NotesVisible</key>
