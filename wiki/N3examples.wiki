@@ -41,107 +41,30 @@
 
 Note: there is a problem here. A Comment can't be an awol:Content. There has to be something in between, that gives the author of the comment and the date at which it was made at least (though this would not be used here). Is this where we would need an awol:Entry? The annoying thing about an awol:Entry is that it forces us to take too much: a title and an id.... 
 
-== Netbeans Bug 59890 ==
+== Netbeans Bugs ==
 
-[http://www.netbeans.org/issues/show_bug.cgi?id=59890 Bug 59890] is a real bug and can be browsed on the web. Most URLs below are correctly dereferenceable. (there are some imaginary URLS for things that should be specific to NetBeans bug database)
-
-{{{
-@prefix : <http://xmlns.com/baetle/0.1/ns#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-
-<http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28>
-       a foaf:Document, :Version;
-       :previous <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.27> .
-
-<http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?r1=1.27&r2=1.28>
-      a :Diff;
-      :from <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.27>;
-      :to <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28> .
-
-//There is no url currently for the commit events (I think one would have to search through the email archives to extract the groups of these events
-//this is a really simple commit event (only one file in there)
-_:commit1 
-   a :Committing;
-   :author [ a foaf:Person;
-             foaf:nick "jtulach" ];
-   :contains <http://www.netbeans.org/source/browse/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java?rev=1.28>;
-   :message "#59890: The arguments for event's constructor aren't provided into the fire method";
-   :relates-to <http://www.netbeans.org/issues/show_bug.cgi?id=59890#it> .
-
-
-//from the above message we can relate the bug to the ?commit events or versions?
-//I suppose it is easier to relate it to source code versions for the moment. It is easy to find which commit events it is part of later
-//Here it occured to me that the fix should be the place which links all the source code changes. But probably this is not a real big deal, since O suppose there would only be one fix per bug report.
-
-<http://www.netbeans.org/issues/show_bug.cgi?id=59890#it>
-    a :Defect ;
-    :status :Fix;
-    :state [ a :Fix;
-             :resolvedWith _:commit1;
-           ];
-    :assignedTo [ foaf:mbox <mailto:issues@openide.sun.com> ];
-    :contact  [ foaf:mbox <mailto:issues@openide.sun.com> ];
-    :reporter [ :nick "bryonabbott"];
-    :summary [ :body "The arguments for event's constructor aren't provided into the fire method" ];
-    :hasDuplicate <http://www.netbeans.org/issues/show_bug.cgi?id=48123#it>;
-    :comment <http://www.netbeans.org/issues/show_bug.cgi?id=59890#desc2>,
-             <http://www.netbeans.org/issues/show_bug.cgi?id=59890#desc3>,
-             <http://www.netbeans.org/issues/show_bug.cgi?id=59890#desc4>,
-             <http://www.netbeans.org/issues/show_bug.cgi?id=59890#desc5>,
-             <http://www.netbeans.org/issues/show_bug.cgi?id=59890#desc6>;
-    :platform <http://wiki.netbeans.org/baetle/PC#it>;
-    :operatingSystem <http://wiki.netbeans.org/baetle/Linux#it>;
-    :targetMilestone <http://wiki.netbeans.org/baetle/Future>;
-    :priority <http://wiki.netbeans.org/baetle/priority#P3> .
-}}}
-
-== Netbeans bug 51486 ==
-
-[http://www.netbeans.org/issues/show_bug.cgi?id=51486 Bug 51486] is a real bug and can be browsed on the web. Most URLs below are correctly dereferenceable. (there are some imaginary URLS for things that should be specific to NetBeans bug database)
-
+These were generated using a SPARQL query of the form 
 
 {{{
-@prefix : <http://xmlns.com/baetle/0.1/ns#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+CONSTRUCT {
+<http://www.netbeans.org/issues/show_bug.cgi?id=8997#it> ?r ?o;
+        sioc:container_of ?post.
+        ?post ?r2 ?o2 .
+        ?o2 ?r3 ?r4 .
+} WHERE {
 
-<http://www.netbeans.org/source/browse/editor/plain/src/org/netbeans/modules/editor/plain/PlainEditorModule.java?rev=1.2>
-     a foaf:Document, :Version;
-     :previous <http://www.netbeans.org/source/browse/editor/plain/src/org/netbeans/modules/editor/plain/PlainEditorModule.java?rev=1.1.2.1> . 
- 
+<http://www.netbeans.org/issues/show_bug.cgi?id=8997#it>
+    ?r ?o;
+    sioc:container_of ?post .
+    ?post ?r2 ?o2 .
+    OPTIONAL {
+      ?o2 a awol:Content;
+          ?r3 ?o4 .
+    }
 
-_:commit2 
-    a :Commit;
-    :author [ a foaf:Person;
-              foaf:mbox <mailto:mmetelka@netbeans.org>;
-            ];
-    :contains <http://www.netbeans.org/source/browse/editor/plain/src/org/netbeans/modules/editor/plain/PlainEditorModule.java?rev=1.2>;
-    :message "Fixed #51486 - editor module split implemented - editor/plain, java/editor, html/editor created";
-    :relates-to <http://www.netbeans.org/issues/show_bug.cgi?id=51486#it>;
-    :date "2005-01-12T07:35:12+0000"^^xsd:dateTime 
-    .
-
-
-<http://www.netbeans.org/issues/show_bug.cgi?id=51486#it>
-    a :Task ;  //This class should probably be NetBeans specific
-    :state [ a :Fix;
-             :resolvedWith _:commit2;
-           ];
-    :component <http://www.netbeans.org/source/browse/editor/>;
-    :assignedTo [ foaf:mbox <mailto:issues@openide.sun.com> ];
-    :contact  [ foaf:mbox <mailto:issues@openide.sun.com> ],
-              [ foaf:mbox <mailto:apireviews@netbeans.org> ],
-              [ foaf:mbox <mailto:tor@netbeans.org> ];
-    :reporter [ foaf:mbox <mailto:mmetelka@netbeans.org ];
-    :summary [ :body "Split of the editor module into multiple modules" ];
-    :hasDuplicate <http://www.netbeans.org/issues/show_bug.cgi?id=27138#it>;
-    :comment <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc2>,
-             <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc3>,
-             <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc4>,
-             <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc5>,
-             <http://www.netbeans.org/issues/show_bug.cgi?id=51486#desc6>;
-    :platform <http://wiki.netbeans.org/baetle/platform/#All>; //imaginary url and below
-    :operatingSystem <http://wiki.netbeans.org/baetle/OS#Linux>;
-    :targetMilestone <http://wiki.netbeans.org/baetle/Milestones/4.1>;
-    :priority <http://wiki.netbeans.org/baetle/priority#P1> .
-             
+}
 }}}
+
+* [http://baetle.googlecode.com/svn/trunk/examples/NetbeansBug51486.n3 Netbeans Bug 51486] in N3 
+* [http://baetle.googlecode.com/svn/trunk/examples/NetbeansBug51486.n3 Netbeans Bug 8997] in N3 
+* [http://baetle.googlecode.com/svn/trunk/examples/NetbeansBug51486.n3 Netbeans Bug 59890] in N3 
