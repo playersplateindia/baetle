@@ -1,37 +1,33 @@
-#Processed by Id: cwm.py,v 1.190 2006/08/09 23:20:42 syosi Exp 
-        #    using base file:///Users/hjs/Programming/baetle/examples/NetbeansBug59890.rdf
-        
 #  Notation3 generation by
 #       notation3.py,v 1.193 2007/01/26 03:33:01 timbl Exp
 
-#   Base was: file:///Users/hjs/Programming/baetle/examples/NetbeansBug59890.rdf
-     @prefix : <http://rdfs.org/sioc/ns#> .
+    @prefix sioc: <http://rdfs.org/sioc/ns#> .
     @prefix awol: <http://bblfish.net/work/atom-owl/2006-06-06/#> .
     @prefix baetle: <http://xmlns.com/baetle/#> .
     @prefix j.0: <http://wiki.netbeans.org/issuetypes#> .
     @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-    @prefix issue: <http://www.netbeans.org/issues/show_bug.cgi?id=59890#> .
+    @prefix bug: <http://www.netbeans.org/issues/show_bug.cgi?id=59890#> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
     
-    issue:comment_18642443     a :Post;
+    bug:comment_18642443     a sioc:Post;
          <http://purl.org/dc/terms/created> "2005-10-07 05:09:34.0"^^xsd:dateTime;
-         :content "*** Issue 48123 has been marked as a duplicate of this issue. ***";
-         :has_creator <http://netbeans.org/people/983>;
+         sioc:content "*** Issue 48123 has been marked as a duplicate of this issue. ***";
+         sioc:has_creator <http://netbeans.org/people/983>;
          rdfs:label "Netbeans comment on 59890 with id 18642443" .
     
-    issue:comment_18642444     a :Post;
+    bug:comment_18642444     a sioc:Post;
          <http://purl.org/dc/terms/created> "2005-10-07 05:31:05.0"^^xsd:dateTime;
-         :content """Checking in BeanPatternGenerator.java;
+         sioc:content """Checking in BeanPatternGenerator.java;
 /cvs/beans/src/org/netbeans/modules/beans/BeanPatternGenerator.java,v  <-- 
 BeanPatternGenerator.java
 new revision: 1.28; previous revision: 1.27
 done""";
-         :has_creator <http://netbeans.org/people/983>;
+         sioc:has_creator <http://netbeans.org/people/983>;
          rdfs:label "Netbeans comment on 59890 with id 18642444" .
     
-    issue:comment_18642445     a :Post;
+    bug:comment_18642445     a sioc:Post;
          <http://purl.org/dc/terms/created> "2005-06-13 03:01:25.0"^^xsd:dateTime;
-         :content """NB 4.1 (200505031930)
+         sioc:content """NB 4.1 (200505031930)
 JDK 1.5.0_03
 
 The arguments for the even's constructor aren't provided to the fire method. 
@@ -46,23 +42,23 @@ Steps:
 -> the firePropertyChangeListenerPropertyChange() method is generated without
 arguments. Inside it, the new event is created but the constructor is called
 without required arguments.""";
-         :has_creator <http://netbeans.org/people/4632>;
+         sioc:has_creator <http://netbeans.org/people/4632>;
          rdfs:label "Netbeans comment on 59890 with id 18642445" .
     
-    issue:comment_18642446     a :Post;
+    bug:comment_18642446     a sioc:Post;
          <http://purl.org/dc/terms/created> "2005-10-25 09:52:37.0"^^xsd:dateTime;
-         :content "verified";
-         :has_creator <http://netbeans.org/people/4632>;
+         sioc:content "verified";
+         sioc:has_creator <http://netbeans.org/people/4632>;
          rdfs:label "Netbeans comment on 59890 with id 18642446" .
     
-    issue:it     a j.0:DEFECT,
+    bug:it     a j.0:DEFECT,
                 baetle:Issue;
          awol:category <http://wiki.netbeans.org/components/beans>,
                 <http://wiki.netbeans.org/components/code>;
-         :container_of issue:comment_18642443,
-                issue:comment_18642444,
-                issue:comment_18642445,
-                issue:comment_18642446;
+         sioc:container_of bug:comment_18642443,
+                bug:comment_18642444,
+                bug:comment_18642445,
+                bug:comment_18642446;
          rdfs:label "NetBeans issue #59890";
          baetle:about <http://download.netbeans.org/beans/4.1>;
          baetle:operating_system <http://wiki.netbeans.org/os/Windows%20XP>;
@@ -75,6 +71,6 @@ without required arguments.""";
          baetle:summary "The arguments for event's constructor aren't provided into the fire method";
          baetle:target_milestone <http://wiki.netbeans.org/milestones/#5.0>;
          baetle:updated "2006-03-27 22:29:00.0"^^xsd:dateTime;
-         baetle:votes 0.0 .
+         baetle:votes 0 .
     
 #ENDS

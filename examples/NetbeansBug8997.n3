@@ -1,0 +1,161 @@
+#  Notation3 generation by
+#       notation3.py,v 1.193 2007/01/26 03:33:01 timbl Exp
+
+    @prefix sioc: <http://rdfs.org/sioc/ns#> .
+    @prefix awol: <http://bblfish.net/work/atom-owl/2006-06-06/#> .
+    @prefix baetle: <http://xmlns.com/baetle/#> .
+    @prefix j.0: <http://wiki.netbeans.org/issuetypes#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix bug: <http://www.netbeans.org/issues/show_bug.cgi?id=8997#> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+    
+    bug:attach_427     a sioc:Post;
+         awol:content  [
+             a awol:Content;
+             awol:src <http://www.netbeans.org/nonav/issues/showattachment.cgi/427/compilerpatch.diff>;
+             awol:type "text/plain" ];
+         <http://purl.org/dc/elements/1.1/title> "Suggested source patch to fix this bug" .
+    
+    bug:comment_13125577     a sioc:Post;
+         <http://purl.org/dc/terms/created> "2000-12-29 05:19:02.0"^^xsd:dateTime;
+         sioc:content """This is a proposed patch (patchfile attached) to make the behavior of F9
+(Compile) more consistent. Currently when applied to a single file, it actually
+runs the equivalent of Build. The patch makes it compile only if the file is not
+up-to-date. Also the patch displays more information in the Output Window about
+the results of compilation; basically the finish message is displayed both in
+the status bar and in the Output Window, to ensure that users are not confused
+about whether their file was really compiled or not.
+
+See the discussion on nbui started by:
+
+http://www.netbeans.org/www-nbui/msg00917.html
+
+The patch will be attached. Upon request a full build or binary patch could be
+made so more people can try it out. It consists of changes to:
+
+- org.openide.loaders.CompilerSupport: removing special case
+
+- org.netbeans.core.compiler. sioc: providing special message when no compilation
+occurred because everything was up to date; always printing final message in
+Output Window
+
+- Java module: adding Build to .java context menu, since it now does something
+different
+
+- Ant module: removing some workarounds needed to counteract the special case;
+adding Build to context menu
+
+- NetBeans Help: updating two docs pages to reflect behavior
+
+Some issues not covered by this patch:
+
+- "Build" name left as is. nbui folks can determine if this is still a good name
+or if something like "Recompile" or "Force Rebuild" is more recognizable.
+
+- #2 of the proposal on nbui, to make the display of the result messages
+optional, is not implemented. There is no existing place in Options to set
+global compiler behavior, anyway.
+
+- "up-to-date" message is not consistently displayed in the Output Window,
+though it is always shown in the status bar. I suspect this is an
+org.netbeans.core.output.* timing bug since the only thing making this message
+different is that it is displayed very soon after compilation starts.
+
+- JAR Packager: Compile on a *.jar seems to always Build included files, not
+Compile them, which is inconsistent.
+
+- Java compilation: external compilation does not seem to refresh folders after
+compilation anymore, so the IDE may think it needs to recompile a file even
+though you just compiled it. If you manually refresh the folder, it gets it
+right. Probably a bug in Java external compiler types.
+
+- JSP compilation: never seems to be up-to-date, not clear what is happening.""";
+         sioc:has_creator <http://netbeans.org/people/1020>;
+         rdfs:label "Netbeans comment on 8997 with id 13125577" .
+    
+    bug:comment_13125578     a sioc:Post;
+         <http://purl.org/dc/terms/created> "2000-12-29 09:28:59.0"^^xsd:dateTime;
+         sioc:content """Created an attachment (id=427)
+Suggested source patch to fix this bug""";
+         sioc:has_creator <http://netbeans.org/people/1020>;
+         rdfs:label "Netbeans comment on 8997 with id 13125578" .
+    
+    bug:comment_13125579     a sioc:Post;
+         <http://purl.org/dc/terms/created> "2001-01-26 06:14:59.0"^^xsd:dateTime;
+         sioc:content "Thanks, I will try to work out the rest of the stuff.";
+         sioc:has_creator <http://netbeans.org/people/1020>;
+         rdfs:label "Netbeans comment on 8997 with id 13125579" .
+    
+    bug:comment_13125580     a sioc:Post;
+         <http://purl.org/dc/terms/created> "2001-01-30 11:11:59.0"^^xsd:dateTime;
+         sioc:content "Leaving documentation part to Patrick.";
+         sioc:has_creator <http://netbeans.org/people/1020>;
+         rdfs:label "Netbeans comment on 8997 with id 13125580" .
+    
+    bug:comment_13125581     a sioc:Post;
+         <http://purl.org/dc/terms/created> "2001-01-30 11:14:59.0"^^xsd:dateTime;
+         sioc:content "Here is the JAR Packager bug as promised.";
+         sioc:has_creator <http://netbeans.org/people/1020>;
+         rdfs:label "Netbeans comment on 8997 with id 13125581" .
+    
+    bug:comment_13125582     a sioc:Post;
+         <http://purl.org/dc/terms/created> "2001-01-30 11:21:59.0"^^xsd:dateTime;
+         sioc:content """Cannot reproduce the problem with Java external compilation, assuming fine for
+now.""";
+         sioc:has_creator <http://netbeans.org/people/1020>;
+         rdfs:label "Netbeans comment on 8997 with id 13125582" .
+    
+    bug:comment_13125583     a sioc:Post;
+         <http://purl.org/dc/terms/created> "2001-01-30 11:39:59.0"^^xsd:dateTime;
+         sioc:content """Ant/Java modules patched as well. Also JSP bug as mentioned. Does not seem to be
+any timing problem with Output Window with Ales's implementation.""";
+         sioc:has_creator <http://netbeans.org/people/1020>;
+         rdfs:label "Netbeans comment on 8997 with id 13125583" .
+    
+    bug:comment_13125584     a sioc:Post;
+         <http://purl.org/dc/terms/created> "2001-01-26 01:01:59.0"^^xsd:dateTime;
+         sioc:content "I made my part of the job - first two points.";
+         sioc:has_creator <http://netbeans.org/people/267>;
+         rdfs:label "Netbeans comment on 8997 with id 13125584" .
+    
+    bug:comment_13125585     a sioc:Post;
+         <http://purl.org/dc/terms/created> "2002-05-30 07:33:23.0"^^xsd:dateTime;
+         sioc:content "closed";
+         sioc:has_creator <http://netbeans.org/people/1471>;
+         rdfs:label "Netbeans comment on 8997 with id 13125585" .
+    
+    bug:it     a j.0:DEFECT,
+                baetle:Issue;
+         awol:category <http://wiki.netbeans.org/components/core>,
+                <http://wiki.netbeans.org/components/ui>;
+         sioc:container_of bug:attach_427,
+                bug:comment_13125577,
+                bug:comment_13125578,
+                bug:comment_13125579,
+                bug:comment_13125580,
+                bug:comment_13125581,
+                bug:comment_13125582,
+                bug:comment_13125583,
+                bug:comment_13125584,
+                bug:comment_13125585;
+         rdfs:label "NetBeans issue #8997";
+         baetle:about <http://download.netbeans.org/core/3.3%20dev>;
+         baetle:assigned_to <http://netbeans.org/people/1020>;
+         baetle:blocks <http://www.netbeans.org/issues/show_bug.cgi?id=8342#it>;
+         baetle:depends_on <http://www.netbeans.org/issues/show_bug.cgi?id=9276#it>,
+                <http://www.netbeans.org/issues/show_bug.cgi?id=9304#it>;
+         baetle:interested <http://netbeans.org/people/1692>,
+                <http://netbeans.org/people/267>,
+                <http://netbeans.org/people/8323>;
+         baetle:operating_system <http://wiki.netbeans.org/os/Linux>;
+         baetle:platform <http://wiki.netbeans.org/platforms#PC>;
+         baetle:priority <http://wiki.netbeans.org/baetle/priorities#P3>;
+         baetle:raised "2000-12-29 05:19:02.0"^^xsd:dateTime;
+         baetle:reporter <http://netbeans.org/people/1020>;
+         baetle:resolution <http://wiki.netbeans.org/baetle/resolution#FIXED>;
+         baetle:status <http://wiki.netbeans.org/baetle/status#CLOSED>;
+         baetle:summary "Proposed: F9 on single file: Build vs. Compile; compiler message display";
+         baetle:updated "2002-07-20 10:28:00.0"^^xsd:dateTime;
+         baetle:votes 0 .
+    
+#ENDS

@@ -1,0 +1,236 @@
+#Processed by Id: cwm.py,v 1.190 2006/08/09 23:20:42 syosi Exp 
+        #    using base file:///Users/hjs/Programming/baetle/examples/NetbeansBug51486.rdf
+        
+#  Notation3 generation by
+#       notation3.py,v 1.193 2007/01/26 03:33:01 timbl Exp
+
+#   Base was: file:///Users/hjs/Programming/baetle/examples/NetbeansBug51486.rdf
+     @prefix : <http://rdfs.org/sioc/ns#> .
+    @prefix awol: <http://bblfish.net/work/atom-owl/2006-06-06/#> .
+    @prefix baetle: <http://xmlns.com/baetle/#> .
+    @prefix local: <http://wiki.netbeans.org/issuetypes#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix bug: <http://www.netbeans.org/issues/show_bug.cgi?id=51486#> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+    
+    bug:attach_19588     a :Post;
+         awol:content  [
+             a awol:Content;
+             awol:src <http://www.netbeans.org/nonav/issues/showattachment.cgi/19588/commit-log.txt>;
+             awol:type "text/plain" ];
+         <http://purl.org/dc/elements/1.1/title> "Commit log from committing to the editor_split branch" .
+    
+    bug:attach_19632     a :Post;
+         awol:content  [
+             a awol:Content;
+             awol:src <http://www.netbeans.org/nonav/issues/showattachment.cgi/19632/commit-trunk.log>;
+             awol:type "text/plain" ];
+         <http://purl.org/dc/elements/1.1/title> "Commit log from trunk integration" .
+    
+    bug:comment_18596285     a :Post;
+         <http://purl.org/dc/terms/created> "2004-11-21 23:30:21.0"^^xsd:dateTime;
+         :content """The current documentation is not accurate enough, I am affraid. As
+Jesse pointed out module names are wrong. Please fix the proposal and
+let us know. My requirements:
+
+01 module names are wrong
+02 what type each module is going to be - autoload, regular or eager
+03 autoload modules should not have any UI or anything in layer (not
+even settings) is that satisfied
+04 what is the "indentation framework"?
+05 what will be the public packages or each module
+06 are you sure you want org.netbeans.api package? Are you ready for
+the work? What will be the initial content?
+07 why the Settings class cannot be moved to different package?
+08 would not is be possible to have just one settings module that
+would somehow read hints provided by various kits? This is real bloat
+of *settings*.jars.
+
+Btw. I think that if the basic editor module is going to be autoload,
+it makes sence to register the plain kit in different module.""";
+         :has_creator <http://netbeans.org/people/1140>;
+         rdfs:label "Netbeans comment on 51486 with id 18596285" .
+    
+    bug:comment_18596286     a :Post;
+         <http://purl.org/dc/terms/created> "2004-11-14 09:06:33.0"^^xsd:dateTime;
+         :content """Notes:
+
+- text module is no more
+
+- is it really necessary to split the text/plain editor kit? I guess
+it does no harm except increase total # of modules.
+
+- module JAR names should now be code-name-base.jar in all cases""";
+         :has_creator <http://netbeans.org/people/1020>;
+         rdfs:label "Netbeans comment on 51486 with id 18596286" .
+    
+    bug:comment_18596287     a :Post;
+         <http://purl.org/dc/terms/created> "2004-11-13 03:17:23.0"^^xsd:dateTime;
+         :content """This is a successor of the issue #27138 which was
+made duplicate of this issue. The new issue was
+created for better clarity.""";
+         :has_creator <http://netbeans.org/people/1470>;
+         rdfs:label "Netbeans comment on 51486 with id 18596287" .
+    
+    bug:comment_18596288     a :Post;
+         <http://purl.org/dc/terms/created> "2004-11-13 03:20:15.0"^^xsd:dateTime;
+         :content """The design view document for the editor module split is at
+http://editor.netbeans.org/doc/Proposals/ModuleSplit/DesignView.html
+
+I would like to ask for review of the proposed solution. I hope that
+fasttrack should be enough here. Thanks.""";
+         :has_creator <http://netbeans.org/people/1470>;
+         rdfs:label "Netbeans comment on 51486 with id 18596288" .
+    
+    bug:comment_18596289     a :Post;
+         <http://purl.org/dc/terms/created> "2004-11-13 03:23:27.0"^^xsd:dateTime;
+         :content "*** Issue 27138 has been marked as a duplicate of this issue. ***";
+         :has_creator <http://netbeans.org/people/1470>;
+         rdfs:label "Netbeans comment on 51486 with id 18596289" .
+    
+    bug:comment_18596290     a :Post;
+         <http://purl.org/dc/terms/created> "2004-12-14 14:23:55.0"^^xsd:dateTime;
+         :content """I have updated the editor module split document
+http://editor.netbeans.org/doc/Proposals/ModuleSplit/DesignView.html
+as necessary but I leave the issue closed as the review of the editor
+module split will be done as part of the Editor APIs Documentation
+review (issue #52275).
+
+Reply to questions:
+ - editor/plain will be used (not text/plain)
+ - as Yarda pointed out we will make the infrastructure modules
+autoloads so I think extract plain editor should be appropriate.
+ - I have fixed the module names.
+
+ ad 01) done.
+
+ ad 02) three autoloads (highlighted in "Notes" section in the doc)
+
+ ad 03) will be satisfied
+
+ ad 04) will be done in a different way. We will move the java
+indentation engine physically into javacore module. Java-specific
+editor module will plug its indentation implementation into it using a
+friend SPI.
+
+ ad 05) I have marked currently needed public packages as bold in the
+document. They should continue to be public after the split (in the
+respective modules) as they are used (e.g. by JSP module) but of
+course in the future I would like to revise the dependencies.
+ I have not decided PP for the bookmarks submodule yet but there will
+likely be one PP for a friend API (SPI will likely not be necessary).
+As the bookmarks submodule will in fact contain a new functionality it
+will be created after the physical split of the current editor is
+finished.
+
+ ad 06) I have removed mentioning of the org.netbeans.api (and .spi)
+in the modules' packages as it adds no value (was there historically).
+I can't tell now whether we will request the official stability for
+anything in the editor's core infrastructure. In the future I would
+like to have just the core functionality in the main editor's module
+(document, views and actions infrastructures) and extract other things
+(like code completion, abbrevs, macros etc.) into submodules. But this
+is still a preliminary view.
+
+ ad 07) I was not meant to be moved into different package but into
+different module which IIRC cannot be done due to the NB module
+classloaders preventing to have classes from a single packages in two
+different modules unless you have a special exception ;)
+ Actually I've changed the document and I would prefer to not create
+the settings submodules immediately but instead wait for a proper
+editor settings API/SPI to be developed first.
+
+ ad 08) IMHO not as the target kits will be in the target
+language-specific editor modules containing the kits registration etc.
+and in fact we are doing the settings separation to not require our
+language-specific editor modules. BTW I have changed the policy
+regarding the "lib" modules to not produce them for small modules such
+as settings (described in the doc).""";
+         :has_creator <http://netbeans.org/people/1470>;
+         rdfs:label "Netbeans comment on 51486 with id 18596290" .
+    
+    bug:comment_18596291     a :Post;
+         <http://purl.org/dc/terms/created> "2004-12-20 08:21:18.0"^^xsd:dateTime;
+         :content """Reopening as agreed with the DevRev team previously.
+I'm going to create the branch editor_split and prepare the split.""";
+         :has_creator <http://netbeans.org/people/1470>;
+         rdfs:label "Netbeans comment on 51486 with id 18596291" .
+    
+    bug:comment_18596292     a :Post;
+         <http://purl.org/dc/terms/created> "2005-01-10 10:14:42.0"^^xsd:dateTime;
+         :content """The split is now prepared in editor_split branch.
+
+The java editor is under java/editor.
+The html editor is under html/editor.
+The plain editor is under editor/plain.
+
+I have increased the editor's module major version from 2 to 3 because
+the org.netbeans.modules.editor.options was splitted in non-backward
+compatible way. I have extracted the options classes (JavaOptions,
+HTMLOptions and PlainOptions) plus the corresponding bean info classes
+and printing options classes into the respective modules (under
+options subpackage in each module).
+
+The tests are still under the main editor module (I've just updated
+test cp.extra properties) and I plan to split them as well.
+
+I'm attaching the log from committing to the editor_split branch.""";
+         :has_creator <http://netbeans.org/people/1470>;
+         rdfs:label "Netbeans comment on 51486 with id 18596292" .
+    
+    bug:comment_18596293     a :Post;
+         <http://purl.org/dc/terms/created> "2005-01-10 10:15:43.0"^^xsd:dateTime;
+         :content """Created an attachment (id=19588)
+Commit log from committing to the editor_split branch""";
+         :has_creator <http://netbeans.org/people/1470>;
+         rdfs:label "Netbeans comment on 51486 with id 18596293" .
+    
+    bug:comment_18596294     a :Post;
+         <http://purl.org/dc/terms/created> "2005-01-11 23:41:29.0"^^xsd:dateTime;
+         :content """The editor_split build was successfully tested so I've integrated the
+editor split into the main trunk.""";
+         :has_creator <http://netbeans.org/people/1470>;
+         rdfs:label "Netbeans comment on 51486 with id 18596294" .
+    
+    bug:comment_18596295     a :Post;
+         <http://purl.org/dc/terms/created> "2005-01-11 23:42:23.0"^^xsd:dateTime;
+         :content """Created an attachment (id=19632)
+Commit log from trunk integration""";
+         :has_creator <http://netbeans.org/people/1470>;
+         rdfs:label "Netbeans comment on 51486 with id 18596295" .
+    
+    bug:it     a local:TASK,
+                baetle:Issue;
+         awol:category <http://wiki.netbeans.org/components/code>,
+                <http://wiki.netbeans.org/components/editor>,
+                <http://wiki.netbeans.org/keywords/API_REVIEW_FAST,%20VENUS>;
+         :container_of bug:attach_19588,
+                bug:attach_19632,
+                bug:comment_18596285,
+                bug:comment_18596286,
+                bug:comment_18596287,
+                bug:comment_18596288,
+                bug:comment_18596289,
+                bug:comment_18596290,
+                bug:comment_18596291,
+                bug:comment_18596292,
+                bug:comment_18596293,
+                bug:comment_18596294,
+                bug:comment_18596295;
+         rdfs:label "NetBeans issue #51486";
+         baetle:about <http://download.netbeans.org/editor/4.1>;
+         baetle:interested <http://netbeans.org/people/2105>,
+                <http://netbeans.org/people/26987>;
+         baetle:operating_system <http://wiki.netbeans.org/os/All>;
+         baetle:platform <http://wiki.netbeans.org/platforms#All>;
+         baetle:priority <http://wiki.netbeans.org/baetle/priorities#P1>;
+         baetle:raised "2004-11-13 03:17:23.0"^^xsd:dateTime;
+         baetle:reporter <http://netbeans.org/people/1470>;
+         baetle:resolution <http://wiki.netbeans.org/baetle/resolution#FIXED>;
+         baetle:status <http://wiki.netbeans.org/baetle/status#RESOLVED>;
+         baetle:summary "Split of the editor module into multiple modules";
+         baetle:target_milestone <http://wiki.netbeans.org/milestones/#4.1>;
+         baetle:updated "2005-01-14 21:24:00.0"^^xsd:dateTime;
+         baetle:votes 1 .
+    
+#ENDS

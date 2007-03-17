@@ -71,6 +71,7 @@ map:activity_whn a d2rq:PropertyBridge;
 ## First we create the content classes
 map:attachmentContent a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
+#    d2rq:uriPattern "http://www.netbeans.org/fakeblanknode/content/@@attachment.attachid@@";
     d2rq:bNodeIdColumns "attachment.attachid";
 	d2rq:class awol:Content;
 	.
@@ -396,7 +397,7 @@ map:issue_assigned_to a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:issue;
 	d2rq:property baetle:assigned_to;
     d2rq:join "issue.assigned_to = issue_user.username";
-	d2rq:uriPattern "http://netbeans.org/people/@@issue_user.user_id@@";
+	d2rq:refersToClassMap map:issue_user;
 	.
 map:issue_delta_ts a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:issue;
@@ -417,7 +418,7 @@ map:issue_reporter a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:issue;
 	d2rq:property baetle:reporter;
     d2rq:join "issue.reporter = issue_user.username";
-	d2rq:uriPattern "http://netbeans.org/people/@@issue_user.user_id@@";
+    d2rq:refersToClassMap map:issue_user;
 	.
 # or is 'TBD' a valid milestone?
 map:issue_target_milestone a d2rq:PropertyBridge;
@@ -442,7 +443,7 @@ map:issue_qa_contact a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:issue;
 	d2rq:property baetle:qa_contact;
     d2rq:join "issue.qa_contact = issue_user.username";
-	d2rq:uriPattern "http://netbeans.org/people/@@issue_user.user_id@@";
+    d2rq:refersToClassMap map:issue_user;
 	.
 #what is this?
 #map:issue_status_whiteboard a d2rq:PropertyBridge;
@@ -454,7 +455,7 @@ map:issue_votes a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:issue;
 	d2rq:property baetle:votes;
 	d2rq:column "issue.votes";
-	d2rq:datatype xsd:decimal;
+	d2rq:datatype xsd:integer;
 	.
 map:issue_op_sys a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:issue;
@@ -480,26 +481,30 @@ map:issue_interested a d2rq:PropertyBridge;
     d2rq:join "cc.cc = issue_user.username";
     d2rq:refersToClassMap map:issue_user;
     .
-map:issue_block a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:issue;    
-	d2rq:property baetle:blocks;
-    d2rq:join "issue.issue_id = block.issue_id";
-	d2rq:uriPattern "http://www.netbeans.org/issues/show_bug.cgi?id=@@block.block@@#it";
-    .
-#does not work, kills cpu
+#apparently won't always give the right solution, richard cyganiak says on d2rq
+#mailing list
 #map:issue_block a d2rq:PropertyBridge;
-#     d2rq:belongsToClassMap map:issue;
-# 	 d2rq:property baetle:blocks;
-#     d2rq:join "issue.issue_id = block.issue_id";
-#     d2rq:join "block.block = issue.issue_id";
-#     d2rq:refersToClassMap map:issue;
-#     d2rq:alias "issue AS block"
-#     .
+#    d2rq:belongsToClassMap map:issue;    
+#	d2rq:property baetle:blocks;
+#    d2rq:join "issue.issue_id = block.issue_id";
+#	d2rq:uriPattern "http://www.netbeans.org/issues/show_bug.cgi?id=@@block.block@@#it";
+#    .
+#this is the right formula
+map:issue_block a d2rq:PropertyBridge;
+     d2rq:belongsToClassMap map:issue;
+ 	 d2rq:property baetle:blocks;
+     d2rq:join "issue.issue_id = block.issue_id";
+     d2rq:join "block.block = blocked_issue.issue_id";
+     d2rq:refersToClassMap map:issue;
+     d2rq:alias "issue AS blocked_issue"
+     .
 map:issue_dependson a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:issue;
 	d2rq:property baetle:depends_on;
     d2rq:join "issue.issue_id = dependson.issue_id";
-	d2rq:uriPattern "http://www.netbeans.org/issues/show_bug.cgi?id=@@dependson.depends@@#it";
+    d2rq:join "dependson.depends = dependant_issue.issue_id";
+    d2rq:refersToClassMap map:issue;
+    d2rq:alias "issue AS dependant_issue"
     .
 
 # Table issue_user
@@ -558,7 +563,7 @@ map:long_desc_who a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:long_desc;
 	d2rq:property sioc:has_creator;
     d2rq:join "long_desc.who = issue_user.username";
-	d2rq:uriPattern "http://netbeans.org/people/@@issue_user.user_id@@";
+	d2rq:refersToClassMap map:issue_user;
 	.
 map:long_desc_issue_when a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:long_desc;
