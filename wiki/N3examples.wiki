@@ -43,7 +43,7 @@ Note: there is a problem here. A Comment can't be an awol:Content. There has to 
 
 == Netbeans Bugs ==
 
-These were generated using a SPARQL query of the form 
+Using a SPARQL query of the form 
 
 {{{
 CONSTRUCT {
@@ -65,6 +65,8 @@ CONSTRUCT {
 }
 }}}
 
-* [http://baetle.googlecode.com/svn/trunk/examples/NetbeansBug51486.n3 Netbeans Bug 51486] in N3 
-* [http://baetle.googlecode.com/svn/trunk/examples/NetbeansBug51486.n3 Netbeans Bug 8997] in N3 
-* [http://baetle.googlecode.com/svn/trunk/examples/NetbeansBug51486.n3 Netbeans Bug 59890] in N3 
+an applying it to a D2RQ endpoint on the Netbeans bug database we got the following:
+
+ * [http://baetle.googlecode.com/svn/trunk/examples/NetbeansBug51486.n3 Netbeans Bug 51486] in N3 
+ * [http://baetle.googlecode.com/svn/trunk/examples/NetbeansBug51486.n3 Netbeans Bug 8997] in N3 
+ * [http://baetle.googlecode.com/svn/trunk/examples/NetbeansBug51486.n3 Netbeans Bug 59890] in N3 
