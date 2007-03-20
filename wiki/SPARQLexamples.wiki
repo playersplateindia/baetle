@@ -14,7 +14,7 @@ Return all bugs that depend on the Netbeans bug 59890
 PREFIX beatle: <http://xmlns.com/baetle/0.1/ns#> 
 SELECT ?bug
 WHERE {
-    ?bug baetle:dependsOn <http://www.netbeans.org/issues/show_bug.cgi?id=59890#it> .
+    ?bug baetle:depends_on <http://www.netbeans.org/issues/show_bug.cgi?id=59890#it> .
 
 }
 }}}
@@ -33,3 +33,17 @@ WHERE {
 
 }
 }}}
+
+=== Bugs that block a bug of priority P1 ===
+ 
+{{{
+SELECT * 
+WHERE {
+  ?bug baetle:blocks [
+             baetle:priority <http://wiki.netbeans.org/baetle/priorities#P1>
+             ] .
+   OPTIONAL { ?bug baetle:assigned_to ?dev . }
+}
+}}}
+
+In English: find me all bugs that are blocking bugs of priority P1, and give me the assigned developer if there is one.
