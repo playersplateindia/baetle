@@ -37,13 +37,18 @@ WHERE {
 === Bugs that block a bug of priority P1 ===
  
 {{{
-SELECT * 
+SELECT *
 WHERE {
-  ?bug baetle:blocks [
+   ?bug baetle:blocks [
              baetle:priority <http://wiki.netbeans.org/baetle/priorities#P1>
              ] .
-   OPTIONAL { ?bug baetle:assigned_to ?dev . }
+   OPTIONAL { ?bug baetle:assigned_to ?dev .
+              ?dev sioc:email ?mail . }
+}
+LIMIT 20
+
 }
 }}}
 
 In English: find me all bugs that are blocking bugs of priority P1, and give me the assigned developer if there is one.
+Note that a system may not want to reveal the emails of developers. One way to do this would be to drop the developer information from being accessed via SPARQL, and put the information at the URL of the sioc:User, with that url being protected by access control.
