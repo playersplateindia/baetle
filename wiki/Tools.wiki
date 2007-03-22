@@ -1,0 +1,6 @@
+#summary Tools that can help extract data
+
+ * [http://sites.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/ D2RQ] this allows you to query a normal sql database as if it were a rdf database. Just write a mapping file like the one in subversion. Once that is written you can also extract all the data in rdf
+ * [http://ant.apache.org/manual/CoreTasks/changelog.html Ant Core Task]: extract commits from CVS
+ 
+ 
