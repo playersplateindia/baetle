@@ -35,6 +35,8 @@ package com.xmlns.baetle.sesame;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.query.*;
 import org.openrdf.query.resultio.sparqlxml.SPARQLResultsXMLWriter;
+import org.openrdf.query.resultio.sparqljson.SPARQLResultsJSONWriter;
+import org.openrdf.query.resultio.TupleQueryResultWriter;
 import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.RepositoryException;
@@ -55,53 +57,54 @@ import java.io.InputStreamReader;
 public class Query {
     RepositoryConnection lc;
     ValueFactory f;
+    TupleQueryResultWriter tupleWriter;
 
     private static void message(String message) {
         System.out.println(message);
-        System.out.println("org.com.xmlns.baetle.sesame.Query [-s serverurl] [-d datadir]");
+        System.out.println("com.xmlns.baetle.sesame.Query [-s serverurl] [-d datadir] [-f format]");
+        System.out.println("format is one of json, (todo default is xml for tuples, turtle for graphs)");
         System.out.println("if no option specified it will use -Daduna.platform.applicationdata.dir property");
         System.exit(-1);
     }
 
-    public Query(Repository repQ) throws RepositoryException {
+    public Query(Repository repQ, String format) throws RepositoryException {
 
 //        Repository repQ = new HTTPRepository(server, id);
         repQ.initialize();
+        if ("json".equals(format)) {
+            tupleWriter = new SPARQLResultsJSONWriter();
+        } else {
+            tupleWriter = new SPARQLResultsXMLWriter();
+        }
         lc = repQ.getConnection();
         f = repQ.getValueFactory();
     }
 
 
     public static void main(String[] args) throws Exception {
-        String datadir = System.getProperty("aduna.platform.applicationdata.dir","~/.aduna") + "/openrdf/server/native";
+        String datadir = System.getProperty("aduna.platform.applicationdata.dir", "~/.aduna") + "/openrdf/server/native";
         Repository chosenRep = null;
+        String format = null;
 
-        if (args.length > 0 && "-s".equals(args[0].trim())) { //create http server
-            chosenRep = new HTTPRepository(args[1].trim(), "native");
-            System.out.println("using repository at " + args[1].trim());
-        } else if (args.length > 0 && "-h".equals(args[0])) {
-            message("help:");
-        } else {  // a file repository
-
-            File dataDir;
-            if (args.length > 0 && "-d".equals(args[0].trim())) {
-                dataDir = new File(args[1].trim());
-            } else {
-                dataDir = new File(datadir);
+        for (int i = 0; i < args.length; i++) {
+            if ("-s".equals(args[i].trim())) { //create http server
+                chosenRep = new HTTPRepository(args[++i].trim(), "native");
+                System.out.println("using repository at " + args[i].trim());
+            } else if ("-h".equals(args[i])) {
+                message("help:");
+            } else if ("-f".equals(args[i])) {
+                format = args[++i];
+                //test the format is ok
+            } else  if ("-d".equals(args[i].trim())) {
+               chosenRep =  createFileRep( new File(args[i].trim()));
             }
-            if (!dataDir.exists()) message("dir does not exist" + dataDir);
-            if (!dataDir.isDirectory()) message("can't find " + dataDir);
-
-            NativeStore store = new NativeStore(dataDir);
-            store.setTripleIndexes("spoc,sopc,posc,psoc,opsc,ospc");
-            chosenRep = new SailRepository(store);
-
-            System.out.println("using store in directory " + dataDir);
-
+        }
+        if (chosenRep == null) {  // try the defaults from the system properties
+                chosenRep = createFileRep(new File(datadir));
         }
 
 
-        Query q = new Query(chosenRep);
+        Query q = new Query(chosenRep,format);
 
         String query = q.getQuery();
         if (query.contains("SELECT")) {
@@ -109,6 +112,17 @@ public class Query {
         } else {
             q.evalGraphQuery(query);
         }
+    }
+
+    private static SailRepository createFileRep(File dataDir) {
+        if (!dataDir.exists()) message("dir does not exist" + dataDir);
+        if (!dataDir.isDirectory()) message("can't find " + dataDir);
+
+        NativeStore store = new NativeStore(dataDir);
+        store.setTripleIndexes("spoc,sopc,posc,psoc,opsc,ospc");
+        System.out.println("using store in directory " + dataDir);
+        return new SailRepository(store);
+
     }
 
     private void evalGraphQuery(String query)
@@ -122,9 +136,8 @@ public class Query {
 
     private void evalTupleQuery(String query) throws MalformedQueryException, RepositoryException, TupleQueryResultHandlerException, QueryEvaluationException {
         TupleQuery tq = lc.prepareTupleQuery(QueryLanguage.SPARQL, query);
-        SPARQLResultsXMLWriter res = new SPARQLResultsXMLWriter();
-        res.setOutputStream(System.out);
-        tq.evaluate(res);
+        tupleWriter.setOutputStream(System.out);
+        tq.evaluate(tupleWriter);
     }
 
     private String getQuery() throws IOException {
