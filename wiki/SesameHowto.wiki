@@ -1,0 +1,58 @@
+#summary Howto get started with loading the data in Sesame
+
+= Introduction =
+
+[http://openrdf.org Sesame] is an open source framework and database for working with RDF graphs. It comes with libraries for parsing xml, linking to a number of databases, including a specialised RDF database, called the Native Sail. It also integrates a SPARQL endpoint. Here we describe how to load the NetBeans bug database into your Sesame instance.
+
+
+= Details =
+
+== Database Preparation ==
+
+Here we load the data into a native database, which becomes queriable via the  com.xmlns.baetle.sesame.Query program in the subversion repository
+
+ # Download [http://openrdf.org/download.jsp Sesame 2 beta 2]
+ # Download the 70 MB bziped package, unzip it. You should now have a 1GB ntriples file
+ # check out the baetle subversion repository
+ # compile the com.xmlns.baetle.sesame.LoadRDF class (you need to point to the Sesame jars)
+ # run com.xmlns.baetle.sesame.LoadRDF -d datadir baetle.ntriples
+
+This will take some time. You will see a bunch of files appearing in your datadir
+
+Now you can use the Query class to send queries to the database. It is very fast on a 2Ghz machine.
+
+
+== Server Install ==
+
+Here we create an HTTP accessible SPARQL endpoint so that web application can query the database. See the Sesame Docs for more detailed info (please fill out extra things)
+
+ # download [http://tomcat.apache.org/download-60.cgi Tomcat 6] (it's easier)
+ # unzip tomcat
+ # place the datadir in you ~/.aduna/openrdf/server/ directory. Call that dir "native" (on unix machines) for Windows see Sesame Docs.
+ # edit ~/.aduna/openrdf/server/repositories.xml 
+{{{
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<openrdf-sesame>
+        <admin password="admin"/>
+        <repositorylist>
+                <repository id="default">
+                        <title>Default Repository</title>
+                        <sailstack>
+                                <sail class="org.openrdf.sail.memory.MemoryStore" />
+                        </sailstack>
+
+                        <acl worldReadable="true" worldWriteable="true" />
+                </repository>
+        </repositorylist>
+</openrdf-sesame>
+}}}
+ # start tomcat
+ # in the manager application load the two wars from the Sesame distribution
+ # Send queries to the database:
+   * go to the sesame client app and use the web interface to send the queries
+   * use the com.xmlns.baetle.sesame.Query from the command line to send your queries
+
+
+== Sending queries from JSON ==
+
+Need to do this
