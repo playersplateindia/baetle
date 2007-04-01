@@ -5,4 +5,6 @@ Tim Berners Lee wrote a [http://www.w3.org/2005/01/wf/ Workflow ontology], that 
 
 http://baetle.googlecode.com/svn/trunk/uml/W3C_WorkFlowOntology.jpg
 
+Depends on a license related ontology http://www.w3.org/2000/10/swap/pim/doc also created by Tim Berners Lee.
+
 Todo: explain N3 Work Flow rules
