@@ -35,7 +35,7 @@
          rdfs:subClassOf :Solution .
     
     :Patch     a owl:Class;
-         rdfs:subClassOf :Issue .
+         rdfs:subClassOf :Fix .
     
     :Priority     a owl:Class .
     
