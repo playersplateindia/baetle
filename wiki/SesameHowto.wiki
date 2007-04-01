@@ -59,17 +59,18 @@ Here we create an HTTP accessible SPARQL endpoint so that web application can qu
 {{{
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <openrdf-sesame>
-        <admin password="admin"/>
-        <repositorylist>
-                <repository id="native">
-                        <title>Default Repository</title>
-                        <sailstack>
-                                <sail class="org.openrdf.sail.memory.MemoryStore" />
-                        </sailstack>
-
-                        <acl worldReadable="true" worldWriteable="true" />
-                </repository>
-        </repositorylist>
+   <admin password="admin"/>
+   <repositorylist>
+       <repository id="native">
+         <title>Native Repository</title>
+         <sailstack>
+             <sail class="org.openrdf.sail.nativerdf.NativeStore">
+                  <param name="triple-indexes" value="spoc,sopc,posc,psoc,opsc,ospc"/>
+             </sail>
+         </sailstack>
+         <acl worldReadable="true" worldWriteable="true" />
+       </repository>
+    </repositorylist>
 </openrdf-sesame>
 }}}
  # start tomcat
@@ -207,7 +208,6 @@ Date: Sun, 01 Apr 2007 11:20:20 GMT
 (I don't know why I get those extra numbers in there...)
 
 JavaScript experts should find it easy to build up such calls and get their preferred response.
-
 
 
 
