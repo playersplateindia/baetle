@@ -78,6 +78,23 @@ Here we create an HTTP accessible SPARQL endpoint so that web application can qu
    * go to the sesame client app and use the web interface to send the queries
    * use the com.xmlns.baetle.sesame.Query from the command line to send your queries
 
+{{{
+hjs@bblfish:0$ bin/runjava -Xms125m -Xmx500m com.xmlns.baetle.sesame.Query -s http://localhost:8080/openrdf/
+using repository at http://localhost:8080/openrdf/
+PREFIX : <http://xmlns.com/baetle/#>
+CONSTRUCT { ?issue :depends_on ?other . }
+WHERE { ?issue :depends_on ?other . }
+LIMIT 5
+
+@prefix : <http://xmlns.com/baetle/#> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.netbeans.org/issues/show_bug.cgi?id=2337#it> :depends_on <http://www.netbeans.org/issues/show_bug.cgi?id=31362#it> , <http://www.netbeans.org/issues/show_bug.cgi?id=32942#it> , <http://www.netbeans.org/issues/show_bug.cgi?id=35023#it> , <http://www.netbeans.org/issues/show_bug.cgi?id=46020#it> .
+
+<http://www.netbeans.org/issues/show_bug.cgi?id=2419#it> :depends_on <http://www.netbeans.org/issues/show_bug.cgi?id=7065#it> .
+}}}
+
 
 == Sending queries from JSON ==
 
