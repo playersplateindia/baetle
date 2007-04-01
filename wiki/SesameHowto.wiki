@@ -91,9 +91,14 @@ LIMIT 5
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-<http://www.netbeans.org/issues/show_bug.cgi?id=2337#it> :depends_on <http://www.netbeans.org/issues/show_bug.cgi?id=31362#it> , <http://www.netbeans.org/issues/show_bug.cgi?id=32942#it> , <http://www.netbeans.org/issues/show_bug.cgi?id=35023#it> , <http://www.netbeans.org/issues/show_bug.cgi?id=46020#it> .
+<http://www.netbeans.org/issues/show_bug.cgi?id=2337#it> 
+   :depends_on <http://www.netbeans.org/issues/show_bug.cgi?id=31362#it> ,
+               <http://www.netbeans.org/issues/show_bug.cgi?id=32942#it> ,
+               <http://www.netbeans.org/issues/show_bug.cgi?id=35023#it> , 
+               <http://www.netbeans.org/issues/show_bug.cgi?id=46020#it> .
 
-<http://www.netbeans.org/issues/show_bug.cgi?id=2419#it> :depends_on <http://www.netbeans.org/issues/show_bug.cgi?id=7065#it> .
+<http://www.netbeans.org/issues/show_bug.cgi?id=2419#it> 
+   :depends_on <http://www.netbeans.org/issues/show_bug.cgi?id=7065#it> .
 }}}
 
 
@@ -208,7 +213,6 @@ Date: Sun, 01 Apr 2007 11:20:20 GMT
 (I don't know why I get those extra numbers in there...)
 
 JavaScript experts should find it easy to build up such calls and get their preferred response.
-
 
 
 
