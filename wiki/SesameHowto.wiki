@@ -128,7 +128,9 @@ Host: localhost:8080
 
 }}}
 
-and was followed by the response 
+(notice how the SPARQL endpoint is really at `http://localhost:8080/openrdf/repositories/native`)
+
+The above request was followed by the response 
 
 {{{
 HTTP/1.1 200 OK
