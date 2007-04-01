@@ -19,7 +19,33 @@ Here we load the data into a native database, which becomes queriable via the  c
 
 This will take some time. You will see a bunch of files appearing in your datadir
 
-Now you can use the Query class to send queries to the database. It is very fast on a 2Ghz machine.
+Now you can use the Query class to send queries to the database. It is very fast on a 2Ghz machine. (Once the indexing has been properly done)
+
+{{{
+hjs@bblfish:0$ bin/runjava com.xmlns.baetle.sesame.Query -d /Users/hjs/.aduna/openrdf/server/native -f json
+using store in directory /Users/hjs/.aduna/openrdf/server/native
+SELECT * 
+WHERE { ?i a <http://xmlns.com/baetle/#Issue> . }
+LIMIT 1
+
+28139 [main] INFO org.openrdf.query.parser.QueryParserUtil - Unable to load query parser class: org.openrdf.query.parser.serqo.SeRQOParser
+{
+        "head": {
+                "vars": [ "i" ]
+        }, 
+        "results": {
+                "ordered": false, 
+                "distinct": false, 
+                "bindings": [
+                        {
+                                "i": { "type": "uri", "value": "http://www.netbeans.org/issues/show_bug.cgi?id=296#it" }
+                        }
+                ]
+        }
+}
+}}}
+
+
 
 
 == Server Install ==
@@ -35,7 +61,7 @@ Here we create an HTTP accessible SPARQL endpoint so that web application can qu
 <openrdf-sesame>
         <admin password="admin"/>
         <repositorylist>
-                <repository id="default">
+                <repository id="native">
                         <title>Default Repository</title>
                         <sailstack>
                                 <sail class="org.openrdf.sail.memory.MemoryStore" />
