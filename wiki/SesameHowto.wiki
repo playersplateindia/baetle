@@ -55,4 +55,106 @@ Here we create an HTTP accessible SPARQL endpoint so that web application can qu
 
 == Sending queries from JSON ==
 
-Need to do this
+The requests between the client and the server are simple HTTP requests. I think these are following the standard SPARQL Application Protocol. Using a tool such as [http://www.circlemud.org/~jelson/software/tcpflow/ tcpflow] (which suddenly stopped working on my intel core 2 duo with OSX 10.4.9) or [http://www.wireshark.org/docs/man-pages/tshark.html tshark] you can get a good idea of how to call this directly.
+
+Using tshark I captured the packets for the following Query
+
+{{{
+hjs@bblfish:0$ bin/runjava com.xmlns.baetle.sesame.Query -s http://localhost:8080/openrdf/ 
+using repository at http://localhost:8080/openrdf/
+SELECT *
+WHERE { ?s ?r ?b . }
+LIMIT 1
+
+}}}
+
+which sent the query
+
+{{{
+GET /openrdf/repositories/native?queryLn=SPARQL&query=SELECT+*WHERE+%7B+%3Fs+%3Fr+%3Fb+.+%7DLIMIT+1&infer=true HTTP/1.1
+Accept: application/sparql-results+xml
+Accept: application/x-binary-rdf-results-table
+Accept: application/sparql-results+json
+User-Agent: Jakarta Commons-HttpClient/3.0.1
+Host: localhost:8080
+
+}}}
+
+and was followed by the response 
+
+{{{
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Disposition: attachment; filename=queryresult.srx
+Content-Type: application/sparql-results+xml
+Transfer-Encoding: chunked
+Date: Sun, 01 Apr 2007 11:16:18 GMT
+
+<?xml version='1.0' encoding='UTF-8'?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+        <head>
+                <variable name='s'/>
+                <variable name='r'/>
+                <variable name='b'/>
+        </head>
+        <results ordered='false' distinct='false'>
+                <result>
+                        <binding name='b'>
+                                <uri>http://rdfs.org/sioc/ns#User</uri>
+                        </binding>
+                        <binding name='r'>
+                                <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+                        </binding>
+                        <binding name='s'>
+                                <uri>http://netbeans.org/people/10</uri>
+                        </binding>
+                </result>
+        </results>
+</sparql>
+}}}
+
+So to get back a JSON response I ran the query directly from the command line but only asking for the json representation
+
+{{{
+hjs@bblfish:0$ telnet localhost 8080
+Trying ::1...
+Connected to localhost.
+Escape character is '^]'.
+GET /openrdf/repositories/native?queryLn=SPARQL&query=SELECT+*WHERE+%7B+%3Fs+%3Fr+%3Fb+.+%7DLIMIT+1&infer=true HTTP/1.1
+Accept: application/sparql-results+json
+User-Agent: Jakarta Commons-HttpClient/3.0.1
+Host: localhost:8080
+
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Disposition: attachment; filename=queryresult.srj
+Content-Type: application/sparql-results+json
+Transfer-Encoding: chunked
+Date: Sun, 01 Apr 2007 11:20:20 GMT
+
+164
+{
+        "head": {
+                "vars": [ "s", "r", "b" ]
+        }, 
+        "results": {
+                "ordered": false, 
+                "distinct": false, 
+                "bindings": [
+                        {
+                                "b": { "type": "uri", "value": "http://rdfs.org/sioc/ns#User" }, 
+                                "r": { "type": "uri", "value": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" }, 
+                                "s": { "type": "uri", "value": "http://netbeans.org/people/10" }
+                        }
+9
+
+                ]
+        }
+}
+0
+}}}
+
+(I don't know why I get those extra numbers in there...)
+
+JavaScript experts should find it easy to build up such calls and get their preferred response.
+
