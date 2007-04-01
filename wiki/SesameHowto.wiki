@@ -13,7 +13,7 @@ Here we load the data into a native database, which becomes queriable via the  c
 
  # Download [http://openrdf.org/download.jsp Sesame 2 beta 2]
  # Download the 70 MB bziped package, unzip it. You should now have a 1GB ntriples file
- # check out the baetle subversion repository
+ # check out the baetle [http://code.google.com/p/baetle/source subversion repository]
  # compile the com.xmlns.baetle.sesame.LoadRDF class (you need to point to the Sesame jars)
  # run com.xmlns.baetle.sesame.LoadRDF -d datadir baetle.ntriples
 
@@ -207,3 +207,8 @@ Date: Sun, 01 Apr 2007 11:20:20 GMT
 (I don't know why I get those extra numbers in there...)
 
 JavaScript experts should find it easy to build up such calls and get their preferred response.
+
+
+
+
+
