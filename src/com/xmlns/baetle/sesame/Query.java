@@ -96,7 +96,7 @@ public class Query {
                 format = args[++i];
                 //test the format is ok
             } else  if ("-d".equals(args[i].trim())) {
-               chosenRep =  createFileRep( new File(args[i].trim()));
+               chosenRep =  createFileRep( new File(args[++i].trim()));
             }
         }
         if (chosenRep == null) {  // try the defaults from the system properties
@@ -115,7 +115,7 @@ public class Query {
     }
 
     private static SailRepository createFileRep(File dataDir) {
-        if (!dataDir.exists()) message("dir does not exist" + dataDir);
+        if (!dataDir.exists()) message("dir does not exist " + dataDir);
         if (!dataDir.isDirectory()) message("can't find " + dataDir);
 
         NativeStore store = new NativeStore(dataDir);
