@@ -1,0 +1,96 @@
+<project name="Baetle" default="all" basedir=".">
+	
+	<!-- just to have base.dir with a dot, the same as build.dir, dest.dir, etc. -->
+	<property name="base.dir" location="${basedir}" />
+	
+	<property file="build.ant.properties"/>
+	
+	<target name="all" depends="clean, compile" />
+	
+         
+	<!-- the base classpath used for compilation -->
+	<path id="classpath.base">		
+		<pathelement path="${sesame.libs}"/>
+		<fileset dir="${sesame.lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+        			
+	<!-- classpath used to run openSesame -->
+	<path id="classpath.run">		
+		<pathelement path="${sesame.libs}"/>
+		<fileset dir="${sesame.lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement path="${build.dir}"/>
+	</path>
+	
+	
+	<!-- prepare the enviroment -->
+	<target name="init">
+		
+		<!-- initialize the DSTAMP, TSTAMP and TODAY properties -->
+		<tstamp/>
+		
+		<!-- create the build directory used by compilation -->
+		<mkdir dir="${build.dir}"/>
+                
+		<!-- create the dist directory where results will be stored -->
+		<mkdir dir="${dist.dir}"/>
+                
+		<!-- inform the user about used JAVA_HOME - it can cause problems if set wrong -->
+                <echo>Using JAVA_HOME=${java.home}</echo>
+                
+	</target>
+	
+	<!-- compile sources -->
+	<target name="compile" depends="init" description="Compiles available Baetle sources.">
+		<!-- fork="true" may be required on Windows according to Ant documentation -->
+		<javac srcdir="${base.dir}/src"
+		       destdir="${build.dir}"
+		       source="1.5"
+		       verbose="${TALK}"
+		       fork="true" 
+		       debug="${DEBUG}"
+                       encoding="utf8"
+		       >
+			<classpath refid="classpath.base"/>
+			<compilerarg line="-Xlint:unchecked -Xlint:deprecation"/>
+		</javac>		
+	</target>
+	
+	<!-- clean the build directory -->
+	<target name="clean" description="Removes the build and dist directories.">
+		<delete verbose="${TALK}" dir="${build.dir}"/>
+	</target>
+        
+	<!-- run openSesame -->
+	<target name="openSesame" depends="compile" description="Runs com.xmlns.baetle.sesame.Query -s ${repository}   ### repository is set in build.ant.properties">
+		<java classpathref="classpath.run"
+		      classname="com.xmlns.baetle.sesame.Query"
+		      fork="true"
+		      dir="${base.dir}">
+			<arg line="-s ${repository}"/>
+			<!--<jvmarg value="-Djava.rmi.server.hostname=ip"/> -->
+		</java>
+	</target>
+	
+        
+        <target name="javadoc" depends="init" description="Compile JavaDoc documentation for the project">
+            <javadoc packagenames="com.xmlns.baetle.*"
+                     sourcepath="${base.dir}/src"
+                     destdir="${dist.dir}/javadoc"
+                     private="true"
+                     verbose="true"
+                     encoding="utf8"
+                     author="true"
+                     version="true"
+                     windowtitle="Baetle tools API documentation">
+                <doctitle><![CDATA[<h1>Baetle tools API</h1>]]></doctitle>
+		<link href="http://code.google.com/p/baetle/"/>                
+		<bottom><![CDATA[<i>Project homepage: http://code.google.com/p/baetle/</i>]]></bottom>
+            </javadoc>
+        </target>        
+</project>
+
+
