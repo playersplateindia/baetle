@@ -1,5 +1,8 @@
 #summary Ontologies to look at
 
+Competing ontologies
+
+  * [http://www.ifi.unizh.ch/ddis/evoont.html EvoOnt] developed at the University of Zürich, in Switzerland, contains a very complete description of relations for what baetle is trying to do. Need to look at if it covers all of what we are doing. 
 
 Listed here are some ontologies that we should look at and work with
 
