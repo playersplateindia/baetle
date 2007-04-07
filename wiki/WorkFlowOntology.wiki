@@ -14,3 +14,11 @@ Todo:
   * explain N3 Work Flow rules
   * draw diagrams of the other two ontologies?
   * how does this compare to the [http://www.loa-cnr.it/ontologies/Plans.owl Plans ontology] (the rdf for that is broken btw)
+
+== Relation to Plans.owl ==
+
+  * [http://metacognition.info/ontologies/pomr-full.html#state state]
+  * [http://metacognition.info/ontologies/pomr-full.html#action action]
+  * [http://metacognition.info/ontologies/pomr-full.html#task task]
+
+Rendered using manchester [http://owl-workshop.man.ac.uk/acceptedLong/submission_9.pdf syntax] for convenience
