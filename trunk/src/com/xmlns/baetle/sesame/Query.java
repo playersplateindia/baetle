@@ -58,6 +58,7 @@ public class Query {
     RepositoryConnection lc;
     ValueFactory f;
     TupleQueryResultWriter tupleWriter;
+    Repository repQ;
 
     private static void message(String message) {
         System.out.println(message);
@@ -69,7 +70,6 @@ public class Query {
 
     public Query(Repository repQ, String format) throws RepositoryException {
 
-//        Repository repQ = new HTTPRepository(server, id);
         repQ.initialize();
         if ("json".equals(format)) {
             tupleWriter = new SPARQLResultsJSONWriter();
@@ -88,7 +88,11 @@ public class Query {
 
         for (int i = 0; i < args.length; i++) {
             if ("-s".equals(args[i].trim())) { //create http server
-                chosenRep = new HTTPRepository(args[++i].trim(), "native");
+                chosenRep = new HTTPRepository(args[++i].trim(), "native") {
+                    public void shutDown() throws RepositoryException {
+                        //don't do anything on shutdown. We don't want to affect the server from here.
+                    }
+                };
                 System.out.println("using repository at " + args[i].trim());
             } else if ("-h".equals(args[i])) {
                 message("help:");
@@ -112,10 +116,17 @@ public class Query {
         } else {
             q.evalGraphQuery(query);
         }
+
+        q.close();
+    }
+
+    private void close() throws RepositoryException {
+        lc.close();
+        repQ.shutDown();  //httprepositories have method overridden to do nothing.
     }
 
     private static SailRepository createFileRep(File dataDir) {
-        if (!dataDir.exists()) message("dir does not exist " + dataDir);
+        if (!dataDir.exists()) message("dir does not exist" + dataDir);
         if (!dataDir.isDirectory()) message("can't find " + dataDir);
 
         NativeStore store = new NativeStore(dataDir);

@@ -5,31 +5,41 @@
      @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
      @prefix wf: <http://www.w3.org/2005/01/wf/flow#> .
      @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+     @prefix dc: <http://purl.org/dc/elements/1.1/> .
+     @prefix doap: <http://usefulinc.com/ns/doap#> .
+
     
-    <>     a owl:Ontology .
+    <>     a owl:Ontology;
+        dc:creator <http://bblfish.net/people/henry/card#me>;
+        dc:creator [ foaf:nick "fraktaltek" ]  .
     
     :Comitting     a owl:Class;
          rdfs:subClassOf owl:Thing,
                 wf:Action .
     
-    :Defect     a owl:Class;
-         rdfs:subClassOf :Issue .
-    
+   
     :DocumentVersion     a owl:Class .
     
-    :Enhancement     a owl:Class;
-         rdfs:subClassOf :Issue .
-    
-    :Fix     a owl:Class;
-         rdfs:subClassOf :Solution .
    
     :Issue     a owl:Class;
-         rdfs:subClassOf  [
-             a owl:Restriction;
-             owl:allValuesFrom :Priority;
-             owl:onProperty :priority ],
-                owl:Thing,
-                wf:Task .
+         rdfs:subClassOf owl:Thing, 
+                         wf:Task, 
+                        [ a owl:Restriction;
+                          owl:allValuesFrom :Priority;
+                          owl:onProperty :priority ];
+         rdfs:comment "An issue in a bug database."@en;
+         skos:editorialNote "Every bug tracking system creates subclasses of Issues, usually classes such as Bug, Enhancement, NewFeature, etc.. We define a few here as examples but it is not clear that this should be the role of this ontology."@en;
+         skos:editorialNote "Good practice is to arrange it so that the url of the issue should be related to the url of a page that described the issue. A good way to distinguish the page from the issue, is to append some anchor such as #issue to the url of the page."@en; 
+    .
+
+    :Enhancement     a owl:Class;
+        rdfs:subClassOf :Issue ;
+        skos:editorialNote "It is not clear whether we should be specifying subclasses in this ontology, as there may be many ways of doing this, and each project may have its preferred way. It may be on the other hand that an analysis of most bug tracking systems shows them to use similar concepts."@en;
+    .
+    :Defect     a owl:Class;
+        rdfs:subClassOf :Issue ;
+        skos:editorialNote "It is not clear whether we should be specifying subclasses in this ontology, as there may be many ways of doing this, and each project may have its preferred way. It may be on the other hand that an analysis of most bug tracking systems shows them to use similar concepts."@en;
+    .
     
     :NotReproducible     a owl:Class;
          rdfs:subClassOf :Solution .
@@ -39,9 +49,12 @@
     
     :Priority     a owl:Class .
     
-    :RFE     a owl:Class;
+    :Enhancement     a owl:Class;
          rdfs:subClassOf :Issue .
     
+    :Defect     a owl:Class;
+         rdfs:subClassOf :Issue .
+
     :SoftwarePackage     a owl:Class;
          rdfs:subClassOf :DocumentVersion;
          rdfs:sublClassOf foaf:Document .
@@ -51,11 +64,30 @@
                 wf:TerminalState .
     
     
-# Properties
+# Properties of Issue
+
+    :project a owl:ObjectProperty;
+        rdfs:domain :Issue;
+        rdfs:range doap:Project;
+        rdfs:comment "the project this issue concerns"@en;
+    .
+
+    :reporter     a owl:ObjectProperty;
+        rdfs:domain :Issue;
+        rdfs:range sioc:User;
+        rdfs:comment "the reporter of the bug"@en;
+    .
+
+    :assigned_to     a owl:ObjectProperty .
+        rdfs:domain :Issue;
+        rdfs:range sioc:User ;
+        rdfs:comment "the person the bug is assigned to"@en;
+    .
+
+
 
     :about     a owl:ObjectProperty .
     
-    :assigned_to     a owl:ObjectProperty .
     
     :blocks     a owl:ObjectProperty .
     
@@ -83,7 +115,6 @@
     
     :relates_to     a owl:ObjectProperty .
     
-    :reporter     a owl:ObjectProperty .
     
     :resolution     a owl:ObjectProperty .
     
