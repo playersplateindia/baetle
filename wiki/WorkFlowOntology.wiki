@@ -13,5 +13,4 @@ The "doc" depends on a "contact" ontology http://www.w3.org/2000/10/swap/pim/con
 Todo: 
   * explain N3 Work Flow rules
   * draw diagrams of the other two ontologies?
-
-
+  * how does this compare to the [http://www.loa-cnr.it/ontologies/Plans.owl Plans ontology] (the rdf for that is broken btw)
