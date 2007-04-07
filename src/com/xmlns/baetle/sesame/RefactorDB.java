@@ -44,6 +44,7 @@ import org.openrdf.rio.RDFHandlerException;
 import org.openrdf.rio.ntriples.NTriplesWriter;
 import org.openrdf.rio.turtle.TurtleWriter;
 import org.openrdf.sail.nativerdf.NativeStore;
+import org.openrdf.sail.SailException;
 
 import java.io.File;
 import java.io.OutputStream;
@@ -64,11 +65,12 @@ public class RefactorDB {
     boolean doit = false;
     private String foaf = "http://xmlns.com/foaf/0.1/";
     private String  sioc = "http://rdfs.org/sioc/ns#";
+    private NativeStore store;
 
 
     public RefactorDB(boolean doit) throws RepositoryException {
         this.doit = doit;
-        NativeStore store = new NativeStore(netbeansDB);
+        store = new NativeStore(netbeansDB);
         store.setTripleIndexes("spoc,sopc,posc,psoc,opsc,ospc");
         Repository myRepository = new SailRepository(store);
 
@@ -78,7 +80,7 @@ public class RefactorDB {
         f = myRepository.getValueFactory();
     }
 
-    public static void main(String[] args) throws RepositoryException, MalformedQueryException, QueryEvaluationException, TupleQueryResultHandlerException, RDFHandlerException {
+    public static void main(String[] args) throws RepositoryException, MalformedQueryException, QueryEvaluationException, TupleQueryResultHandlerException, RDFHandlerException, SailException {
 //      String sesameServer = " http://localhost:8080/openrdf/";
         String repositoryID = "native";
         RefactorDB work = new RefactorDB(true);
@@ -101,7 +103,7 @@ public class RefactorDB {
         work.close();
     }
 
-    private void close() throws RepositoryException {
+    private void close() throws RepositoryException, SailException {
         if (doit) {
             try {
                 lc.setAutoCommit(false);
@@ -118,6 +120,7 @@ public class RefactorDB {
                 System.out.println("add:" + st);
         }
         lc.close();
+        store.shutDown();
     }
 
     private void extract(OutputStream out) throws RDFHandlerException, RepositoryException {
