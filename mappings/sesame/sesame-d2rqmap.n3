@@ -14,7 +14,7 @@ map:database a d2rq:Database;
 	d2rq:jdbcDriver "com.mysql.jdbc.Driver";
 	d2rq:jdbcDSN "jdbc:mysql://localhost:3306/sesame";
 	d2rq:username "root";
-	d2rq:password "VASKS1234";
+	d2rq:password "local";
 	.
 
 # Table OS_CURRENTSTEP
