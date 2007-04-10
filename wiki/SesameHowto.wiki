@@ -104,6 +104,8 @@ LIMIT 5
 
 == Sending queries from JSON ==
 
+Note: this is now documented in "[http://www.openrdf.org/doc/sesame2/2.0-beta3/system/ch08.html HTTP communication protocol for Sesame 2]"
+
 The requests between the client and the server are simple HTTP requests. I think these are following the standard SPARQL Application Protocol. Using a tool such as [http://www.circlemud.org/~jelson/software/tcpflow/ tcpflow] (which suddenly stopped working on my intel core 2 duo with OSX 10.4.9) or [http://www.wireshark.org/docs/man-pages/tshark.html tshark] you can get a good idea of how to call this directly.
 
 So I started tshark like this
@@ -210,7 +212,7 @@ Date: Sun, 01 Apr 2007 11:20:20 GMT
 0
 }}}
 
-(I don't know why I get those extra numbers in there...)
+(I don't know why I get those extra numbers in there... answer: those are probably due to chunked transfer encoding, which a good http library should take care of. )
 
 JavaScript experts should find it easy to build up such calls and get their preferred response.
 
