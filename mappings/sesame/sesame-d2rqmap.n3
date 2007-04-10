@@ -16,7 +16,7 @@
 map:database a d2rq:Database;
 	d2rq:jdbcDriver "com.mysql.jdbc.Driver";
 	d2rq:jdbcDSN "jdbc:mysql://localhost:3306/sesame";
-	d2rq:username "local";
+	d2rq:username "password";
 	d2rq:password "VASKS1234";
 	.
 
@@ -1163,57 +1163,65 @@ map:database a d2rq:Database;
 # 	.
 # 
 # # Table fileattachment
-# map:fileattachment a d2rq:ClassMap;
-# 	d2rq:dataStorage map:database;
-# 	d2rq:uriPattern "fileattachment/@@fileattachment.ID@@";
-# 	d2rq:class vocab:fileattachment;
-# 	.
-# map:fileattachment__label a d2rq:PropertyBridge;
-# 	d2rq:belongsToClassMap map:fileattachment;
-# 	d2rq:property rdfs:label;
-# 	d2rq:pattern "fileattachment #@@fileattachment.ID@@";
-# 	.
-# map:fileattachment_ID a d2rq:PropertyBridge;
-# 	d2rq:belongsToClassMap map:fileattachment;
-# 	d2rq:property vocab:fileattachment_ID;
-# 	d2rq:column "fileattachment.ID";
-# 	d2rq:datatype xsd:decimal;
-# 	.
+map:fileattachmentPost a d2rq:ClassMap;
+ 	d2rq:dataStorage map:database;
+# 	d2rq:uriPattern "http://openrdf.org/issues/secure/attachment/10000/@@fileattachment.ID@@";
+	d2rq:uriPattern "http://openrdf.org/issues/browse/@@jiraissue.pkey@@#att_@@fileattachment.ID@@";
+	d2rq:join "fileattachment.issueid = jiraissue.ID";
+ 	d2rq:class sioc:Post;
+ 	.
+map:fileattachmentPost__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:fileattachmentPost;
+	d2rq:property rdfs:label;
+	d2rq:pattern "posting of attachment #@@fileattachment.FILENAME@@";
+	.
+map:fileattachment_AUTHOR a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:fileattachmentPost;
+	d2rq:property sioc:has_creator;
+    d2rq:refersToClassMap map:userbase;
+    d2rq:join "fileattachment.AUTHOR = userbase.username";
+	.
+
+map:fileattachment_it a d2rq:PropertyBridge;
+ 	d2rq:belongsToClassMap map:fileattachmentPost;
+ 	d2rq:property sioc:attachment;
+    d2rq:refersToClassMap map:fileattachment;
+ 	.
 # map:fileattachment_issueid a d2rq:PropertyBridge;
 # 	d2rq:belongsToClassMap map:fileattachment;
 # 	d2rq:property vocab:fileattachment_issueid;
 # 	d2rq:column "fileattachment.issueid";
 # 	d2rq:datatype xsd:decimal;
 # 	.
-# map:fileattachment_MIMETYPE a d2rq:PropertyBridge;
-# 	d2rq:belongsToClassMap map:fileattachment;
-# 	d2rq:property vocab:fileattachment_MIMETYPE;
-# 	d2rq:column "fileattachment.MIMETYPE";
-# 	.
-# map:fileattachment_FILENAME a d2rq:PropertyBridge;
-# 	d2rq:belongsToClassMap map:fileattachment;
-# 	d2rq:property vocab:fileattachment_FILENAME;
-# 	d2rq:column "fileattachment.FILENAME";
-# 	.
-# map:fileattachment_CREATED a d2rq:PropertyBridge;
-# 	d2rq:belongsToClassMap map:fileattachment;
-# 	d2rq:property vocab:fileattachment_CREATED;
-# 	d2rq:column "fileattachment.CREATED";
-# 	d2rq:datatype xsd:dateTime;
-# 	d2rq:condition "fileattachment.CREATED != '0000'";
-# 	.
-# map:fileattachment_FILESIZE a d2rq:PropertyBridge;
-# 	d2rq:belongsToClassMap map:fileattachment;
-# 	d2rq:property vocab:fileattachment_FILESIZE;
-# 	d2rq:column "fileattachment.FILESIZE";
-# 	d2rq:datatype xsd:decimal;
-# 	.
-# map:fileattachment_AUTHOR a d2rq:PropertyBridge;
-# 	d2rq:belongsToClassMap map:fileattachment;
-# 	d2rq:property vocab:fileattachment_AUTHOR;
-# 	d2rq:column "fileattachment.AUTHOR";
-# 	.
-# 
+#TODO: decide what the best namespace is for most of the relations below
+map:fileattachment a d2rq:ClassMap;
+ 	d2rq:dataStorage map:database;
+ 	d2rq:uriPattern "http://openrdf.org/issues/secure/attachment/@@fileattachment.ID@@/@@fileattachment.FILENAME@@";
+ 	d2rq:class vocab:Attachment; #what should this be?
+    . 
+map:fileattachment_MIMETYPE a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:fileattachment;
+	d2rq:property vocab:mimetype;
+	d2rq:column "fileattachment.MIMETYPE";
+	.
+map:fileattachment_FILENAME a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:fileattachment;
+	d2rq:property vocab:name;
+	d2rq:column "fileattachment.FILENAME";
+	.
+map:fileattachment_CREATED a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:fileattachment;
+	d2rq:property dct:created;
+	d2rq:column "fileattachment.CREATED";
+	d2rq:datatype xsd:dateTime;
+	d2rq:condition "fileattachment.CREATED != '0000'";
+	.
+map:fileattachment_FILESIZE a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:fileattachment;
+	d2rq:property vocab:size;
+	d2rq:column "fileattachment.FILESIZE";
+	d2rq:datatype xsd:decimal;
+	.
 # # Table filtersubscription
 # map:filtersubscription a d2rq:ClassMap;
 # 	d2rq:dataStorage map:database;
@@ -1704,21 +1712,21 @@ map:jiraissue_PROJECT a d2rq:PropertyBridge;
 	d2rq:property baetle:project;
     d2rq:refersToClassMap map:project;
     d2rq:join "jiraissue.PROJECT = project.ID";
-    d2rq:condition "jiraissue.PROJECT != null";
+    d2rq:condition "jiraissue.PROJECT is not null";
 	.
 map:jiraissue_REPORTER a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:jiraissue;
     d2rq:refersToClassMap map:userbase;
 	d2rq:property baetle:reporter;
     d2rq:join "jiraissue.REPORTER = userbase.username";
-    d2rq:condition "jiraissue.REPORTER != null";
+    d2rq:condition "jiraissue.REPORTER is not null";
 	.
 map:jiraissue_ASSIGNEE a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:jiraissue;
     d2rq:refersToClassMap map:userbase;
 	d2rq:property baetle:assigned_to;
 	d2rq:join "jiraissue.ASSIGNEE = userbase.username";
-    d2rq:condition "jiraissue.ASSIGNEE != null";
+    d2rq:condition "jiraissue.ASSIGNEE is not null";
 	.
 map:jiraissue_issuetype a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:jiraissue;
@@ -1727,7 +1735,7 @@ map:jiraissue_issuetype a d2rq:PropertyBridge;
 #bug: can't get this to work with d2rq:uriColumn
 	d2rq:column "jiraissue.issuetype";
     d2rq:translateWith map:IssueTypeTable; 
-    d2rq:condition "jiraissue.issuetype != ''";
+    d2rq:condition "jiraissue.issuetype is not null && jiraissue.issuetype != ''";
 	.
 map:jiraissue_SUMMARY a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:jiraissue;
@@ -1801,6 +1809,7 @@ map:jiraissue_VOTES a d2rq:PropertyBridge;
 # 	d2rq:property vocab:jiraissue_TIMEORIGINALESTIMATE;
 # 	d2rq:column "jiraissue.TIMEORIGINALESTIMATE";
 # 	d2rq:datatype xsd:decimal;
+#
 # bug: can't get the following to work`    
 # map:jiraissue_duplicates a d2rq:PropertyBridge;
 # 	d2rq:belongsToClassMap map:jiraissue;
