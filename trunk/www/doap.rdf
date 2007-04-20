@@ -1,0 +1,29 @@
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
+	 xmlns="http://usefulinc.com/ns/doap#" 
+	 xmlns:foaf="http://xmlns.com/foaf/0.1/">
+  <name>Baetle</name>
+  <shortname>baetle</shortname>
+  <shortdesc>Bug And Enhancement Tracking LanguagE</shortdesc>
+  <description>
+    Baetle stands for Bug And Enhancement Tracking LanguagE. It is an ontology 
+    that describes the information kept in BugDatabases such as Bugzilla, Jira 
+    and others do.
+  </description>
+  <homepage rdf:resource="http://code.google.com/p/baetle/" />
+  <wiki rdf:resource="http://code.google.com/p/baetle/w/list" />
+  <download-page rdf:resource="http://code.google.com/p/baetle/downloads/list"/>
+  <bug-database rdf:resource="http://code.google.com/p/baetle/issues/list" />
+  <programming-language>Java</programming-language>
+  <category rdf:resource="http://code.google.com/hosting/search?q=label:rdf"/>
+  <category rdf:resource="http://code.google.com/hosting/search?q=label:owl"/>
+  <category rdf:resource="http://code.google.com/hosting/search?q=label:ontology"/>
+  <category rdf:resource="http://code.google.com/hosting/search?q=label:sparql"/>
+  <license rdf:resource="http://usefulinc.com/doap/licenses/bsd" />
+  <repository>
+   <SVNRepository>
+     <browse rdf:resource='http://baetle.googlecode.com/svn/' />
+     <location rdf:resource='http://baetle.googlecode.com/svn/' />
+   </SVNRepository>
+ </repository> 
+</Project>
