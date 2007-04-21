@@ -12,6 +12,7 @@
   </description>
   <homepage rdf:resource="http://code.google.com/p/baetle/" />
   <wiki rdf:resource="http://code.google.com/p/baetle/w/list" />
+  <mailing-list rdf:resource="http://groups.google.com/group/baetle/"/>
   <download-page rdf:resource="http://code.google.com/p/baetle/downloads/list"/>
   <bug-database rdf:resource="http://code.google.com/p/baetle/issues/list" />
   <programming-language>Java</programming-language>
