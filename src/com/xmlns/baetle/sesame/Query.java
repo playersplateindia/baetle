@@ -32,6 +32,7 @@
 */
 package com.xmlns.baetle.sesame;
 
+import static com.xmlns.baetle.svn.BaetleUtil.*;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.query.*;
 import org.openrdf.query.resultio.TupleQueryResultWriter;
@@ -85,12 +86,13 @@ public class Query {
         }
         lc = repQ.getConnection();
         f = repQ.getValueFactory();
-        nameSpaces.put("", "http://baetle.googlecode.com/svn/ns/#");
-        nameSpaces.put("sioc", "http://rdfs.org/sioc/ns#");
-        nameSpaces.put("doap", "http://usefulinc.com/ns/doap#");
-        nameSpaces.put("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
-        nameSpaces.put("xsd", "http://www.w3.org/2001/XMLSchema#");
-        nameSpaces.put("dct", "http://purl.org/dc/terms/");
+        nameSpaces.put("", baetle);
+        nameSpaces.put("sioc", sioc);
+        nameSpaces.put("doap", doap);
+        nameSpaces.put("rdfs", rdfs);
+        nameSpaces.put("rdf", rdf);
+        nameSpaces.put("xsd", xsd);
+        nameSpaces.put("dct", dct);
     }
 
 

@@ -32,6 +32,8 @@
 */
 package com.xmlns.baetle.svn;
 
+import static com.xmlns.baetle.svn.BaetleUtil.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -59,9 +61,6 @@ import java.util.jar.JarFile;
  * @author Henry Story
  */
 public class AnalyseRelease {
-    static final String baetle = "http://baetle.googlecode.com/svn/ns/#";
-    final static String xsd = "http://www.w3.org/2001/XMLSchema#";
-    final static String rdfs = "http://www.w3.org/2000/01/rdf-schema#";
 
 
     File base = new File("/Users/hjs/Programming/Sesame/openrdf-sesame-2.0-beta3");
@@ -110,7 +109,7 @@ public class AnalyseRelease {
     }
 
     public void run() {
-        out.println("<" + packageLocation + "> <" + rdfs + "type> <" + baetle + "Package> .");
+        out.println("<" + packageLocation + "> <" + rdf + "type> <" + baetle + "Package> .");
         ArrayList<File> jars = findAllJarFiles(base);
         for (File jar : jars) {
             try {
@@ -142,7 +141,7 @@ public class AnalyseRelease {
             if (name.endsWith(".class")) {
                 String classurl = "<jar:" + jarurl + "!/" + name + "> ";
                 System.out.println("<" + jarurl + "> <" + baetle + "contains> " + classurl + " .");
-                System.out.println(classurl + "<" + rdfs + "type> <" + baetle + "JavaClassFile> .");
+                System.out.println(classurl + "<" + rdf + "type> <" + baetle + "JavaClassFile> .");
                 //ok I want to say it contains a file named 'name', but this should do for the moment
                 //I should really have it point to a bnode for the class, and give it a name property
                 //then later when I find a url for the jar, I can simulateneously find a url for the class
