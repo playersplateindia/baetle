@@ -32,6 +32,9 @@
 */
 package com.xmlns.baetle.svn;
 
+import static com.xmlns.baetle.svn.BaetleUtil.xsd;
+import static com.xmlns.baetle.svn.BaetleUtil.baetle;
+import static com.xmlns.baetle.svn.BaetleUtil.rdf;
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.SVNLogEntry;
 import org.tmatesoft.svn.core.SVNLogEntryPath;
@@ -76,9 +79,6 @@ public class Subversion2RDF {
 
     private static final TimeZone TZ = TimeZone.getTimeZone("UTC");
     static DatatypeFactory xmldf = null;
-    static final String baetle = "http://baetle.googlecode.com/svn/ns/#";
-    final static String xsd = "http://www.w3.org/2001/XMLSchema#";
-    final static String rdfs = "http://www.w3.org/2000/01/rdf-schema#";
     static String name = "anonymous";
     static String password = "anonymous";
     static long startRevision = 0;
@@ -268,7 +268,7 @@ public class Subversion2RDF {
             System.out.println("#---------------------------------------------");
             long revision = logEntry.getRevision();
             String rev = bcRevisionUrl(revision);
-            System.out.println(rev + " <" + rdfs + "type> <" + baetle + "Committing> .");
+            System.out.println(rev + " <" + rdf + "type> <" + baetle + "Committing> .");
             String auth = authorUrl(logEntry.getAuthor());
             if (auth != null)
                 System.out.println(format("{0} <" + baetle + "author> {1} .", rev, auth));
@@ -348,7 +348,7 @@ public class Subversion2RDF {
      */
     void typeIt(String path, long revision) {
         if (path.endsWith(".java")) {
-            System.out.println(fileRevision(path,revision)+" <"+rdfs+"type> <"+baetle+"JavaSource> .");
+            System.out.println(fileRevision(path,revision)+" <"+rdf+"type> <"+baetle+"JavaSource> .");
         }
     }
 

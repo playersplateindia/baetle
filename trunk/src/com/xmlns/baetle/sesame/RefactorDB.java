@@ -32,6 +32,8 @@
 */
 package com.xmlns.baetle.sesame;
 
+import com.xmlns.baetle.svn.BaetleUtil;
+import static com.xmlns.baetle.svn.BaetleUtil.foaf;
 import org.openrdf.model.*;
 import org.openrdf.model.vocabulary.RDF;
 import org.openrdf.query.*;
@@ -43,8 +45,8 @@ import org.openrdf.repository.sail.SailRepository;
 import org.openrdf.rio.RDFHandlerException;
 import org.openrdf.rio.ntriples.NTriplesWriter;
 import org.openrdf.rio.turtle.TurtleWriter;
-import org.openrdf.sail.nativerdf.NativeStore;
 import org.openrdf.sail.SailException;
+import org.openrdf.sail.nativerdf.NativeStore;
 
 import java.io.File;
 import java.io.OutputStream;
@@ -63,8 +65,6 @@ public class RefactorDB {
     ArrayList<Statement> deleteStatements = new ArrayList<Statement>();
     ArrayList<Statement> addStatements = new ArrayList<Statement>();
     boolean doit = false;
-    private String foaf = "http://xmlns.com/foaf/0.1/";
-    private String  sioc = "http://rdfs.org/sioc/ns#";
     private NativeStore store;
 
 
@@ -278,7 +278,7 @@ public class RefactorDB {
         while (res.hasNext()) {
             Statement s = res.next();
             deleteStatements.add(s);
-            addStatements.add(f.createStatement(s.getSubject(),RDF.TYPE, f.createURI(sioc+"User")));
+            addStatements.add(f.createStatement(s.getSubject(),RDF.TYPE, f.createURI(BaetleUtil.sioc+"User")));
         }
     }
 

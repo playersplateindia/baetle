@@ -35,6 +35,7 @@ package com.xmlns.baetle.svn;
 import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.parser.ParseException;
+import static com.xmlns.baetle.svn.BaetleUtil.*;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 import org.openrdf.model.ValueFactory;
@@ -91,9 +92,6 @@ import java.util.*;
  * @author Henry Story
  */
 public class LinkClassesToSource {
-    static final String baetle = "http://baetle.googlecode.com/svn/ns/#";
-    final static String xsd = "http://www.w3.org/2001/XMLSchema#";
-    final static String rdfs = "http://www.w3.org/2000/01/rdf-schema#";
 
     RepositoryConnection lc;
     ValueFactory f;

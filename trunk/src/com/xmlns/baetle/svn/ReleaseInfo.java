@@ -32,6 +32,8 @@
 */
 package com.xmlns.baetle.svn;
 
+import static com.xmlns.baetle.svn.BaetleUtil.rdf;
+import static com.xmlns.baetle.svn.BaetleUtil.baetle;
 import org.tmatesoft.svn.core.*;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
@@ -71,9 +73,6 @@ import static java.lang.System.*;
 public class ReleaseInfo {
 
     static DatatypeFactory xmldf;
-    static final String baetle = "http://baetle.googlecode.com/svn/ns/#";
-    final static String xsd = "http://www.w3.org/2001/XMLSchema#";
-    final static String rdfs = "http://www.w3.org/2000/01/rdf-schema#";
 
     static {
         try {
@@ -208,7 +207,7 @@ public class ReleaseInfo {
             out.println("# Repository UUID: " + repository.getRepositoryUUID(true));
             out.println();
 
-            out.println("<"+ svnReleaseUrl +"> <"+rdfs+"type> <"+baetle+"Release> .");
+            out.println("<"+ svnReleaseUrl +"> <"+ rdf+"type> <"+ baetle+"Release> .");
 
             releasePath = svnReleaseUrl.substring(svnBaseUrl.length(),svnReleaseUrl.length());
 
@@ -366,7 +365,7 @@ public class ReleaseInfo {
         Iterator iterator = entries.iterator();
         while (iterator.hasNext()) {
             SVNDirEntry entry = (SVNDirEntry) iterator.next();
-            out.println("<"+ svnReleaseUrl +"> <"+baetle+"contains> <"+entry.getURL()+"> .");
+            out.println("<"+ svnReleaseUrl +"> <"+ baetle+"contains> <"+entry.getURL()+"> .");
 
             String basepath = entry.getURL().toString().substring(svnReleaseUrl.length());
             if (newAfterRevision.contains(basepath)) {
@@ -395,7 +394,7 @@ public class ReleaseInfo {
      */
     void typeIt(String url) {
         if (url.endsWith(".java")) {
-            System.out.println("<"+url+"> "+"<"+rdfs+"type> <"+baetle+"JavaSource> .");
+            System.out.println("<"+url+"> "+"<"+ rdf+"type> <"+baetle+"JavaSource> .");
         }
     }
     
