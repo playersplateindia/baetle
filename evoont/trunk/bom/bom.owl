@@ -8,7 +8,7 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
   xml:base="http://www.ifi.unizh.ch/ddis/evoont/2007/02/bom">
-  <owl:Ontology rdf:about="">
+   <owl:Ontology rdf:about="">
     <owl:imports rdf:resource="http://www.ifi.unizh.ch/ddis/evoont/2007/02/vom"/>
   </owl:Ontology>
   <owl:Class rdf:ID="Activity"/>
