@@ -32,13 +32,8 @@
 */
 package com.xmlns.baetle.svn;
 
-import static com.xmlns.baetle.svn.BaetleUtil.xsd;
-import static com.xmlns.baetle.svn.BaetleUtil.baetle;
-import static com.xmlns.baetle.svn.BaetleUtil.rdf;
-import org.tmatesoft.svn.core.SVNException;
-import org.tmatesoft.svn.core.SVNLogEntry;
-import org.tmatesoft.svn.core.SVNLogEntryPath;
-import org.tmatesoft.svn.core.SVNURL;
+import static com.xmlns.baetle.svn.BaetleUtil.*;
+import org.tmatesoft.svn.core.*;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
 import org.tmatesoft.svn.core.internal.io.fs.FSRepositoryFactory;
@@ -50,8 +45,9 @@ import org.tmatesoft.svn.core.wc.SVNWCUtil;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
-import static java.text.MessageFormat.format;
+import static java.lang.System.out;
 import java.text.MessageFormat;
+import static java.text.MessageFormat.format;
 import java.util.*;
 
 /*
@@ -84,7 +80,7 @@ public class Subversion2RDF {
     static long startRevision = 0;
     static long endRevision = -1;//HEAD (the latest) revision
 
-    String svnBaseUrl;
+    String svnRepBaseUrl;
     String peopleBaseUrl;
 
     static {
@@ -103,7 +99,7 @@ public class Subversion2RDF {
                 " You may get more functionality by overriding the class though, especially if you need to extract bug data from the comments.");
         System.out.println("Subversion2RDF [-url repositoryUrl] [-ub userBaseUrl] [-st start] [-end end] [-u account] [-p password] [-h]");
         System.out.println("Description:");
-        System.out.println(" -url: Url of the base of the repository to scan. Defaults to '" + svnBaseUrl + "'");
+        System.out.println(" -url: Url of the base of the repository to scan. Defaults to '" + svnRepBaseUrl + "'");
         System.out.println(" -ub: base url of all users. defaults to '" + peopleBaseUrl + "' ");
         System.out.println(" -st: number greater than 0, start version (default 0)");
         System.out.println(" -end: revision number to end, -1 if last (default -1)");
@@ -127,10 +123,10 @@ public class Subversion2RDF {
     }
 
     Subversion2RDF(String[] args) {
-         /*
-          * Initializes the library (it must be done before ever using the
-          * library itself)
-          */
+        /*
+        * Initializes the library (it must be done before ever using the
+        * library itself)
+        */
         setupLibrary();
         init();
         analyseCommandLineArgs(args);
@@ -142,15 +138,15 @@ public class Subversion2RDF {
      * subclasses override this
      */
     void init() {
-        svnBaseUrl = "http://baetle.googlecode.com/svn/";
-        peopleBaseUrl  = "http://code.google.com/u/";
+        svnRepBaseUrl = "http://baetle.googlecode.com/svn/";
+        peopleBaseUrl = "http://code.google.com/u/";
     }
 
     private void analyseCommandLineArgs(String[] args) {
         try {
             for (int i = 0; i < args.length; i++) {
                 if ("-url".equals(args[i])) {
-                    svnBaseUrl = args[++i];
+                    svnRepBaseUrl = args[++i];
                 } else if ("-ppl".equals(args[i])) {
                     peopleBaseUrl = args[++i];
                 } else if ("-st".equals(args[i])) {
@@ -170,9 +166,9 @@ public class Subversion2RDF {
         }
     }
 
+    SVNRepository repository = null;
 
     void extract() {
-        SVNRepository repository = null;
 
         try {
             /*
@@ -181,12 +177,12 @@ public class Subversion2RDF {
              * repository location used to create this SVNRepository.
              * SVNURL is a wrapper for URL strings that refer to repository locations.
              */
-            repository = SVNRepositoryFactory.create(SVNURL.parseURIEncoded(svnBaseUrl));
+            repository = SVNRepositoryFactory.create(SVNURL.parseURIEncoded(svnRepBaseUrl));
         } catch (SVNException svne) {
             /*
              * Perhaps a malformed URL is the cause of this exception.
              */
-            usage("error while creating an SVNRepository for the location " + svnBaseUrl, svne);
+            usage("error while creating an SVNRepository for the location " + svnRepBaseUrl, svne);
         }
 
         /*
@@ -257,7 +253,7 @@ public class Subversion2RDF {
 
         } catch (SVNException svne) {
             System.out.println("error while collecting log information for '"
-                    + svnBaseUrl + "': " + svne.getMessage());
+                    + svnRepBaseUrl + "': " + svne.getMessage());
             System.exit(1);
         }
         for (Iterator entries = logEntries.iterator(); entries.hasNext();) {
@@ -276,8 +272,8 @@ public class Subversion2RDF {
             String comment = logEntry.getMessage();
             if (comment != null) {
                 System.out.println(format("{0} <" + baetle + "summary> {1} .", rev, n3quote(comment)));
-                for(String bug: extractBugs(comment)) {
-                    System.out.println(MessageFormat.format("{0} <"+baetle+"fixes> {1} .", rev, bug));
+                for (String bug : extractBugs(comment)) {
+                    System.out.println(MessageFormat.format("{0} <" + baetle + "fixes> {1} .", rev, bug));
                 }
             }
             if (logEntry.getChangedPaths().size() > 0) {
@@ -297,19 +293,28 @@ public class Subversion2RDF {
                      * how the path was changed ('A' - added, 'D' - deleted or
                      * 'M' - modified);
                      *
-                     * If the path was copied from another one (branched) then
-                     * SVNLogEntryPath.getCopyPath &
-                     * SVNLogEntryPath.getCopyRevision tells where it was copied
-                     * from and what revision the origin path was at.
                      */
                     switch (entryPath.getType()) {
                         case 'A':
                             System.out.println(format("{0} <" + baetle + "added> {1} .",
                                                       rev, fileRevision(entryPath.getPath(), revision)));
+                            //fullPath = repository.getFullPath(entryPath.getPath());
+                            System.out.println(fileRevision(entryPath.getPath(), revision) + " <" + baetle + "head> <" + svnRepBaseUrl + entryPath.getPath() + "> .");
+
+                            /*
+                            * If the path was copied from another one (branched) then
+                            * SVNLogEntryPath.getCopyPath &
+                            * SVNLogEntryPath.getCopyRevision tells where it was copied
+                            * from and what revision the origin path was at.
+                            */
+                            logCopyPaths(revision, entryPath);
+
                             break;
                         case 'D':
                             System.out.println(format("{0} <" + baetle + "deleted> {1} .",
                                                       rev, fileRevision(entryPath.getPath(), revision - 1)));
+                            System.out.println(rev + " <" + baetle + "deleted> <" + headUrlForPath(entryPath.getPath())+ "> .");
+
                             break;
                         case 'M':
                             String newres = fileRevision(entryPath.getPath(), revision);
@@ -318,15 +323,20 @@ public class Subversion2RDF {
                                                       newres, fileRevision(entryPath.getPath(), revision - 1)));
                             break;
                         case 'R':
-                            System.out.println(format("{0} <" + baetle + "added> {1} .",
-                                                      rev, fileRevision(entryPath.getPath(), revision)));
-                            System.out.println(format("{0} <" + baetle + "deleted> {1} .",
-                                                      rev, fileRevision(entryPath.getPath(), revision - 1)));
+                            //moving in rdf is easy, it's just like modifying a file
+                            String newrev = fileRevision(entryPath.getPath(), revision);
+                            System.out.println(format("{0} <" + baetle + "modified> {1} .", rev, newrev));
+                            System.out.println(format("{0} <" + baetle + "previous> {1} .",
+                                                      newrev, fileRevision(entryPath.getPath(), revision - 1)));
+                            //except that one has to move all the contents of a directory too, and also change all their heads.
+                            logMovePaths(revision, entryPath);
+                            break;
                         default:
                             System.out.println("# ?? type: " + entryPath.getType());
 
                     }
-                    typeIt(entryPath.getPath(),revision);
+                    typeIt(entryPath.getPath(), revision);
+
                     /*
                     System.out.println(" "
                             + entryPath.getType()
@@ -342,13 +352,108 @@ public class Subversion2RDF {
     }
 
     /**
+     * return the url for the head view for file given by path
+     * @param path
+     * @return
+     */
+    private String headUrlForPath(String path) {
+        return svnRepBaseUrl + ((svnRepBaseUrl.endsWith("/"))?path.substring(1,path.length()):path);
+    }
+
+    private void logMovePaths(long revision, SVNLogEntryPath entry) {
+        listEntries(revision, entry.getPath(), entry.getPath(), entry.getCopyPath(),"moved");
+    }
+
+    /**
+     * log all the files that have been moved in the changed path
+     *
+     * @param entry the log entry
+     */
+    private void logCopyPaths(long revision, SVNLogEntryPath entry) {
+        if (entry.getCopyPath() == null) return; //no copy
+        listEntries(revision, entry.getPath(), entry.getPath(), entry.getCopyPath(),"copied");
+    }
+
+    /*
+     * Called recursively to obtain all entries that make up the repository tree
+     * repository - an SVNRepository which interface is used to carry out the
+     * request, in this case it's a request to get all entries in the directory
+     * located at the newDirPath parameter;
+     *
+     * newDirPath is a directory newDirPath relative to the repository location newDirPath (that
+     * is a part of the URL used to create an SVNRepository instance);
+     *
+     * @param revision revision of the new directory
+     * @param pathToBase path to the base of the new directory from the root of the repository
+     * @param newDirPath path from the base to the new dir (usually starts with ""
+     * @param fromBasePth path from the root  of the repository to the root of the old directory from which the copy started (similar to pathToBase)
+     * @param type 'copied' or 'moved'
+     * 
+     */
+    public void listEntries(long revision,
+                            String pathToBase,
+                            String newDirPath,
+                            String fromBasePth,
+                            String type) {
+        /*
+         * Gets the contents of the directory specified by newDirPath at the latest
+         * revision (for this purpose -1 is used here as the revision number to
+         * mean HEAD-revision) getDir returns a Collection of SVNDirEntry
+         * elements. SVNDirEntry represents information about the directory
+         * entry. Here this information is used to get the entry name, the name
+         * of the person who last changed this entry, the number of the revision
+         * when it was last changed and the entry type to determine whether it's
+         * a directory or a file. If it's a directory listEntries steps into a
+         * next recursion to display the contents of this directory. The third
+         * parameter of getDir is null and means that a user is not interested
+         * in directory properties. The fourth one is null, too - the user
+         * doesn't provide its own Collection instance and uses the one returned
+         * by getDir.
+         */
+
+        Collection entries = null;
+        try {
+            entries = repository.getDir(newDirPath, revision, null,
+                                        (Collection) null);
+        } catch (SVNException e) {
+            e.printStackTrace(System.err);  //todo: decide what exception to throw
+            return;
+        }
+        Iterator iterator = entries.iterator();
+        while (iterator.hasNext()) {
+            SVNDirEntry entry = (SVNDirEntry) iterator.next();
+
+            String pathFromBase = entry.getURL().toString().substring(svnRepBaseUrl.length() + pathToBase.length());
+
+            String versionedToUrl = fileRevision(pathToBase + "/" + pathFromBase, revision);
+            out.println(versionedToUrl + " <" + baetle + "previous> " + fileRevision(fromBasePth + "/" + pathFromBase, entry.getRevision()) + " .");
+            out.println(versionedToUrl + " <" + baetle + type+"_from> " + fileRevision(fromBasePth + "/" + pathFromBase, entry.getRevision()) + " .");
+            out.println(versionedToUrl + " <" + baetle + "head> <" + entry.getURL() + "> .");
+            /*
+            * Checking up if the entry is a directory.
+            */
+            if (entry.getKind() == SVNNodeKind.DIR) {
+                listEntries(revision, pathToBase, (newDirPath.equals("")) ? entry.getName()
+                        : newDirPath + "/" + entry.getName(), fromBasePth,type);
+            }/** else {
+         this is a certain way to find a good url for the previous version, but it is dead slow
+         findPreviousRelation(repository, entry);
+
+         }   */
+        }
+
+    }
+
+
+    /**
      * Add type information about the file. Is it java source, a build file? Guess from name.
+     *
      * @param path
      * @param revision
      */
     void typeIt(String path, long revision) {
         if (path.endsWith(".java")) {
-            System.out.println(fileRevision(path,revision)+" <"+rdf+"type> <"+baetle+"JavaSource> .");
+            System.out.println(fileRevision(path, revision) + " <" + rdf + "type> <" + baetle + "JavaSource> .");
         }
     }
 
@@ -370,16 +475,17 @@ public class Subversion2RDF {
     /**
      * get the revision url for the file at path in this repository
      * note: this same function appears in different places: refactor.
+     *
      * @param path
      * @param revision
      * @return the resource
      */
     String fileRevision(String path, long revision) {
-        return format("<" + svnBaseUrl + "!svn/ver/"+ revision+path+">");
+        return format("<" + svnRepBaseUrl + "!svn/ver/" + revision + path + ">");
     }
 
     private String bcRevisionUrl(long revision) {
-        return new StringBuilder(50).append("<").append(svnBaseUrl).append("!svn/bc/").append(revision).append("/>").toString();
+        return new StringBuilder(50).append("<").append(svnRepBaseUrl).append("!svn/bc/").append(revision).append("/>").toString();
     }
 
     /**

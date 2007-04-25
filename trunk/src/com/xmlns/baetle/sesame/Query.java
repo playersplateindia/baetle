@@ -32,7 +32,8 @@
 */
 package com.xmlns.baetle.sesame;
 
-import static com.xmlns.baetle.svn.BaetleUtil.*;
+import static com.xmlns.baetle.svn.BaetleUtil.createFileRep;
+import static com.xmlns.baetle.svn.BaetleUtil.getPrefixes;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.query.*;
 import org.openrdf.query.resultio.TupleQueryResultWriter;
@@ -42,10 +43,8 @@ import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.repository.http.HTTPRepository;
-import org.openrdf.repository.sail.SailRepository;
 import org.openrdf.rio.RDFHandlerException;
 import org.openrdf.rio.turtle.TurtleWriter;
-import org.openrdf.sail.nativerdf.NativeStore;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -53,7 +52,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import static java.lang.System.out;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * @author Henry Story
@@ -86,13 +84,6 @@ public class Query {
         }
         lc = repQ.getConnection();
         f = repQ.getValueFactory();
-        nameSpaces.put("", baetle);
-        nameSpaces.put("sioc", sioc);
-        nameSpaces.put("doap", doap);
-        nameSpaces.put("rdfs", rdfs);
-        nameSpaces.put("rdf", rdf);
-        nameSpaces.put("xsd", xsd);
-        nameSpaces.put("dct", dct);
     }
 
 
@@ -144,16 +135,6 @@ public class Query {
         lc.close();
     }
 
-    private static SailRepository createFileRep(File dataDir) {
-        if (!dataDir.exists()) message("dir does not exist" + dataDir);
-        if (!dataDir.isDirectory()) message("can't find " + dataDir);
-
-        NativeStore store = new NativeStore(dataDir);
-        store.setTripleIndexes("spoc,sopc,posc,psoc,opsc,ospc");
-        out.println("using store in directory " + dataDir);
-        return new SailRepository(store);
-
-    }
 
     private void evalGraphQuery(String query)
             throws MalformedQueryException, RepositoryException, TupleQueryResultHandlerException, QueryEvaluationException, RDFHandlerException {
@@ -171,16 +152,13 @@ public class Query {
     private String getQuery() throws IOException, RepositoryException {
         BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
         String line;
-        String query = "";
-        for(Map.Entry<String,String> ns: nameSpaces.entrySet()) {
-            query += "PREFIX "+ns.getKey()+": <"+ns.getValue()+">\n";
-            lc.setNamespace(ns.getKey(),ns.getValue());
-        }
+        String query = getPrefixes();
         System.out.println(query);
         while ((line = rd.readLine()) != null && line.length() != 0) {
             query += line + "\n";
         }
         return query;
     }
+
 
 }

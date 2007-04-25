@@ -32,6 +32,16 @@
 */
 package com.xmlns.baetle.svn;
 
+import org.openrdf.repository.RepositoryException;
+import org.openrdf.repository.RepositoryConnection;
+import org.openrdf.repository.sail.SailRepository;
+import org.openrdf.sail.nativerdf.NativeStore;
+
+import java.util.Map;
+import java.util.LinkedHashMap;
+import java.io.File;
+import static java.lang.System.out;
+
 /**
  * @author Henry Story
  */
@@ -45,4 +55,68 @@ public class BaetleUtil {
     public final static String sioc = "http://rdfs.org/sioc/ns#";
     public final static String dct= "http://purl.org/dc/terms/";
     public final static String foaf = "http://xmlns.com/foaf/0.1/";
+
+    static LinkedHashMap<String, String> nameSpaces = new LinkedHashMap<String, String>();
+
+    static {
+        nameSpaces.put("", baetle);
+        nameSpaces.put("sioc", sioc);
+        nameSpaces.put("doap", doap);
+        nameSpaces.put("rdfs", rdfs);
+        nameSpaces.put("rdf", rdf);
+        nameSpaces.put("xsd", xsd);
+        nameSpaces.put("dct", dct);
+    }
+
+    /**
+     * get the SPARQL PREFIX for all defined prefixes
+     * @return
+     * @throws RepositoryException
+     */
+    public static String getPrefixes()  {
+        String query = "";
+        for(Map.Entry<String,String> ns: nameSpaces.entrySet()) {
+            query += "PREFIX "+ns.getKey()+": <"+ns.getValue()+">\n";
+        }
+        return query;
+    }
+
+    /**
+     * get the SPARQL PREFIX for the gives prefixes
+     * @param prefixes
+     * @return
+     */
+    public static String getPrefixes(String... prefixes)  {
+        String query = "";
+        for(String prefix: prefixes) {
+            String val = nameSpaces.get(prefix);
+            if (val == null) throw new NullPointerException("no such prefix defined");
+            query += "PREFIX "+prefix+": <"+val+">\n";
+        }
+        return query;
+    }
+
+    /**
+     * set the prefixes on the connection. This can affect the output received
+     * @param repositoryConnection
+     * @throws RepositoryException
+     */
+    public static void setPrefixes(RepositoryConnection repositoryConnection) throws RepositoryException {
+        for(Map.Entry<String,String> ns: nameSpaces.entrySet()) {
+            repositoryConnection.setNamespace(ns.getKey(),ns.getValue());
+        }
+    }
+
+    public static SailRepository createFileRep(File dataDir) throws Exception {
+        if (!dataDir.exists()) throw new Exception("dir does not exist" + dataDir);
+        if (!dataDir.isDirectory()) throw new Exception("can't find " + dataDir);
+
+        NativeStore store = new NativeStore(dataDir);
+        store.setTripleIndexes("spoc,sopc,posc,psoc,opsc,ospc");
+        out.println("using store in directory " + dataDir);
+        return new SailRepository(store);
+
+    }
+
+
 }

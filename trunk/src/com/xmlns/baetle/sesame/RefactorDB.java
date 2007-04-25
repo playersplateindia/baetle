@@ -32,8 +32,8 @@
 */
 package com.xmlns.baetle.sesame;
 
+import static com.xmlns.baetle.svn.BaetleUtil.*;
 import com.xmlns.baetle.svn.BaetleUtil;
-import static com.xmlns.baetle.svn.BaetleUtil.foaf;
 import org.openrdf.model.*;
 import org.openrdf.model.vocabulary.RDF;
 import org.openrdf.query.*;
@@ -41,15 +41,17 @@ import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.repository.RepositoryResult;
-import org.openrdf.repository.sail.SailRepository;
+import org.openrdf.repository.http.HTTPRepository;
 import org.openrdf.rio.RDFHandlerException;
 import org.openrdf.rio.ntriples.NTriplesWriter;
 import org.openrdf.rio.turtle.TurtleWriter;
-import org.openrdf.sail.SailException;
 import org.openrdf.sail.nativerdf.NativeStore;
 
 import java.io.File;
 import java.io.OutputStream;
+import static java.lang.System.exit;
+import static java.lang.System.out;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -68,76 +70,84 @@ public class RefactorDB {
     private NativeStore store;
 
 
-    public RefactorDB(boolean doit) throws RepositoryException {
-        this.doit = doit;
-        store = new NativeStore(netbeansDB);
-        store.setTripleIndexes("spoc,sopc,posc,psoc,opsc,ospc");
-        Repository myRepository = new SailRepository(store);
-
-        //Repository myRepository = new HTTPRepository(server, id);
-        myRepository.initialize();
-        lc = myRepository.getConnection();
-        f = myRepository.getValueFactory();
+    static void message(String message) {
+        message(message,null);
     }
 
-    public static void main(String[] args) throws RepositoryException, MalformedQueryException, QueryEvaluationException, TupleQueryResultHandlerException, RDFHandlerException, SailException {
-//      String sesameServer = " http://localhost:8080/openrdf/";
-        String repositoryID = "native";
-        RefactorDB work = new RefactorDB(true);
-
-        //work.removeBrokenMboxes();
-        //work.cleanMBoxStrings();
-        /*refactorDuplicatePeople(lc);
-        work.findAllPropertiesFor(new String[]{"http://netbeans.org/people/1020",
-                "http://netbeans.org/people/14202",
-                "http://netbeans.org/people/14203",
-                "http://netbeans.org/people/67227",
-                "http://netbeans.org/people/67610",
-                "http://netbeans.org/people/67611",
-                "http://netbeans.org/people/68748"});*/
-        //work.renameUSers();
-        //work.deletelAllUserInfo();
-        //work.nameBlankUserNodes();
-        //work.renameFoafNicToFoafAccount();
-        work.extract(System.out);
-        work.close();
+    static void message(String message, Exception e) {
+        out.println(message);
+        out.println("com.xmlns.baetle.sesame.RefactorDB [-s serverurl] [-d datadir] [-h] -doit refactorAlgorithm");
+        out.println("if no option specified it will use -Daduna.platform.applicationdata.dir property");
+        out.println("-s url of sesame sparql endpoint ");
+        out.println("-d datadirectory if connecting to a local native store");
+        out.println("-doit really apply the changes. Otherwise just write them to standard out");
+        out.println("-f format of output (default turtle)");
+        out.println("refactorAlgorithm just the class name relative to this package");
+        out.println("-h print this message");
+        if (e != null) e.printStackTrace(System.err);
+        exit(-1);
     }
 
-    private void close() throws RepositoryException, SailException {
-        if (doit) {
-            try {
-                lc.setAutoCommit(false);
-                lc.add(addStatements);
-                lc.remove(deleteStatements);
-                lc.commit();
-            } finally {
-                lc.setAutoCommit(true);
+
+    public static void main(String[] args)  {
+        Repository chosenRepository = null;
+        String format = "turtle";
+        boolean doit = false;
+        Class<RefactorTask> executor = null;
+        try {
+            if (args.length==0) message("arguments required");
+            for (int i = 0; i < args.length; i++) {
+                if ("-s".equals(args[i].trim())) { //create http server
+                    String url = args[++i].trim();
+                    String endpoint = url.substring(0, url.lastIndexOf('/') - "/repositories".length());
+                    System.out.println("# endpoint=" + endpoint);
+                    String repid = url.substring(url.lastIndexOf('/') + 1);
+                    System.out.println("# repid=" + repid);
+                    chosenRepository = new HTTPRepository(endpoint, repid);
+                    out.println("# using repository at " + args[i].trim());
+                } else if ("-h".equals(args[i])) {
+                    message("help:");
+                } else if ("-format".equals(args[i])) {
+                    format = args[++i];
+                    //test the format is ok
+                } else if ("-d".equals(args[i].trim())) {
+                    chosenRepository = createFileRep(new File(args[++i].trim()));
+                } else if ("-doit".equals(args[i].trim())) {
+                    doit = true;
+                } else {
+                    String clazz = RefactorDB.class.getPackage().getName() + "." + args[i];
+                    executor = (Class<RefactorTask>) RefactorDB.class.getClassLoader().loadClass(clazz);
+                }
             }
-        } else {//talk about it
-            for (Statement st : deleteStatements)
-                System.out.println("delete: " + st);
-            for (Statement st : addStatements)
-                System.out.println("add:" + st);
+
+            Constructor<RefactorTask> cons = executor.getConstructor();
+            RefactorTask refactorTask = cons.newInstance();
+            refactorTask.setRepository(chosenRepository);
+            refactorTask.setFormat(format);
+            refactorTask.setDoit(doit);
+            refactorTask.run();
+        } catch (Exception e) {
+            message(e.getMessage(), e);
         }
-        lc.close();
-        store.shutDown();
+
     }
+
 
     private void extract(OutputStream out) throws RDFHandlerException, RepositoryException {
-        lc.export(new NTriplesWriter(out) );
+        lc.export(new NTriplesWriter(out));
     }
-    
+
 
     private void findAllPropertiesFor(String[] ids) throws MalformedQueryException, RepositoryException, TupleQueryResultHandlerException, QueryEvaluationException, RDFHandlerException {
         String propsForQ = "CONSTRUCT { ?sub ?rel ?obj . } WHERE { ?sub ?rel ?obj .}";
-        TurtleWriter tw = new TurtleWriter(System.out);
+        TurtleWriter tw = new TurtleWriter(out);
         for (String id : ids) {
             String q = propsForQ.replaceAll("\\?sub", "<" + id + ">");
             GraphQuery query = lc.prepareGraphQuery(QueryLanguage.SPARQL, q);
 
 //            query.addBinding("sub",f.createURI(id));
             query.evaluate(tw);
-            System.out.println("===");
+            out.println("===");
 
         }
 
@@ -145,7 +155,7 @@ public class RefactorDB {
 
 
     private void renameFoafNicToFoafAccount() throws RepositoryException {
-         renameRelation(f.createURI(foaf+"nick"),f.createURI(foaf+"accountName"));
+        renameRelation(f.createURI(foaf + "nick"), f.createURI(foaf + "accountName"));
     }
 
 
@@ -155,16 +165,14 @@ public class RefactorDB {
      */
     private void nameBlankUserNodes() throws RepositoryException {
         RepositoryResult<Statement> res = lc.getStatements(null, f.createURI(foaf + "nick"), null, false);
-        while(res.hasNext()) {
+        while (res.hasNext()) {
             Statement user = res.next();
             String nick = user.getObject().toString();
             URI newname = f.createURI("http://netbeans.org/people/" + nick);
-            smush(newname,user.getSubject());            
+            smush(newname, user.getSubject());
         }
 
     }
-
-
 
 
     String findAllAccountsWithSameEmail = "PREFIX sioc: <http://rdfs.org/sioc/ns#>\n" +
@@ -194,9 +202,9 @@ public class RefactorDB {
             Statement statement = res.next();
             Resource mailto = (Resource) statement.getObject();
             String ms = mailto.toString();
-            System.out.println(ms);
+            out.println(ms);
             if (ms.matches("mailto:\\s.*")) {
-                System.out.println("toreplace " + ms);
+                out.println("toreplace " + ms);
                 ms = "mailto:" + ms.substring(7).trim();
                 add.add(f.createStatement(statement.getSubject(), statement.getPredicate(), f.createURI(ms)));
                 delete.add(statement);
@@ -219,9 +227,9 @@ public class RefactorDB {
         GraphQueryResult res = gq.evaluate();
         while (res.hasNext()) {
             Statement statement = res.next();
-            System.out.println(statement);
+            out.println(statement);
             if (!lc.hasStatement(null, null, statement.getSubject(), false)) {
-                System.out.println("removing");
+                out.println("removing");
                 RepositoryResult<Statement> remove = lc.getStatements(statement.getSubject(), null, null, false);
                 while (remove.hasNext())
                     deleteStatements.add(remove.next());
@@ -242,11 +250,11 @@ public class RefactorDB {
                 "WHERE { \n" +
                 "    ?s foaf:accountName ?o .\n" +
                 "}";
-        RepositoryResult<Statement> accounts = lc.getStatements(null, f.createURI(foaf+"accountName"), null, false);
+        RepositoryResult<Statement> accounts = lc.getStatements(null, f.createURI(foaf + "accountName"), null, false);
         while (accounts.hasNext()) {
             Statement account = accounts.next();
             String aurl = account.getSubject().toString();
-            System.out.print("replaceing " + aurl);
+            out.print("replaceing " + aurl);
             if (aurl.matches("http://.*/[0-9]+")) {
                 String aname = account.getObject().toString();
                 int atloc = aname.indexOf('@');
@@ -254,7 +262,7 @@ public class RefactorDB {
                 aname = aname.substring(0, atloc);
                 int idloc = aurl.lastIndexOf('/') + 1;
                 aurl = aurl.substring(0, idloc) + aname;
-                System.out.println(" with " + aurl);
+                out.println(" with " + aurl);
                 smush(f.createURI(aurl), account.getSubject());
             }
         }
@@ -265,7 +273,7 @@ public class RefactorDB {
      * we don't need to keep email addresses in the rdf db
      */
     void deletelAllUserInfo() throws RepositoryException, MalformedQueryException, QueryEvaluationException {
-        String allUserInfo =""+
+        String allUserInfo = "" +
                 "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
                 "PREFIX sioc: <http://rdfs.org/sioc/ns#>\n" +
                 "CONSTRUCT { ?s ?r ?o . }\n" +
@@ -278,12 +286,13 @@ public class RefactorDB {
         while (res.hasNext()) {
             Statement s = res.next();
             deleteStatements.add(s);
-            addStatements.add(f.createStatement(s.getSubject(),RDF.TYPE, f.createURI(BaetleUtil.sioc+"User")));
+            addStatements.add(f.createStatement(s.getSubject(), RDF.TYPE, f.createURI(sioc + "User")));
         }
     }
 
     /**
      * Replace all resources with the one specified by keep
+     *
      * @param keep
      * @param remove
      * @throws RepositoryException
@@ -308,13 +317,12 @@ public class RefactorDB {
 
     private void renameRelation(URI oldRelation, URI newRelation) throws RepositoryException {
         RepositoryResult<Statement> res = lc.getStatements(null, oldRelation, null, false);
-        while(res.hasNext()) {
+        while (res.hasNext()) {
             Statement statement = res.next();
             deleteStatements.add(statement);
-            addStatements.add(f.createStatement(statement.getSubject(),newRelation,statement.getObject()));
+            addStatements.add(f.createStatement(statement.getSubject(), newRelation, statement.getObject()));
         }
     }
-
 
 
     public void renameSiocAccounts() throws RepositoryException {
@@ -389,14 +397,14 @@ public class RefactorDB {
         while (commtersRes.hasNext()) {
             BindingSet bs = commtersRes.next();
             Binding nick = bs.getBinding("nick");
-            System.out.println("creator p=" + bs.getBinding("p") + " nick = " + nick.getValue());
+            out.println("creator p=" + bs.getBinding("p") + " nick = " + nick.getValue());
             String query = usersQS1 + nick.getValue() + usersQS2;
             usersQ = lc.prepareTupleQuery(QueryLanguage.SPARQL, query);
             TupleQueryResult usersRes = usersQ.evaluate();
             while (usersRes.hasNext()) {
                 BindingSet bsu = usersRes.next();
                 Binding nameB = bsu.getBinding("nm");
-                System.out.println("user=" + bsu.getBinding("p2") + " name=" + nameB.getValue());
+                out.println("user=" + bsu.getBinding("p2") + " name=" + nameB.getValue());
                 if (nameB.getValue().toString().endsWith("neatbeans.org.netbeans.org")) {
 
                 }
@@ -405,4 +413,75 @@ public class RefactorDB {
 
         }
     }
+}
+
+
+/**
+ * go through a tree of ?a :previous ?b relations, starting at the root
+ * and give each element in the tree the same id.
+ */
+class LinkToOrigin extends RefactorTask {
+    private URI previousRel;
+
+    public LinkToOrigin() {
+        super();
+    }
+    URI originrel;
+
+    /**
+     * extend this task with your code
+     */
+    public void runtask() throws Exception {
+        originrel = f.createURI(baetle + "origin");
+        previousRel = f.createURI(baetle, "previous");
+        ArrayList<Resource> origins = findOrigins();
+        for (Resource o: origins) {
+            recurseOrigin(o,o);
+        }
+    }
+
+    private ArrayList<Resource> findOrigins() throws MalformedQueryException, RepositoryException, QueryEvaluationException {
+        String q = BaetleUtil.getPrefixes()+
+                "SELECT ?o \n" +
+                "WHERE {\n" +
+                "   ?x :previous ?o .\n" +
+                "   OPTIONAL { ?o :previous ?none . }\n" +
+                "   FILTER (! bound(?none)) \n" +
+                "}";
+        TupleQuery query = lc.prepareTupleQuery(QueryLanguage.SPARQL, q);
+        TupleQueryResult results = query.evaluate();
+        ArrayList<Resource> result = new ArrayList<Resource>();
+        while(results.hasNext()) {
+            BindingSet bindSet = results.next();
+            Binding binding = bindSet.getBinding("o");
+            Value value = binding.getValue();
+            result.add((Resource) value);
+        }
+        return result;
+    }
+
+    /* this does not work because the data in the repository is not complete. That is there is not always a link
+      from the origina through to the next versions
+    public xxx findOrigins() throws RepositoryException {
+        originrel = f.createURI(baetle + "origin");
+        previousRel = f.createURI(baetle, "previous");
+        RepositoryResult<Statement> originstatmts = lc.getStatements(null, f.createURI(baetle + "added") , null, false);
+        while (originstatmts.hasNext()) {
+            //for every origin move up the graph and have it point to its origin
+            Resource origin = (Resource) originstatmts.next().getObject();
+            recurseOrigin(origin, origin);
+        }
+    }
+    */
+
+    private void recurseOrigin(Value origin, Resource version) throws RepositoryException {
+        addStatement(f.createStatement(version, originrel, origin));
+        RepositoryResult<Statement> nextQuery = lc.getStatements(null, previousRel, version, false);
+        while (nextQuery.hasNext()) {
+            Resource next = nextQuery.next().getSubject();
+            recurseOrigin(origin, next);
+        }
+    }
+
+
 }
