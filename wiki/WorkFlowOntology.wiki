@@ -3,7 +3,7 @@
 
 Tim Berners Lee wrote a [http://www.w3.org/2005/01/wf/ Workflow ontology], that could be useful for us. Bugs are tasks that are in certain states. Fixing bugs is transition their state to a terminal state. In order to get a quick overview of it I drew up a UML diagram:
 
-http://baetle.googlecode.com/svn/trunk/uml/W3C_WorkFlowOntology.jpg
+http://baetle.googlecode.com/svn/trunk/img/W3C_WorkFlowOntology.jpg
 
 
 Depends on a license related "doc" ontology http://www.w3.org/2000/10/swap/pim/doc also created by Tim Berners Lee: Workflow ontology uses _doc:Work_
