@@ -1376,7 +1376,7 @@ subclass of}</string>
 			<key>Points</key>
 			<array>
 				<string>{955.196, 636.954}</string>
-				<string>{922.095, 605.955}</string>
+				<string>{922.094, 605.955}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -3983,8 +3983,8 @@ revision}</string>
 			<integer>300</integer>
 			<key>Points</key>
 			<array>
-				<string>{268.626, 757}</string>
-				<string>{450.351, 583.572}</string>
+				<string>{269.611, 757}</string>
+				<string>{432.232, 611.572}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -6248,7 +6248,7 @@ wiki}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{502.297, 451.91}, {56, 14}}</string>
+			<string>{{502.754, 452.553}, {56, 14}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -6318,10 +6318,10 @@ wiki}</string>
 			<integer>155</integer>
 			<key>Points</key>
 			<array>
-				<string>{524.34, 513.572}</string>
+				<string>{530.189, 513.572}</string>
 				<string>{558, 482}</string>
 				<string>{538, 449}</string>
-				<string>{504.943, 513.572}</string>
+				<string>{509.018, 513.572}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -6384,7 +6384,7 @@ wiki}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{420.765, 527.572}, {132.52, 56}}</string>
+					<string>{{420.765, 527.572}, {132.52, 84}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -6418,6 +6418,8 @@ wiki}</string>
 \f0\fs24 \cf0 previous\
 next\
 id\
+head\
+root\
 (updated)}</string>
 					</dict>
 					<key>TextPlacement</key>
@@ -6762,7 +6764,7 @@ date}</string>
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{862.145, 577.954}, {90, 14.0009}}</string>
+					<string>{{862.145, 577.954}, {90, 14.001}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -6800,7 +6802,7 @@ date}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{862.145, 591.955}, {90, 14.0009}}</string>
+					<string>{{862.145, 591.955}, {90, 14.001}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -9063,7 +9065,7 @@ resolved_with}</string>
 		</dict>
 	</array>
 	<key>ModificationDate</key>
-	<string>2007-04-22 12:29:28 +0200</string>
+	<string>2007-04-25 21:02:09 +0200</string>
 	<key>Modifier</key>
 	<string>Henry Story</string>
 	<key>NotesVisible</key>
@@ -9135,7 +9137,7 @@ resolved_with}</string>
 		<key>FitInWindow</key>
 		<false/>
 		<key>Frame</key>
-		<string>{{213, 4}, {1447, 992}}</string>
+		<string>{{194, 19}, {1447, 992}}</string>
 		<key>ShowRuler</key>
 		<false/>
 		<key>ShowStatusBar</key>

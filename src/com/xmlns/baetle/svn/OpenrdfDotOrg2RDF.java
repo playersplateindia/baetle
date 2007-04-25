@@ -50,7 +50,7 @@ public class OpenrdfDotOrg2RDF extends Subversion2RDF {
     }
 
     void init() {
-        svnBaseUrl = "https://src.aduna-software.org/svn/org.openrdf/";
+        svnRepBaseUrl = "https://src.aduna-software.org/svn/org.openrdf/";
         peopleBaseUrl  = "http://openrdf.org/issues/secure/ViewProfile.jspa?name=";        
     }
 
