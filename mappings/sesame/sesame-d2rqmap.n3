@@ -1197,16 +1197,16 @@ map:fileattachment_it a d2rq:PropertyBridge;
 map:fileattachment a d2rq:ClassMap;
  	d2rq:dataStorage map:database;
  	d2rq:uriPattern "http://openrdf.org/issues/secure/attachment/@@fileattachment.ID@@/@@fileattachment.FILENAME@@";
- 	d2rq:class vocab:Attachment; #what should this be?
+ 	d2rq:class baetle:Attachment; #what should this be?
     . 
 map:fileattachment_MIMETYPE a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:fileattachment;
-	d2rq:property vocab:mimetype;
+	d2rq:property baetle:mimetype;
 	d2rq:column "fileattachment.MIMETYPE";
 	.
 map:fileattachment_FILENAME a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:fileattachment;
-	d2rq:property vocab:name;
+	d2rq:property baetle:name;
 	d2rq:column "fileattachment.FILENAME";
 	.
 map:fileattachment_CREATED a d2rq:PropertyBridge;
@@ -1218,7 +1218,7 @@ map:fileattachment_CREATED a d2rq:PropertyBridge;
 	.
 map:fileattachment_FILESIZE a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:fileattachment;
-	d2rq:property vocab:size;
+	d2rq:property baetle:size;
 	d2rq:column "fileattachment.FILESIZE";
 	d2rq:datatype xsd:decimal;
 	.
