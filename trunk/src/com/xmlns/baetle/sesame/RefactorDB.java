@@ -32,8 +32,8 @@
 */
 package com.xmlns.baetle.sesame;
 
-import static com.xmlns.baetle.svn.BaetleUtil.*;
 import com.xmlns.baetle.svn.BaetleUtil;
+import static com.xmlns.baetle.svn.BaetleUtil.*;
 import org.openrdf.model.*;
 import org.openrdf.model.vocabulary.RDF;
 import org.openrdf.query.*;
@@ -53,6 +53,7 @@ import static java.lang.System.exit;
 import static java.lang.System.out;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -71,31 +72,35 @@ public class RefactorDB {
 
 
     static void message(String message) {
-        message(message,null);
+        message(message, null);
     }
 
     static void message(String message, Exception e) {
         out.println(message);
-        out.println("com.xmlns.baetle.sesame.RefactorDB [-s serverurl] [-d datadir] [-h] -doit refactorAlgorithm");
+        out.println("com.xmlns.baetle.sesame.RefactorDB [-s serverurl] [-d datadir] [-h] -doit -task Task [task args]");
         out.println("if no option specified it will use -Daduna.platform.applicationdata.dir property");
         out.println("-s url of sesame sparql endpoint ");
         out.println("-d datadirectory if connecting to a local native store");
         out.println("-doit really apply the changes. Otherwise just write them to standard out");
         out.println("-f format of output (default turtle)");
-        out.println("refactorAlgorithm just the class name relative to this package");
         out.println("-h print this message");
+        out.println("-debug print out more info as the process is running");
+        out.println("-task the task to call. This has to occur last, right before the task arguments if any.");
+        out.println("task args: arguments to the task");
         if (e != null) e.printStackTrace(System.err);
         exit(-1);
     }
 
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Repository chosenRepository = null;
         String format = "turtle";
         boolean doit = false;
         Class<RefactorTask> executor = null;
+        RefactorTask refactorTask = null;
+        boolean debug = false;
         try {
-            if (args.length==0) message("arguments required");
+            if (args.length == 0) message("arguments required");
             for (int i = 0; i < args.length; i++) {
                 if ("-s".equals(args[i].trim())) { //create http server
                     String url = args[++i].trim();
@@ -114,18 +119,25 @@ public class RefactorDB {
                     chosenRepository = createFileRep(new File(args[++i].trim()));
                 } else if ("-doit".equals(args[i].trim())) {
                     doit = true;
-                } else {
-                    String clazz = RefactorDB.class.getPackage().getName() + "." + args[i];
+                } else if ("-debug".equals(args[i])) {
+                    debug = true;
+                } else if ("-task".equals(args[i].trim())) {
+                    String clazz = args[++i];
                     executor = (Class<RefactorTask>) RefactorDB.class.getClassLoader().loadClass(clazz);
+                    Constructor<RefactorTask> cons = executor.getConstructor();
+                    refactorTask = cons.newInstance();
+                    refactorTask.setArgs(Arrays.copyOfRange(args, i, args.length));
                 }
             }
+            if (refactorTask == null)
+                message("task not specified");
 
-            Constructor<RefactorTask> cons = executor.getConstructor();
-            RefactorTask refactorTask = cons.newInstance();
-            refactorTask.setRepository(chosenRepository);
+            refactorTask.setSesmeRepo(chosenRepository);
             refactorTask.setFormat(format);
             refactorTask.setDoit(doit);
+           refactorTask.setDebug(debug);
             refactorTask.run();
+            refactorTask.setDebug(debug);
         } catch (Exception e) {
             message(e.getMessage(), e);
         }
@@ -426,6 +438,7 @@ class LinkToOrigin extends RefactorTask {
     public LinkToOrigin() {
         super();
     }
+
     URI originrel;
 
     /**
@@ -435,13 +448,13 @@ class LinkToOrigin extends RefactorTask {
         originrel = f.createURI(baetle + "origin");
         previousRel = f.createURI(baetle, "previous");
         ArrayList<Resource> origins = findOrigins();
-        for (Resource o: origins) {
-            recurseOrigin(o,o);
+        for (Resource o : origins) {
+            recurseOrigin(o, o);
         }
     }
 
     private ArrayList<Resource> findOrigins() throws MalformedQueryException, RepositoryException, QueryEvaluationException {
-        String q = BaetleUtil.getPrefixes()+
+        String q = BaetleUtil.getPrefixes() +
                 "SELECT ?o \n" +
                 "WHERE {\n" +
                 "   ?x :previous ?o .\n" +
@@ -451,7 +464,7 @@ class LinkToOrigin extends RefactorTask {
         TupleQuery query = lc.prepareTupleQuery(QueryLanguage.SPARQL, q);
         TupleQueryResult results = query.evaluate();
         ArrayList<Resource> result = new ArrayList<Resource>();
-        while(results.hasNext()) {
+        while (results.hasNext()) {
             BindingSet bindSet = results.next();
             Binding binding = bindSet.getBinding("o");
             Value value = binding.getValue();

@@ -122,6 +122,7 @@ public class Query {
         Query q = new Query(chosenRep, format);
 
         String query = q.getQuery();
+        System.out.println("sending off query...");
         if (query.contains("SELECT")) {
             q.evalTupleQuery(query);
         } else {

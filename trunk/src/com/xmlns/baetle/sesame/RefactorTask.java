@@ -49,28 +49,46 @@ import org.openrdf.sail.SailException;
 import org.openrdf.sail.memory.MemoryStore;
 
 import static java.lang.System.out;
+import static java.lang.System.exit;
 import java.util.ArrayList;
 
 /**
  * @author Henry Story
  */
 public abstract class RefactorTask {
-    Repository repository;
+    Repository sesmeRepo;
     private String format;
     private boolean doit;
     RepositoryConnection lc;
-    ValueFactory f;
+    protected ValueFactory f;
     private ArrayList<Statement> deleteStatements = new ArrayList<Statement>();
     private ArrayList<Statement> addStatements = new ArrayList<Statement>();
+    private boolean debug = false;
 
     public RefactorTask() {
     }
 
-    void setRepository(Repository rep) throws RepositoryException {
-        this.repository = rep;
-        repository.initialize();
-        lc = repository.getConnection();
-        f = repository.getValueFactory();
+    String getArgs() { return "\n"; }
+
+    String getMessage() { return ""; }
+    
+    protected void message(String message) {
+         message(message,null);
+    }
+
+    void message(String message, Exception e) {
+         out.println(message);
+         out.println(getArgs()+getMessage());
+         if (e != null) e.printStackTrace(System.err);
+         exit(-1);
+     }
+    
+
+    void setSesmeRepo(Repository rep) throws RepositoryException {
+        this.sesmeRepo = rep;
+        sesmeRepo.initialize();
+        lc = sesmeRepo.getConnection();
+        f = sesmeRepo.getValueFactory();
     }
 
     void setFormat(String format) {
@@ -89,14 +107,15 @@ public abstract class RefactorTask {
     /**
      * extend this task with your code
      */
-    public abstract void runtask() throws Exception;
+    protected abstract void runtask() throws Exception;
 
     /**
      * put statement on list to be added
      *
      * @param s
      */
-    void addStatement(Statement s) {
+    protected void addStatement(Statement s) {
+        if (debug) System.out.println(s);
         addStatements.add(s);
     }
 
@@ -105,7 +124,7 @@ public abstract class RefactorTask {
      *
      * @param s
      */
-    void delStatement(Statement s) {
+    protected void delStatement(Statement s) {
         addStatements.add(s);
     }
 
@@ -149,7 +168,7 @@ public abstract class RefactorTask {
 
         }
         lc.close();
-        repository.shutDown();
+        sesmeRepo.shutDown();
     }
 
     private RDFWriter getWriter() {
@@ -162,4 +181,15 @@ public abstract class RefactorTask {
 
     }
 
+    /**
+     * Do nothing by default
+     * extend if needed
+     * @param strings
+     */
+    public void setArgs(String[] strings) {
+    }
+
+    public void setDebug(boolean val) {
+        debug = val;
+    }
 }

@@ -72,7 +72,7 @@ import java.util.*;
  * work out how the classes in the jars relate to the java source by analysing the source files
  * downloaded from the remote repository, and working on patter matching names of files
  *
- * todo: there are hardcoded urls in here which means this will only work with sesame2 beta 3
+ * todo: there are hardcoded urls in here which means this will only work with sesame2 beta 2
  * todo: make this more generic
  *
  * for some background info on the algorithm see the thread "Extracting class info from source, and relating them"
@@ -99,9 +99,9 @@ public class LinkClassesToSource {
     Repository repQ;
     private MemoryStore store;
     private RepositoryConnection conn;
-    String releaseUrl = "https://src.aduna-software.org/svn/org.openrdf/releases/sesame2/2.0-beta3";
+    String releaseUrl = "https://src.aduna-software.org/svn/org.openrdf/releases/sesame2/2.0-beta2";
     String baseSvnUrl = "https://src.aduna-software.org/svn/org.openrdf/";
-    String releaseJar = "http://downloads.sourceforge.net/sesame/openrdf-sesame-2.0-beta3-onejar.jar";
+    String releaseJar = "http://downloads.sourceforge.net/sesame/openrdf-sesame-2.0-beta2-onejar.jar";
 
     private SVNRepository repository;
     private String regex;

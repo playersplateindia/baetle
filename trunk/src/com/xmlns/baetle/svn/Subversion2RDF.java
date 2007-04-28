@@ -278,63 +278,54 @@ public class Subversion2RDF {
             }
             if (logEntry.getChangedPaths().size() > 0) {
                 Set changedPathsSet = logEntry.getChangedPaths().keySet();
+                for (Iterator changedPaths = changedPathsSet.iterator();
+                     changedPaths.hasNext();) {
 
-                for (Iterator changedPaths = changedPathsSet.iterator(); changedPaths
-                        .hasNext();) {
                     /*
                      * obtains a next SVNLogEntryPath
+                     * note: this is really a weird way of doing things! I'll stick to it, but gosh . Why did they not use a list?
                      */
                     SVNLogEntryPath entryPath = (SVNLogEntryPath) logEntry
                             .getChangedPaths().get(changedPaths.next());
-                    /*
-                     * SVNLogEntryPath.getPath returns the changed path itself;
-                     *
-                     * SVNLogEntryPath.getType returns a charecter describing
-                     * how the path was changed ('A' - added, 'D' - deleted or
-                     * 'M' - modified);
-                     *
-                     */
+
                     switch (entryPath.getType()) {
-                        case 'A':
+                        case 'A': //ADDED
                             System.out.println(format("{0} <" + baetle + "added> {1} .",
                                                       rev, fileRevision(entryPath.getPath(), revision)));
                             //fullPath = repository.getFullPath(entryPath.getPath());
-                            System.out.println(fileRevision(entryPath.getPath(), revision) + " <" + baetle + "head> <" + svnRepBaseUrl + entryPath.getPath() + "> .");
-
-                            /*
-                            * If the path was copied from another one (branched) then
-                            * SVNLogEntryPath.getCopyPath &
-                            * SVNLogEntryPath.getCopyRevision tells where it was copied
-                            * from and what revision the origin path was at.
-                            */
+                            System.out.println(fileRevision(entryPath.getPath(), revision) + " <" + baetle + "head> <" + svnRepBaseUrl + entryPath.getPath().substring(1) + "> .");
                             logCopyPaths(revision, entryPath);
-
                             break;
-                        case 'D':
+                        case 'D'://DELETED
                             System.out.println(format("{0} <" + baetle + "deleted> {1} .",
                                                       rev, fileRevision(entryPath.getPath(), revision - 1)));
                             System.out.println(rev + " <" + baetle + "deleted> <" + headUrlForPath(entryPath.getPath())+ "> .");
-
+                            //the delete paths should only be called if
+                            //1. This is a directory
+                            //2. this path has not also been added (in which case this is a move)
+                            //3. this path is also a replacing
+                            //logDeletePaths(rev, revision, entryPath);
                             break;
-                        case 'M':
+                        case 'M': //MODIFIED
                             String newres = fileRevision(entryPath.getPath(), revision);
                             System.out.println(format("{0} <" + baetle + "modified> {1} .", rev, newres));
                             System.out.println(format("{0} <" + baetle + "previous> {1} .",
                                                       newres, fileRevision(entryPath.getPath(), revision - 1)));
                             break;
-                        case 'R':
-                            //moving in rdf is easy, it's just like modifying a file
+                        case 'R': //REPLACING This is deleting and then creating a file with the same name!
+                            //todo: test this carefully
                             String newrev = fileRevision(entryPath.getPath(), revision);
-                            System.out.println(format("{0} <" + baetle + "modified> {1} .", rev, newrev));
-                            System.out.println(format("{0} <" + baetle + "previous> {1} .",
-                                                      newrev, fileRevision(entryPath.getPath(), revision - 1)));
-                            //except that one has to move all the contents of a directory too, and also change all their heads.
-                            logMovePaths(revision, entryPath);
+                            System.out.println(format("{0} <" + baetle + "added> {1} .",
+                                                      rev, fileRevision(entryPath.getPath(), revision)));
+                            System.out.println(format("{0} <" + baetle + "deleted> {1} .",
+                                                      rev, fileRevision(entryPath.getPath(), revision - 1)));
                             break;
                         default:
                             System.out.println("# ?? type: " + entryPath.getType());
 
                     }
+
+
                     typeIt(entryPath.getPath(), revision);
 
                     /*
@@ -351,6 +342,7 @@ public class Subversion2RDF {
         }
     }
 
+
     /**
      * return the url for the head view for file given by path
      * @param path
@@ -360,9 +352,6 @@ public class Subversion2RDF {
         return svnRepBaseUrl + ((svnRepBaseUrl.endsWith("/"))?path.substring(1,path.length()):path);
     }
 
-    private void logMovePaths(long revision, SVNLogEntryPath entry) {
-        listEntries(revision, entry.getPath(), entry.getPath(), entry.getCopyPath(),"moved");
-    }
 
     /**
      * log all the files that have been moved in the changed path
@@ -371,7 +360,7 @@ public class Subversion2RDF {
      */
     private void logCopyPaths(long revision, SVNLogEntryPath entry) {
         if (entry.getCopyPath() == null) return; //no copy
-        listEntries(revision, entry.getPath(), entry.getPath(), entry.getCopyPath(),"copied");
+        copyEntries(revision, entry.getPath(), entry.getPath(), entry.getCopyPath());
     }
 
     /*
@@ -387,30 +376,12 @@ public class Subversion2RDF {
      * @param pathToBase path to the base of the new directory from the root of the repository
      * @param newDirPath path from the base to the new dir (usually starts with ""
      * @param fromBasePth path from the root  of the repository to the root of the old directory from which the copy started (similar to pathToBase)
-     * @param type 'copied' or 'moved'
-     * 
+     *
      */
-    public void listEntries(long revision,
+    public void copyEntries(long revision,
                             String pathToBase,
                             String newDirPath,
-                            String fromBasePth,
-                            String type) {
-        /*
-         * Gets the contents of the directory specified by newDirPath at the latest
-         * revision (for this purpose -1 is used here as the revision number to
-         * mean HEAD-revision) getDir returns a Collection of SVNDirEntry
-         * elements. SVNDirEntry represents information about the directory
-         * entry. Here this information is used to get the entry name, the name
-         * of the person who last changed this entry, the number of the revision
-         * when it was last changed and the entry type to determine whether it's
-         * a directory or a file. If it's a directory listEntries steps into a
-         * next recursion to display the contents of this directory. The third
-         * parameter of getDir is null and means that a user is not interested
-         * in directory properties. The fourth one is null, too - the user
-         * doesn't provide its own Collection instance and uses the one returned
-         * by getDir.
-         */
-
+                            String fromBasePth) {
         Collection entries = null;
         try {
             entries = repository.getDir(newDirPath, revision, null,
@@ -427,22 +398,19 @@ public class Subversion2RDF {
 
             String versionedToUrl = fileRevision(pathToBase + "/" + pathFromBase, revision);
             out.println(versionedToUrl + " <" + baetle + "previous> " + fileRevision(fromBasePth + "/" + pathFromBase, entry.getRevision()) + " .");
-            out.println(versionedToUrl + " <" + baetle + type+"_from> " + fileRevision(fromBasePth + "/" + pathFromBase, entry.getRevision()) + " .");
+            out.println(versionedToUrl + " <" + baetle + "copied_from> " + fileRevision(fromBasePth + "/" + pathFromBase, entry.getRevision()) + " .");
             out.println(versionedToUrl + " <" + baetle + "head> <" + entry.getURL() + "> .");
             /*
             * Checking up if the entry is a directory.
             */
             if (entry.getKind() == SVNNodeKind.DIR) {
-                listEntries(revision, pathToBase, (newDirPath.equals("")) ? entry.getName()
-                        : newDirPath + "/" + entry.getName(), fromBasePth,type);
-            }/** else {
-         this is a certain way to find a good url for the previous version, but it is dead slow
-         findPreviousRelation(repository, entry);
-
-         }   */
+                copyEntries(revision, pathToBase, (newDirPath.equals("")) ? entry.getName()
+                        : newDirPath + "/" + entry.getName(), fromBasePth);
+            }
         }
 
     }
+
 
 
     /**
