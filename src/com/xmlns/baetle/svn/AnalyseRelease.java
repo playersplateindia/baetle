@@ -34,9 +34,7 @@ package com.xmlns.baetle.svn;
 
 import static com.xmlns.baetle.svn.BaetleUtil.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import static java.lang.System.exit;
 import static java.lang.System.out;
 import java.math.BigInteger;
@@ -65,8 +63,8 @@ public class AnalyseRelease {
 
     File base = new File("/Users/hjs/Programming/Sesame/openrdf-sesame-2.0-beta3");
     String packageLocation = "http://downloads.sourceforge.net/sesame/openrdf-sesame-2.0-beta3-onejar.jar";
-    String packageBase = "http://downloads.sourceforge.net/sesame/openrdf-sesame-2.0-beta3"; // we will imagine that the jars are inside this directory
-
+    String packageBase = "http://downloads.sourceforge.net/sesame/"; // we will imagine that the jars are inside this directory
+    String path = "openrdf-sesame-2.0-beta3";
 
     public static void main(String[] args) {
         new AnalyseRelease(args).run();
@@ -75,9 +73,11 @@ public class AnalyseRelease {
     public void usage(String error, Exception e) {
         out.println(error);
         out.println();
-        out.println("AnalyseRelease [-base basedir] [-h] packageURL ");
+        out.println("AnalyseRelease [-base basedir] [-e extraction dir] [-h] packageURL ");
         out.println("Description:");
         out.println(" -base: dir to start searching for jars");
+        out.println(" -e a path relative to the directory in which packageUrl finds itself, in which all the contents of " +
+                "the package are supposed to be accessible via http");
         out.println(" -h help: print this out.");
         out.println(" packageUrl: name of package as a url (could download it and extract it if no basedir)");
         if (e != null) e.printStackTrace();
@@ -98,9 +98,11 @@ public class AnalyseRelease {
                     if (!base.isDirectory()) usage(args[i] + " should point to a directory ", null);
                 } else if ("-h".equals(args[i])) {
                     usage("help", null);
+                } else  if ("-e".equals(args[i])) {
+                    path = args[++i];
                 } else {
                     packageLocation = new URL(args[i]).toString();
-                    packageBase = packageLocation.substring(packageLocation.lastIndexOf('/'), packageLocation.length());
+                    packageBase = packageLocation.substring(0,packageLocation.lastIndexOf('/')+1);
                 }
             }
         } catch (Exception e) {
@@ -121,8 +123,26 @@ public class AnalyseRelease {
 
     }
 
+    /**
+     * not used currently
+     * @param remote
+     * @return
+     * @throws IOException
+     */
+    File download(URL remote) throws IOException {
+        File download = File.createTempFile("download", "");
+        InputStream bin = remote.openConnection().getInputStream();
+        FileOutputStream out = new FileOutputStream(download);
+        byte[] buf = new byte[1024*1024];
+        int n;
+        while((n = bin.read(buf))!=-1) {
+            out.write(buf,0,n);
+        }
+        return download;
+    }
+
     private void analyseJar(File jar) throws IOException {
-        String jarurl = packageBase + jar.getAbsolutePath().substring(base.getAbsolutePath().length());
+        String jarurl = packageBase + path + jar.getAbsolutePath().substring(base.getAbsolutePath().length());
         out.println("<" + packageLocation + "> <" + baetle + "contains> <" + jarurl + "> .");
         FileChannel channel = new RandomAccessFile(jar, "r").getChannel();
         ByteBuffer buffer = channel.map(FileChannel.MapMode.READ_ONLY, 0, (int) channel.size());

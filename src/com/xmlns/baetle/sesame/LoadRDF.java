@@ -33,15 +33,17 @@
 package com.xmlns.baetle.sesame;
 
 import org.openrdf.repository.Repository;
-import org.openrdf.repository.RepositoryException;
 import org.openrdf.repository.RepositoryConnection;
+import org.openrdf.repository.RepositoryException;
 import org.openrdf.repository.sail.SailRepository;
-import org.openrdf.sail.nativerdf.NativeStore;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFParseException;
+import org.openrdf.sail.nativerdf.NativeStore;
 
 import java.io.File;
 import java.io.IOException;
+import static java.lang.System.exit;
+import static java.lang.System.out;
 
 /**
  * @author Henry Story
@@ -49,12 +51,35 @@ import java.io.IOException;
 public class LoadRDF {
     static File dataDir;
     static File db;
+    private static boolean clear = false;
+    static final String[] formats = {"ntriples","rdfxml","turtle"};
+    static String format = "ntriples";
+
+    static void message(String message) {
+        message(message,null);
+    }
+
+    static void message(String message, Exception e) {
+        System.out.println(message);
+        System.out.println("LoadRDF -d databaseDir [-clear] file.xxx");
+//        out.println("if no option specified it will use -Daduna.platform.applicationdata.dir property");
+        out.println("this guesses the format by the extension of your file name. Otherwise it tries ntriples.");
+        out.println("-d datadirectory to store local native triple store");
+        out.println("-clear clear the store first before loading (danger!)");
+        out.println("file.ntriples the file to load in the database");
+        out.println("-h print this message");
+        if (e != null) e.printStackTrace(System.err);
+        exit(-1);
+    }
+
 
     public static void main(String[] args) throws RepositoryException, IOException, RDFParseException {
         for (int i = 0; i < args.length; i++) {
             if (args[i].trim().equals("-d")) {
                 dataDir = new File(args[++i]);
                 if (!dataDir.isDirectory() || !dataDir.exists()) message("can't find data dir "+dataDir);
+            } else if ("-clear".equals(args[i])) {
+                clear = true;
             } else {
                 db = new File(args[i]);
                 if (!db.exists()) message("missing ntriples file "+db);
@@ -69,17 +94,15 @@ public class LoadRDF {
         netb.initialize();
 
         RepositoryConnection nc = netb.getConnection();
+
+        if (clear) nc.clear();
+
         System.out.println("starting import of "+db);
-        nc.add(db,null, RDFFormat.NTRIPLES);
+        nc.add(db,null, RDFFormat.forFileName(db.toString(),RDFFormat.NTRIPLES));
         System.out.println("finished checkins");
 
         nc.close();
         netb.shutDown();
     }
 
-    private static void message(String message) {
-        System.out.println(message);
-        System.out.println("LoadRDF -d databaseDir/ file.ntriples");
-        System.exit(-1);
-    }
 }

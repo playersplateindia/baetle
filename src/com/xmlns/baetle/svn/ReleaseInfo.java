@@ -99,7 +99,7 @@ public class ReleaseInfo {
         out.println("You can use this class with the following command line arguments.");
         out.println("Warning. this is exceedingly slow, as we have to connect for every file to find its ancestor." +
                 " Subclass this if you have more information. ");
-        out.println("ReleaseInfo [-url releaseUrl] [-map versionPath] [-u account] [-p password] [-h]");
+        out.println("ReleaseInfo [-url releaseUrl] [-u account] [-p password] [-h]");
         out.println("Description:");
         out.println(" -url: Url of the base of the repository to scan. Defaults to '" + svnReleaseUrl + "'");
         out.println(" -u: account name (default: anonymous)");
@@ -207,10 +207,11 @@ public class ReleaseInfo {
             out.println("# Repository UUID: " + repository.getRepositoryUUID(true));
             out.println();
 
+            
             out.println("<"+ svnReleaseUrl +"> <"+ rdf+"type> <"+ baetle+"Release> .");
 
             releasePath = svnReleaseUrl.substring(svnBaseUrl.length(),svnReleaseUrl.length());
-
+            System.out.println("# release path: '"+releasePath+"'");
             //get all the logs for the revision up until it was copied
             changesAfterRelease();
 
@@ -232,14 +233,13 @@ public class ReleaseInfo {
         try {
             latestRevision = repository.getLatestRevision();
         } catch (SVNException svne) {
-            err
-                    .println("error while fetching the latest repository revision: "
+            err.println("error while fetching the latest repository revision: "
                             + svne.getMessage());
             exit(1);
         }
         out.println("");
-        out.println("---------------------------------------------");
-        out.println("Repository latest revision: " + latestRevision);
+        out.println("#---------------------------------------------");
+        out.println("#Repository latest revision: " + latestRevision);
         exit(0);
     }
 
@@ -280,6 +280,7 @@ public class ReleaseInfo {
                 if (key.equals(releasePath)) { //we are at the release copy change
                     copiedFrom = path.getCopyPath();
                     copyRevision = path.getCopyRevision();
+                    System.out.println("# the root was copied from '"+copiedFrom+"' at revision "+copyRevision);
                     return;
                 }
                 switch (path.getType()) {
@@ -294,6 +295,11 @@ public class ReleaseInfo {
                 }
             }
         }
+        String warningmsg = "WARNING: We did not get to the releasePath, where we should have found out where this release was copied from";
+        System.out.println("<"+svnReleaseUrl+">"+BaetleUtil.rdfs+"comment \""+warningmsg+"\"");
+        System.out.println("break ntriples");
+        System.err.println(warningmsg);
+        System.err.println("");
     }
 
     private void analyseCommandLineArgs(String[] args) {

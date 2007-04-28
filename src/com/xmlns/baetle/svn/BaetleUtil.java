@@ -55,6 +55,7 @@ public class BaetleUtil {
     public final static String sioc = "http://rdfs.org/sioc/ns#";
     public final static String dct= "http://purl.org/dc/terms/";
     public final static String foaf = "http://xmlns.com/foaf/0.1/";
+    public final static String awol = "http://bblfish.net/work/atom-owl/2006-06-06/#";
 
     static LinkedHashMap<String, String> nameSpaces = new LinkedHashMap<String, String>();
 
@@ -66,6 +67,7 @@ public class BaetleUtil {
         nameSpaces.put("rdf", rdf);
         nameSpaces.put("xsd", xsd);
         nameSpaces.put("dct", dct);
+        nameSpaces.put("awol", awol);        
     }
 
     /**
