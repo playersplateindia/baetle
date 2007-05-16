@@ -2,7 +2,7 @@
 
 Competing ontologies
 
-  * [http://www.ifi.unizh.ch/ddis/evoont.html EvoOnt] developed at the University of Zürich, in Switzerland, contains a very complete description of relations for what baetle is trying to do. Need to look at if it covers all of what we are doing. 
+  * [http://www.ifi.unizh.ch/ddis/evoont.html EvoOnt] developed at the University of Zürich, in Switzerland, contains a very complete description of relations for what baetle is trying to do. This ontology is now on baetle server, available to be edited and improoved, with the approval of the University of Zurich, who have joined the mailing list, as owners of course. 
 
 Listed here are some ontologies that we should look at and work with
 
