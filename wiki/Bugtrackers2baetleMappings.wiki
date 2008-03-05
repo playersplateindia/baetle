@@ -67,8 +67,8 @@ Is there too much complexity here? Some states should probably be merged? See th
 || *Baetle* || *Trac* || *Jira* || _please add other bugtrackers_ ||
 || title || Summary || Summary || ||
 || created || Created || Created || ||
-|| modified || last modified || - || ||
-|| updated || - || updated || ||
+|| updated || last modified || updated || ||
+|| due_date || - || due date || ||
 || category || ? || ? || ||
 || comment || Comment || Comment || ||
 || description || (Full) Description || Description || ||
