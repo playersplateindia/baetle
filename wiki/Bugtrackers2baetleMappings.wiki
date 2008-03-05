@@ -68,7 +68,7 @@ Is there too much complexity here? Some states should probably be merged? See th
 || title || Summary || Summary || ||
 || created || Created || Created || ||
 || updated || last modified || updated || ||
-|| due_date || - || due date || ||
+|| due_date || (milestone due) || due date || ||
 || category || ? || ? || ||
 || comment || Comment || Comment || ||
 || description || (Full) Description || Description || ||
