@@ -45,7 +45,7 @@ baetle:Priority has the subclasses Critical, Major, Blocker, Trivial and Minor
 ||  New || New || - || ||
 ||  Unconfirmed || - || - || ||
 ||  Started || Assigned || In progress || ||
-||  Reopened || Reopened || - || ||
+||  Reopened || Reopened || Reopened || ||
 || Resolved || || || ||
 ||  NotReproducible || - || resolved:cannot reproduce || ||
 ||  WorksForMe || closed:worksforme || - || ||
