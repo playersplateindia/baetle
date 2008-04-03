@@ -32,11 +32,11 @@ baetle:Priority has the subclasses Critical, Major, Blocker, Trivial and Minor
 
 || *Baetle* || *Trac* || *Jira* || _please add other bugtrackers_ ||
 || Priority || (Custom) || || ||
-|| Critical || Critical || Critical || ||
-|| Major || Major || Major || ||
-|| Trivial || Trivial || Trivial || ||
-|| Blocker || Blocker || Blocker || ||
-|| Minor || Minor || Minor || ||
+|| Critical || critical || Critical || ||
+|| Major || major || Major || ||
+|| Trivial || trivial || Trivial || ||
+|| Blocker || blocker || Blocker || ||
+|| Minor || minor || Minor || ||
 
 == wf:state ==
 
