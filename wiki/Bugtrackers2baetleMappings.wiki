@@ -98,7 +98,6 @@ Should status be removed (left to wf:state) ? See the mailing list..
 || Version || Affects version/s || ||
 || Severity (optional) || - || ||
 || - || Custom fields || || 
-|| Milestone's due date || Due date || ||
 || - || Fix version's || ||
 
 We should probably don't care about Trac's severity or Jira's custom fields. 
