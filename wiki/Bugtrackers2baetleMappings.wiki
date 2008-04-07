@@ -87,6 +87,7 @@ Is there too much complexity here? Some states should probably be merged? See th
 || environment || - || environment || ||
 || project || (implicit) || project || ||
 || resolved_with || ? || ? || ||
+|| version || Version || Affects version/s || ||
 
 Should modified and updated be one field? See the mailing list..
 Should status be removed (left to wf:state) ? See the mailing list..
@@ -95,7 +96,6 @@ Should status be removed (left to wf:state) ? See the mailing list..
 
 || Trac || Jira || _please add other bugtrackers_ ||
 || Ticket # || Issue key || ||
-|| Version || Affects version/s || ||
 || Severity (optional) || - || ||
 || - || Custom fields || || 
 || - || Fix version's || ||
