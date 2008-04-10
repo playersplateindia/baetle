@@ -99,6 +99,7 @@ Should status be removed (left to wf:state) ? See the mailing list..
 || Severity (optional) || - || ||
 || - || Custom fields || || 
 || - || Fix version's || ||
+|| Attachement || Attachement || ||
 
 We should probably don't care about Trac's severity or Jira's custom fields. 
 
