@@ -88,6 +88,7 @@ Is there too much complexity here? Some states should probably be merged? See th
 || project || (implicit) || project || ||
 || resolved_with || ? || ? || ||
 || version || Version || Affects version/s || ||
+|| sioc:attachment || Attachment || Attachment || ||
 
 Should modified and updated be one field? See the mailing list..
 Should status be removed (left to wf:state) ? See the mailing list..
