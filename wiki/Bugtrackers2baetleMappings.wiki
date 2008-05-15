@@ -21,7 +21,7 @@ The tables below shows how different concepts and properties of different bugtra
 baetle:Issue inherits from wf:Task. It has Defect and Enhancement as subclasses. There's a discussion on the mailing list on where to map (Jira and Tracs) Task. Other custom Issue types that are used are also of interest to discuss.
 
 || *Baetle* || *Trac* || *Jira* || _please add other bugtrackers_ ||
-|| Issue    || (Task) || (Task) || ||
+|| Task     || Task   || Task   || ||
 || Issue    || (Custom) || (Custom) || ||
 || Defect   || Defect || Bug || ||
 || Enhancement || Enhancement || New feature, Improvement || ||
