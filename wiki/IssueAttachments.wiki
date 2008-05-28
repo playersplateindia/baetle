@@ -9,6 +9,7 @@ Many issue trackers support attachments to issues, this document provides exampl
 
 # These examples are under discussion - please feel free to comment them, or see the mailing list
 
+{{{
 <...> a baetle:Issue;
      baetle:comment
         [ is <../projects/{project}/issues/{issue}/comments/{comment}> ;
@@ -17,3 +18,4 @@ Many issue trackers support attachments to issues, this document provides exampl
           sioc:has_creator <../users/{user}>;
           sioc:attachment <../projects/{project}/issues/{issue}/attachments/{attachment}>
         ] .
+}}}
