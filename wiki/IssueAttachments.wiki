@@ -1,0 +1,10 @@
+#summary How to express attachments to issues
+
+= Introduction =
+
+Many issue trackers support attachments to issues, this document provides examples of how to express this with Baetle and SIOC
+
+
+= Details =
+
+TODO: Add some examples
