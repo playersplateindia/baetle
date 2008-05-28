@@ -7,4 +7,11 @@ Many issue trackers support attachments to issues, this document provides exampl
 
 = Details =
 
-TODO: Add some examples
+<...> a baetle:Issue;
+     baetle:comment
+        [ is <../projects/{project}/issues/{issue}/comments/{comment}> ;
+          a sioc:Post;
+          dc:title "An attachment";
+          sioc:has_creator <../users/{user}>;
+          sioc:attachment <../projects/{project}/issues/{issue}/attachments/{attachment}>
+        ] .
