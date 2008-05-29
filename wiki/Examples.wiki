@@ -13,7 +13,7 @@ TODO: Add dates, milestone, URL (use seeAlso??), status whiteboard (??), more co
 
   <[http://www.netbeans.org/issues/show_bug.cgi?id=130267]> a baetle:Bug ;
     baetle:summary "AssertionError: Parent of D:\install\6.1_200803170003\userdir\update\deactivate\to_uninstall.txt exists and is directory.";
-    baetle:description 2Build: NetBeans IDE Dev (Build 200803170003)
+    baetle:description "2Build: NetBeans IDE Dev (Build 200803170003)
 VM: Java HotSpot(TM) Client VM, 10.0-b19
 OS: Windows Vista, 6.0, x86
 
@@ -52,5 +52,64 @@ I had one module installed. Then I deactivated it, activated again and then I tr
                                      baetle:name "code";
                                    ] ;
                  ]
+
+  .
+
+
+== Trac == 
+
+Todo: Add dates, ticketkey, severity (??), more comments
+
+  <[http://trac.edgewall.org/ticket/6808]> a baetle:Bug ;
+    baetle:summary "Exception: column name is not unique";
+    baetle:description "
+
+In the admin section, add a version that already exists.
+
+Python Traceback
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.4/site-packages/trac/web/main.py", line 406, in dispatch_request
+    dispatcher.dispatch(req)
+  File "/usr/local/lib/python2.4/site-packages/trac/web/main.py", line 237, in dispatch
+    resp = chosen_handler.process_request(req)
+  File "/usr/local/lib/python2.4/site-packages/TracWebAdmin-0.1.2-py2.4.egg/webadmin/web_ui.py", line 109, in process_request
+    path_info)
+  File "/usr/local/lib/python2.4/site-packages/TracWebAdmin-0.1.2-py2.4.egg/webadmin/ticket.py", line 244, in process_admin_request
+    ver.insert()
+  File "/usr/local/lib/python2.4/site-packages/trac/ticket/model.py", line 723, in insert
+    (self.name, self.time, self.description))
+  File "/usr/local/lib/python2.4/site-packages/trac/db/util.py", line 50, in execute
+    return self.cursor.execute(sql_escape_percent(sql), args)
+  File "/usr/local/lib/python2.4/site-packages/trac/db/sqlite_backend.py", line 56, in execute
+    args or [])
+  File "/usr/local/lib/python2.4/site-packages/trac/db/sqlite_backend.py", line 48, in _rollback_on_error
+    return function(self, *args, **kwargs)
+IntegrityError: column name is not unique";
+    wf:state [ a baetle:New ] ;
+    baetle:reporter [ a sioc:User;
+                      foaf:accountName "geert@…"
+                    ] ;
+    baetle:assigned_to [ a sioc:User;
+                      foaf:accountName "cmlenz"
+                    ] ;
+    baetle:comment
+        [ a sioc:Post;
+          dc:title "#6855 and #6983 were closed as duplicates. ";
+          sioc:has_creator [ a sioc:User; 
+                             foaf:accountName "cboos"
+                           ] ;
+        ] ;
+    baetle:isCriticalFor
+        [ is <[http://trac.edgewall.org/]> ;
+          a doap:Project ;
+          doap:release [ a doap:Version ;
+                         doap:revision "devel" 
+                       ];
+        ] ;
+    baetle:about [ a baetle:SoftwarePackage ;
+                   baetle:name "admin/web "
+                 ] ;
+    baetle:target_milestone <[http://trac.edgewall.org/milestone/0.12]> ;
 
   .
