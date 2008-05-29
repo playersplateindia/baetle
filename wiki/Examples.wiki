@@ -1,4 +1,5 @@
 #summary Examples for using baetle
+#labels Featured,Phase-Implementation
 
 # This page is being worked on..
 
