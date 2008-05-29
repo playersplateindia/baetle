@@ -36,5 +36,11 @@
                          doap:revision "6.1" 
                        ];
         ] ;
+    baetle:about [ a baetle:SoftwarePackage ;
+                   baetle:name "autoupdate";
+                   baetle:contains [ a baetle:SoftwarePackage ; 
+                                     baetle:name "code";
+                                   ] ;
+                 ]
 
   .
