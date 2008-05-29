@@ -7,7 +7,7 @@
 == Netbeans Issuezilla == 
 
 {{{
-<}}}[http://www.netbeans.org/issues/show_bug.cgi?id=130267]{{{> a baetle:Bug ;
+< }}}[http://www.netbeans.org/issues/show_bug.cgi?id=130267] {{{> a baetle:Bug ;
   baetle:summary "AssertionError: Parent of D:\install\6.1_200803170003\userdir\update\deactivate\to_uninstall.txt exists and is directory.";
   wf:state [ a baetle:Reopened ] ;
   baetle:environment "All" ;
