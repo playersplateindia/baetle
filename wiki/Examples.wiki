@@ -15,7 +15,7 @@ TODO: Add dates, milestone, URL (use seeAlso??), status whiteboard (??), more co
   <[http://www.netbeans.org/issues/show_bug.cgi?id=130267]> a baetle:Bug ;
     baetle:summary "AssertionError: Parent of D:\install\6.1_200803170003\userdir\update\deactivate\to_uninstall.txt exists and is directory.";
     
-    baetle:description "
+         baetle:description "
 {{{
 2Build: NetBeans IDE Dev (Build 200803170003)
 VM: Java HotSpot(TM) Client VM, 10.0-b19
@@ -24,7 +24,7 @@ OS: Windows Vista, 6.0, x86
 User Comments: 
 I had one module installed. Then I deactivated it, activated again and then I tried to uninstall.
 }}}
-";
+    ";
     wf:state [ a baetle:Reopened ] ;
     baetle:environment "All" ;
     baetle:reporter [ a sioc:User;
