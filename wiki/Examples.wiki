@@ -27,16 +27,21 @@ I had one module installed. Then I deactivated it, activated again and then I tr
     ";
 
     wf:state [ a baetle:Reopened ] ;
+
     baetle:environment "All" ;
+
     baetle:reporter [ a sioc:User;
                       foaf:accountName "novakm"
                     ] ;
+
     baetle:assigned_to [ a sioc:User;
                       foaf:accountName "jrechtacek"
                     ] ;
+
     baetle:qa_contact [ a sioc:User; 
                       foaf:mbox "issues@autoupdate"
                     ] ;
+
     baetle:comment
         [ a sioc:Post;
           dc:title "Created an attachment (id=58470)";
@@ -46,6 +51,7 @@ I had one module installed. Then I deactivated it, activated again and then I tr
                            ] ;
           sioc:attachment <[http://www.netbeans.org/nonav/issues/showattachment.cgi/58470/]>
         ] ;
+
     baetle:isMajorFor
         [ is <[http://netbeans.org]> ;
           a doap:Project ;
@@ -53,6 +59,7 @@ I had one module installed. Then I deactivated it, activated again and then I tr
                          doap:revision "6.1" 
                        ];
         ] ;
+
     baetle:about [ a baetle:SoftwarePackage ;
                    baetle:name "autoupdate";
                    baetle:contains [ a baetle:SoftwarePackage; 
@@ -97,13 +104,17 @@ Traceback (most recent call last):
 IntegrityError: column name is not unique 
 }}}
 ";
+
     wf:state [ a baetle:New ] ;
+
     baetle:reporter [ a sioc:User;
                       foaf:accountName "geert@…"
                     ] ;
+
     baetle:assigned_to [ a sioc:User;
                       foaf:accountName "cmlenz"
                     ] ;
+
     baetle:comment
         [ a sioc:Post;
           dc:title "#6855 and #6983 were closed as duplicates. ";
@@ -111,6 +122,7 @@ IntegrityError: column name is not unique
                              foaf:accountName "cboos"
                            ] ;
         ] ;
+
     baetle:isCriticalFor
         [ is <[http://trac.edgewall.org/]> ;
           a doap:Project ;
@@ -118,9 +130,11 @@ IntegrityError: column name is not unique
                          doap:revision "devel" 
                        ];
         ] ;
+
     baetle:about [ a baetle:SoftwarePackage ;
                    baetle:name "admin/web "
                  ] ;
+
     baetle:target_milestone <[http://trac.edgewall.org/milestone/0.12]> ;
 
   .
