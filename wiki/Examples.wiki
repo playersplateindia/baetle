@@ -68,6 +68,7 @@ Todo: Add dates, ticketkey, severity (??), more comments
 
   <[http://trac.edgewall.org/ticket/6808]> a baetle:Bug ;
     baetle:summary "Exception: column name is not unique";
+
     baetle:description "
 
 {{{ 
