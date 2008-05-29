@@ -8,6 +8,8 @@ TODO: How to format as code, but make urls "clickable"?
 
 == Netbeans Issuezilla == 
 
+TODO: Add dates, milestone, URL (use seeAlso??), status whiteboard (??), more comments..
+
 
   <[http://www.netbeans.org/issues/show_bug.cgi?id=130267]> a baetle:Bug ;
     baetle:summary "AssertionError: Parent of D:\install\6.1_200803170003\userdir\update\deactivate\to_uninstall.txt exists and is directory.";
