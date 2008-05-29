@@ -30,7 +30,7 @@
           sioc:attachment <[http://www.netbeans.org/nonav/issues/showattachment.cgi/58470/]>
         ] ;
 
-    #Priority P3 mapped to Major
+    ##Priority P3 mapped to Major
     baetle:isMajorFor
         [ is <[http://netbeans.org]> ;
           a doap:Project ;
