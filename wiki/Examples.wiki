@@ -17,7 +17,10 @@
     baetle:assigned_to [ a sioc:User;
                       foaf:accountName "jrechtacek"
                     ] ;
-   baetle:comment
+    baetle:qa_contact [ a sioc:User; 
+                      foaf:mbox "issues@autoupdate"
+                    ] ;
+    baetle:comment
         [ a sioc:Post;
           dc:title "Created an attachment (id=58470)";
           sioc:has_creator [ a sioc:User; 
@@ -26,4 +29,12 @@
                            ] ;
           sioc:attachment <[http://www.netbeans.org/nonav/issues/showattachment.cgi/58470/]>
         ] ;
+    baetle:isMajorFor
+        [ is <[http://netbeans.org]> ;
+          a doap:Project ;
+          doap:release [ a doap:Version ;
+                         doap:revision "6.1" 
+                       ];
+        ] ;
+
   .
