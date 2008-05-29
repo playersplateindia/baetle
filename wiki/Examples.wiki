@@ -14,4 +14,16 @@
     baetle:reporter [ a sioc:User;
                       foaf:accountName "novakm"
                     ] ;
+    baetle:assigned_to [ a sioc:User;
+                      foaf:accountName "jrechtacek"
+                    ] ;
+   baetle:comment
+        [ a sioc:Post;
+          dc:title "Created an attachment (id=58470)";
+          sioc:has_creator [ a sioc:User; 
+                             foaf:accountName "jrechtacek" ;
+                             foaf:mbox "jrechtacek@nospamplease"
+                           ] ;
+          sioc:attachment <[http://www.netbeans.org/nonav/issues/showattachment.cgi/58470/]>
+        ] ;
   .
