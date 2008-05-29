@@ -70,11 +70,11 @@ Todo: Add dates, ticketkey, severity (??), more comments
     baetle:summary "Exception: column name is not unique";
     baetle:description "
 
+{{{ 
 In the admin section, add a version that already exists.
 
 Python Traceback
 
-{{{ 
 Traceback (most recent call last):
   File "/usr/local/lib/python2.4/site-packages/trac/web/main.py", line 406, in dispatch_request
     dispatcher.dispatch(req)
