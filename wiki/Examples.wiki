@@ -68,7 +68,8 @@ In the admin section, add a version that already exists.
 
 Python Traceback
 
-{{{Traceback (most recent call last):
+{{{ 
+Traceback (most recent call last):
   File "/usr/local/lib/python2.4/site-packages/trac/web/main.py", line 406, in dispatch_request
     dispatcher.dispatch(req)
   File "/usr/local/lib/python2.4/site-packages/trac/web/main.py", line 237, in dispatch
@@ -85,7 +86,8 @@ Python Traceback
     args or [])
   File "/usr/local/lib/python2.4/site-packages/trac/db/sqlite_backend.py", line 48, in _rollback_on_error
     return function(self, *args, **kwargs)
-IntegrityError: column name is not unique}}}
+IntegrityError: column name is not unique 
+}}}
 ";
     wf:state [ a baetle:New ] ;
     baetle:reporter [ a sioc:User;
