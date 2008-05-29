@@ -25,6 +25,7 @@ User Comments:
 I had one module installed. Then I deactivated it, activated again and then I tried to uninstall.
 }}}
     ";
+
     wf:state [ a baetle:Reopened ] ;
     baetle:environment "All" ;
     baetle:reporter [ a sioc:User;
