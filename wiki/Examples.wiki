@@ -24,8 +24,8 @@
         [ a sioc:Post;
           dc:title "Created an attachment (id=58470)";
           sioc:has_creator [ a sioc:User; 
-                             foaf:accountName "jrechtacek" ;
-                             foaf:mbox "jrechtacek@nospamplease"
+                             foaf:accountName "novakm" ;
+                             foaf:mbox "novakm@nospamplease"
                            ] ;
           sioc:attachment <[http://www.netbeans.org/nonav/issues/showattachment.cgi/58470/]>
         ] ;
