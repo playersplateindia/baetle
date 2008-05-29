@@ -118,6 +118,7 @@ IntegrityError: column name is not unique
     baetle:comment
         [ a sioc:Post;
           dc:title "#6855 and #6983 were closed as duplicates. ";
+          
           sioc:has_creator [ a sioc:User; 
                              foaf:accountName "cboos"
                            ] ;
