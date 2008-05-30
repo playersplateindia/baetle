@@ -11,20 +11,18 @@ TODO: How to format as code, but make urls "clickable"?
 
 TODO: Add dates, milestone, URL (use seeAlso??), status whiteboard (??), more comments..
 
-
-  <[http://www.netbeans.org/issues/show_bug.cgi?id=130267]> a baetle:Bug ;
+{{{
+  <http://www.netbeans.org/issues/show_bug.cgi?id=130267> a baetle:Bug ;
     baetle:summary "AssertionError: Parent of D:\install\6.1_200803170003\userdir\update\deactivate\to_uninstall.txt exists and is directory.";
     
-         baetle:description "
-{{{
+         baetle:description """
 2Build: NetBeans IDE Dev (Build 200803170003)
 VM: Java HotSpot(TM) Client VM, 10.0-b19
 OS: Windows Vista, 6.0, x86
 
 User Comments: 
 I had one module installed. Then I deactivated it, activated again and then I tried to uninstall.
-}}}
-    ";
+    """;
 
     wf:state [ a baetle:Reopened ] ;
 
@@ -49,11 +47,11 @@ I had one module installed. Then I deactivated it, activated again and then I tr
                              foaf:accountName "novakm" ;
                              foaf:mbox "novakm@nospamplease"
                            ] ;
-          sioc:attachment <[http://www.netbeans.org/nonav/issues/showattachment.cgi/58470/]>
+          sioc:attachment <http://www.netbeans.org/nonav/issues/showattachment.cgi/58470/>
         ] ;
 
     baetle:isMajorFor
-        [ is <[http://netbeans.org]> ;
+        [ is <http://netbeans.org> ;
           a doap:Project ;
           doap:release [ a doap:Version ;
                          doap:revision "6.1" 
@@ -68,18 +66,17 @@ I had one module installed. Then I deactivated it, activated again and then I tr
                  ]
 
   .
-
+}}}
 
 == Trac == 
 
 Todo: Add dates, ticketkey, severity (??), more comments
 
-  <[http://trac.edgewall.org/ticket/6808]> a baetle:Bug ;
+{{{
+  <http://trac.edgewall.org/ticket/6808> a baetle:Bug ;
     baetle:summary "Exception: column name is not unique";
 
-    baetle:description "
-
-{{{ 
+    baetle:description """
 In the admin section, add a version that already exists.
 
 Python Traceback
@@ -102,8 +99,7 @@ Traceback (most recent call last):
   File "/usr/local/lib/python2.4/site-packages/trac/db/sqlite_backend.py", line 48, in _rollback_on_error
     return function(self, *args, **kwargs)
 IntegrityError: column name is not unique 
-}}}
-";
+""";
 
     wf:state [ a baetle:New ] ;
 
@@ -125,7 +121,7 @@ IntegrityError: column name is not unique
         ] ;
 
     baetle:isCriticalFor
-        [ is <[http://trac.edgewall.org/]> ;
+        [ is <http://trac.edgewall.org/> ;
           a doap:Project ;
           doap:release [ a doap:Version ;
                          doap:revision "devel" 
@@ -136,6 +132,7 @@ IntegrityError: column name is not unique
                    baetle:name "admin/web "
                  ] ;
 
-    baetle:target_milestone <[http://trac.edgewall.org/milestone/0.12]> ;
+    baetle:target_milestone <http://trac.edgewall.org/milestone/0.12> ;
 
   .
+}}}
