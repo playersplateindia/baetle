@@ -12,10 +12,15 @@ TODO: How to format as code, but make urls "clickable"?
 TODO: Add dates, milestone, URL (use seeAlso??), status whiteboard (??), more comments..
 
 {{{
-  <http://www.netbeans.org/issues/show_bug.cgi?id=130267> a baetle:Bug ;
-    baetle:summary "AssertionError: Parent of D:\install\6.1_200803170003\userdir\update\deactivate\to_uninstall.txt exists and is directory.";
+  @prefix btl: <http://xmlns.com/baetle/#> .
+  @prefix wf: <http://www.w3.org/2005/01/wf/flow#> .
+  @prefix sioc: <http://rdfs.org/sioc/ns#> .
+  @prefix dc: <http://purl.org/dc/elements/1.1/> .
+        
+  <http://www.netbeans.org/issues/show_bug.cgi?id=130267> a btl:Bug ;
+       btl:summary "AssertionError: Parent of D:\install\6.1_200803170003\userdir\update\deactivate\to_uninstall.txt exists and is directory.";
     
-         baetle:description """
+       btl:description """
 2Build: NetBeans IDE Dev (Build 200803170003)
 VM: Java HotSpot(TM) Client VM, 10.0-b19
 OS: Windows Vista, 6.0, x86
@@ -24,46 +29,50 @@ User Comments:
 I had one module installed. Then I deactivated it, activated again and then I tried to uninstall.
     """;
 
-    wf:state [ a baetle:Reopened ] ;
+    wf:state btl:Reopened ;
 
-    baetle:environment "All" ;
+    btl:environment "All" ;
 
-    baetle:reporter [ a sioc:User;
-                      foaf:accountName "novakm"
+    btl:reporter [ a sioc:User;
+                   foaf:accountName "novakm";
+                 ] ;
+
+    btl:assigned_to [ a sioc:User;
+                      foaf:accountName "jrechtacek";
                     ] ;
 
-    baetle:assigned_to [ a sioc:User;
-                      foaf:accountName "jrechtacek"
+    btl:qa_contact [ a sioc:User; 
+                      foaf:mbox <mailto:issues@autoupdate>;
                     ] ;
 
-    baetle:qa_contact [ a sioc:User; 
-                      foaf:mbox "issues@autoupdate"
-                    ] ;
-
-    baetle:comment
+    btl:comment
         [ a sioc:Post;
           dc:title "Created an attachment (id=58470)";
           sioc:has_creator [ a sioc:User; 
                              foaf:accountName "novakm" ;
-                             foaf:mbox "novakm@nospamplease"
+                             foaf:mbox <mailto:novakm@nospamplease>;
                            ] ;
           sioc:attachment <http://www.netbeans.org/nonav/issues/showattachment.cgi/58470/>
         ] ;
 
-    baetle:isMajorFor
+    #bblfishNote: isMajorFor is not defined in the ontology
+    btl:isMajorFor
         [ is <http://netbeans.org> ;
           a doap:Project ;
           doap:release [ a doap:Version ;
                          doap:revision "6.1" 
                        ];
-        ] ;
+        ];
 
-    baetle:about [ a baetle:SoftwarePackage ;
-                   baetle:name "autoupdate";
-                   baetle:contains [ a baetle:SoftwarePackage; 
-                                     baetle:name "code";
-                                   ] ;
-                 ]
+    #bblfishNote: this should probably be two btl:about
+    #or it should be about the more precise one. In RDF the details get
+    #will get lost in a merge
+    btl:about [ a btl:SoftwarePackage ;
+                btl:name "autoupdate";
+                btl:contains [ a btl:SoftwarePackage; 
+                               btl:name "code";
+                             ] ;
+              ];
 
   .
 }}}
@@ -73,10 +82,15 @@ I had one module installed. Then I deactivated it, activated again and then I tr
 Todo: Add dates, ticketkey, severity (??), more comments
 
 {{{
-  <http://trac.edgewall.org/ticket/6808> a baetle:Bug ;
-    baetle:summary "Exception: column name is not unique";
+  @prefix btl: <http://xmlns.com/baetle/#> .
+  @prefix wf: <http://www.w3.org/2005/01/wf/flow#> .
+  @prefix sioc: <http://rdfs.org/sioc/ns#> .
+  @prefix dc: <http://purl.org/dc/elements/1.1/> .
 
-    baetle:description """
+ <http://trac.edgewall.org/ticket/6808> a baetle:Bug ;
+    btl:summary "Exception: column name is not unique";
+
+    btl:description """
 In the admin section, add a version that already exists.
 
 Python Traceback
@@ -101,17 +115,17 @@ Traceback (most recent call last):
 IntegrityError: column name is not unique 
 """;
 
-    wf:state [ a baetle:New ] ;
+    wf:state btl:New ;
 
-    baetle:reporter [ a sioc:User;
-                      foaf:accountName "geert@…"
-                    ] ;
+    btl:reporter [ a sioc:User;
+                   foaf:accountName "geert@…"
+                 ] ;
 
-    baetle:assigned_to [ a sioc:User;
+    btl:assigned_to [ a sioc:User;
                       foaf:accountName "cmlenz"
                     ] ;
 
-    baetle:comment
+    btl:comment
         [ a sioc:Post;
           dc:title "#6855 and #6983 were closed as duplicates. ";
           
@@ -120,7 +134,7 @@ IntegrityError: column name is not unique
                            ] ;
         ] ;
 
-    baetle:isCriticalFor
+    btl:isCriticalFor
         [ is <http://trac.edgewall.org/> ;
           a doap:Project ;
           doap:release [ a doap:Version ;
@@ -128,11 +142,11 @@ IntegrityError: column name is not unique
                        ];
         ] ;
 
-    baetle:about [ a baetle:SoftwarePackage ;
-                   baetle:name "admin/web "
-                 ] ;
+    btl:about [ a baetle:SoftwarePackage ;
+                   btl:name "admin/web "
+              ] ;
 
-    baetle:target_milestone <http://trac.edgewall.org/milestone/0.12> ;
+    btl:target_milestone <http://trac.edgewall.org/milestone/0.12> ;
 
   .
 }}}

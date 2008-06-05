@@ -1,0 +1,409 @@
+@base <http://baetle.googlecode.com/ns> .
+#:ewlNote "Does this mean we should change the namespace too? i.e. we should probably settle on a permanent namespace soon, agree?"
+#bblfish: yes. Let's get to the point where we feel comfortable. 
+
+@prefix : <http://xmlns.com/baetle/#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wf: <http://www.w3.org/2005/01/wf/flow#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix sioc: <http://rdfs.org/sioc/ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# To add comments add your own property as a subPropertyOf skos:editorialNote :
+:ewlNote rdfs:subPropertyOf skos:editorialNote;
+   rdfs:comment "a note by Erling Wegger Linde" .
+:bblfishNote rdfs:subPropertyOf skos:editorialNote;
+   rdfs:comment "a note by Henry Story" .
+
+<> a owl:Ontology;
+    dc:creator <http://bblfish.net/people/henry/card#me>;
+    dc:creator [ foaf:nick "fraktaltek" ];
+    dc:contributor <http://www.erlingwl.com/foaf.n3#me> .
+
+:Comitting a owl:Class;
+    rdfs:subClassOf owl:Thing, wf:Action .
+
+#Is this correct?
+:DocumentVersion a owl:Class ;
+    rdfs:subClassOf :Version, foaf:Document .
+
+# Issue and subclasses :
+
+:Issue a owl:Class;
+rdfs:subClassOf owl:Thing,
+wf:Task,
+    [ a owl:Restriction;
+        owl:allValuesFrom :Priority;
+        owl:onProperty :priority ];
+        rdfs:comment "An issue in a bug database."@en;
+        skos:editorialNote "Every bug tracking system creates subclasses of Issues, usually classes such as Bug, Enhancement, NewFeature, etc.. We define a few here as examples but it is not clear that this should be the role of this ontology."@en;
+        skos:editorialNote "Good practice is to arrange it so that the url of the issue should be related to the url of a page that described the issue. A good way to distinguish the page from the issue, is to append some anchor such as #issue to the url of the page."@en;
+.
+
+:Enhancement a owl:Class;
+    rdfs:subClassOf :Issue ;
+    .
+
+# Duplicate of Bug
+#:Defect a owl:Class;
+#   rdfs:subClassOf :Issue ;
+#   .
+
+
+:Bug     a owl:Class;
+   rdfs:subClassOf :Issue ;
+   skos:editorialNote "It is not clear whether we should be specifying subclasses in this ontology, as there may be many ways of doing this, and each project may have its preferred way. It may be on the  other hand that an analysis of most bug tracking systems shows them to use similar concepts."@en;
+   :ewlNote "Bug is preferred over Defect as this is a Bug-ontology"@en;
+    .
+
+:Task a owl:Class;
+    rdfs:subClassOf :Issue ;
+    :ewlNote "There is an ongoing discussion on whether this class should be a sub or superclass of Issue, or if we could just use wf:Task. However, most issue trackers uses Task as a subClass of an issue, as a task that needs to be executed. This differs from other issues such as Bug and Enhancement. A Bug needs to be resolved, but the actual Task that needs to be executed could perhaps just be to mark it as a duplicate. An Enhancement is something that could be implemented or perhaps rejected. Hence we need to express this use of Task in the issue trackers in Baetle. I'm leaning towards keeping this as a special subClassOf Issue. We should keep Issue as subClassOf wf:Task though as the wf:state property is very useful."@en;
+    .
+
+# Subclasses of wf:State :
+# Use multiple inheritance to specify status + resolution of an issue e.g. Resolved, Later or Closed, Fixed
+# E.g. Fixed can both be combined with Resolved and Closed, hence it must be a subclass of wf:State but not wf:NonTerminalState or wf:TerminalState agree?
+# This is up for further discussion on the mailing list.
+
+:Open a owl:Class ;
+    rdfs:subClassOf wf:NonTerminalState .
+
+:New a owl:Class ;
+    rdfs:subClassOf :Open .
+
+:Unconfirmed a owl:Class ;
+    rdfs:subClassOf :Open .
+
+:Reopened a owl:Class ;
+    rdfs:subClassOf :Open .
+
+:Started a owl:Class ;
+    rdfs:subClassOf wf:NonTerminalState ;
+    :ewlNote "Is this really a subclass of Open?."@en;
+.
+
+:Verified a owl:Class ;
+    rdfs:subClassOf wf:NonTerminalState ;
+    :ewlNote "Is this really a subclass of wf:NonTerminalState? Is it relevant at all?."@en;
+.
+
+:Resolved a owl:Class ;
+    rdfs:subClassOf wf:NonTerminalState .
+
+:NotReproducible a owl:Class;
+rdfs:subClassOf wf:State;
+    :ewlNote "Specify that this is disjoint with Open etc.?."@en;
+    .
+
+:WorksForMe a owl:Class;
+    rdfs:subClassOf wf:State ;
+    :ewlNote "Specify that this is disjoint with Open etc.?."@en;   
+    .
+
+:WontFix a owl:Class;
+    rdfs:subClassOf wf:State ;
+    :ewlNote "Specify that this is disjoint with Open etc.?."@en;
+    .
+
+:Incomplete a owl:Class;
+    rdfs:subClassOf wf:State ;
+    :ewlNote "Specify that this is disjoint with Open etc.?."@en;
+    .
+
+:Later a owl:Class;
+    rdfs:subClassOf wf:State ;
+    :ewlNote "Specify that this is disjoint with Open etc.?."@en;
+    .
+
+:Remind a owl:Class;
+    rdfs:subClassOf wf:State ;
+    :ewlNote "Specify that this is disjoint with Open etc.?."@en;
+    .
+
+:Duplicate a owl:Class;
+    rdfs:subClassOf wf:State ;
+    :ewlNote "Specify that this is disjoint with Open etc.?."@en;
+    .
+
+:Fixed a owl:Class;
+    rdfs:subClassOf wf:State ;
+    :ewlNote "Specify that this is disjoint with Open etc.?."@en;
+    .
+
+:Closed a owl:Class;
+    rdfs:subClassOf wf:TerminalState ;
+    .
+
+
+# What's intended with this class?
+#:Patch     a owl:Class;
+#     rdfs:subClassOf :Fix .
+
+# This could be a Restriction or a subclass of the combination of Fixed and Closed for instance?
+#:Solution     a owl:Class;
+#     rdfs:subClassOf owl:Thing,
+#            wf:TerminalState .
+
+
+
+
+
+:Version a owl:Class .
+
+# Properties of Version
+
+:id   a owl:FunctionalProperty;
+    rdfs:label "id"@en;
+    rdfs:comment "See §4.2.6 rfc 4287 spec. All Versions with the same id can be considered to be versions of the resource identified by the id. The id mentions the resource of which it is a representat
+    ion. "@en;
+    rdfs:domain  :Version;
+    rdfs:range   xsd:anyURI;
+    :ewlNote "Changed this to be a FunctionalProperty according to Henry's suggestion" ;    
+.
+
+
+# Properties of Issue
+
+:issueKey a owl:DatatypeProperty ;
+    rdfs:domain :Issue;
+    :ewlNote "A key that is used to represent this issue in an issuetracker, repository etc. But be aware that this ID may not be unique!"@en;
+.
+
+:project a owl:ObjectProperty;
+    rdfs:domain :Issue;
+    rdfs:range doap:Project;
+    rdfs:comment "the project this issue concerns"@en;
+    .
+
+:reporter a owl:ObjectProperty;
+    rdfs:domain :Issue;
+    rdfs:range sioc:User;
+    rdfs:comment "the reporter of the bug"@en;
+    .
+
+:assigned_to a owl:ObjectProperty ;
+    rdfs:domain :Issue;
+    rdfs:range sioc:User ;
+    rdfs:comment "the person the bug is assigned to"@en;
+    .
+
+:interested a owl:ObjectProperty ;
+    rdfs:domain :Issue;
+    rdfs:range sioc:User ;
+        rdfs:comment "A user interested in changes to this issue"@en;
+.
+
+:qa_contact a owl:ObjectProperty ;
+    rdfs:domain :Issue;
+    rdfs:range sioc:User ;
+    rdfs:comment "A contact point"@en;
+    skos:editorialNote "This was available on NetBeans issuezilla. Perhaps it would be better placed somewhere else."@en;
+    .
+
+:about a owl:ObjectProperty;
+    :ewlNote "Should we add: rdfs:range SoftwarePackage"@en;
+    .
+
+# Regarding attachements to an issue, see the mailing list or wiki
+
+:comment a owl:ObjectProperty ;
+    rdfs:label "comment"@en;
+    rdfs:domain :Issue;
+    rdfs:range sioc:Post ;
+    rdfs:comment "A comment on an Issue"@en;
+    .
+
+:contains a owl:ObjectProperty ;
+    :ewlNote "Should we add rdfs:range: DocumentVersion, rdfs:domain: SoftwarePackage"@en;
+    .
+
+:blocks a owl:ObjectProperty ;
+    rdfs:label "blocks";
+    rdfs:comment "this issue is blocking the other"@en;
+    rdfs:domain :Issue;
+    rdfs:range :Issue;
+    skos:editorialNote "the range should perhaps be a wf:Task"@en;
+    skos:editorialNote "Is this the inverse of depends_on?"@en;
+    .
+
+:subtask a owl:DatatypeProperty ;
+    rdfs:label "subtask";
+    rdfs:comment "a subtask of this issue"@en;
+    rdfs:domain :Issue;
+    rdfs:range :Issue;
+    skos:editorialNote "the range should perhaps be an wf:Task"@en;
+    .   
+
+:depends_on a owl:ObjectProperty ;
+    rdfs:label "depends_on";
+    rdfs:comment "a task that depends on this one being completed"@en;
+    rdfs:domain :Issue;
+    rdfs:range :Issue;
+    skos:editorialNote "the range and domain should perhaps be an wf:Task"@en;
+    .
+
+:causes a owl:ObjectProperty ;
+    rdfs:label "causes";
+    rdfs:comment "this Issue causes the other one"@en;
+    rdfs:domain :Issue;
+    rdfs:range :Issue;
+    .
+
+:duplicate a owl:ObjectProperty ;
+    rdfs:label "duplicate";
+    rdfs:comment "this Issue is a duplicate of the other."@en;
+    rdfs:domain :Issue;
+    rdfs:range :Issue;
+    skos:editorialNote "should this be a symmetric and transitive property? Without symmetry we can have the direction have some implication as to the which one was the last one being worked on"@en;
+    .
+
+:name a owl:ObjectProperty ;
+    skos:editorialNote "Used as an attribute on SoftwarePackage"@en;
+    .
+#Don't use this
+:operating_system a owl:ObjectProperty, owl:DeprecatedProperty;
+    dct:isReplacedBy :environment;
+    :ewlNote "This property should not be used"@en;
+    :bblfishNote "Why should this not be used?"@en;
+    .
+
+#Don't use this
+:platform a owl:ObjectProperty, owl:DeprecatedProperty;
+    dct:isReplacedBy :environment;
+    :ewlNote "This property should not be used"@en;
+    .
+
+:environment a owl:DatatypeProperty ;
+    rdfs:label "environment";
+    rdfs:domain :Issue;
+    rdfs:comment "description of the environment where the issue was noticed";
+    skos:editorialNote "this was found in Jira on Sesame. The OS and other relations were not clearly distinguished";
+    .
+
+:priority a owl:ObjectProperty ;
+    rdfs:domain :Issue;
+    rdfs:range :Priority;
+    rdfs:label "priority";
+    rdfs:comment "the priority value recognised by those responsible for the issue";
+    .
+
+
+:relates_to a owl:ObjectProperty ;
+    skos:editorialNote "Domain: Committing, Range: :Issue";
+    .
+
+:resolvedWith a owl:ObjectProperty ;
+    skos:editorialNote "Domain: :Issue, Range: Committting, InverseOf relates_to?";
+    .
+
+:summary a owl:DatatypeProperty ;
+    rdfs:domain :Issue;
+    rdfs:comment "summary of Issue"@en;
+    rdfs:label "summary"@en;
+    .
+
+
+:description a owl:DatatypeProperty ;
+    rdfs:domain :Issue;
+    rdfs:comment "longer description of the Issue"@en;
+    rdfs:label "description"@en;
+    .
+
+
+:target_milestone a owl:ObjectProperty ;
+    :ewlNote "Add more info on this one?"@en ;
+    .
+
+:created a owl:DatatypeProperty ;
+    rdfs:labed "created";
+    rdfs:range xsd:dateTime;
+    rdfs:domain :Issue;
+    rdfs:subPropertyOf dct:created;
+    rdfs:comment "Creation date of Issue";
+    skos:editorialNote "Should probably just use Dublin Core here";
+    .
+
+:updated a owl:DatatypeProperty ;
+    rdfs:labed "updated";
+    rdfs:range xsd:dateTime;
+    rdfs:domain :Issue;
+    rdfs:comment "date Issue was updated";
+    skos:editorialNote "Should probably just use Dublin Core here";
+    .
+
+:due_date a owl:DatatypeProperty ;
+    rdfs:labed "updated";
+    rdfs:range xsd:dateTime;
+    rdfs:domain :Issue;
+    rdfs:comment "date the task is due by";
+    skos:editorialNote "Should probably have this be on the milestone relations";
+    .
+
+
+:version a owl:ObjectProperty ;
+    :ewlNote "Do we need this? How do you specify which version of a project an issue is related to?";
+    .
+
+:votes a owl:DatatypeProperty;
+    rdfs:label "votes";
+    rdfs:range xsd:integer;
+    rdfs:comment "number of votes for the issue";
+    skos:editorialNote "Should probably use some voting ontology";
+    . 
+
+# Priorities 
+
+:priorityFor a owl:ObjectProperty ;
+       :ewlNote "Following Henry's idea to express priorities as properties instead of classes. This way an issue can be linked to different projects with more expressively"@en .
+
+# :Priority a owl:Class;
+#   rdfs:label "Priority";
+#   rdfs:comment "Priority values.";
+#   :ewlNote "Henry suggested that a priority might be expressed as a relation to a project instead, great idea, I'll guess this discussion will continue on the mailing list"@en;
+#.
+
+#:Blocker a owl:Class;
+#   rdfs:subClassOf :Priority .
+
+:blockerFor a owl:ObjectProperty;
+    rdfs:subPropertyOf :priorityFor.
+
+#:Critical a owl:Class;
+#   rdfs:subClassOf :Priority .
+
+:criticalFor a owl:ObjectProperty;
+    rdfs:subPropertyOf :priorityFor.
+
+#:Major a owl:Class;
+#   rdfs:subClassOf :Priority .
+
+:majorFor a owl:ObjectProperty;
+    rdfs:subPropertyOf :priorityFor.
+
+
+#:Trivial a owl:Class;
+#   rdfs:subClassOf :Priority .
+
+:trivialFor a owl:ObjectProperty;
+    rdfs:subPropertyOf :priorityFor.
+
+
+#:Minor a owl:Class;
+#   rdfs:subClassOf :Priority .
+
+:minorFor a owl:ObjectProperty;
+    rdfs:subPropertyOf :priorityFor.
+
+
+:SoftwarePackage a owl:Class;
+    rdfs:subClassOf :DocumentVersion;
+    rdfs:sublClassOf foaf:Document;
+    .
+
