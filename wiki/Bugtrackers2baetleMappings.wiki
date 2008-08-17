@@ -87,7 +87,7 @@ Is there too much complexity here? Some states should probably be merged? See th
 || environment || - || environment || ||
 || project || (implicit) || project || ||
 || resolved_with || ? || ? || ||
-|| version || Version || Affects version/s || ||
+|| version || Version || Fix version/s || ||
 || sioc:attachment || Attachment || Attachment || ||
 
 Should modified and updated be one field? See the mailing list..
