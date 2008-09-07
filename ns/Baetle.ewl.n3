@@ -177,7 +177,6 @@
     rdfs:range   xsd:anyURI;
 .
 
-
 # Properties of Issue
 
 :issueKey a owl:DatatypeProperty ;
@@ -185,32 +184,26 @@
     :ewlNote "A key that is used to represent this issue in an issuetracker, repository etc. But be aware that this ID may not be unique!"@en;
 .
 
-:project a owl:ObjectProperty;
-    rdfs:domain :Issue;
-    rdfs:range doap:Project;
-    rdfs:comment "the project this issue concerns"@en;
-    .
-
 :reporter a owl:ObjectProperty;
-    rdfs:domain :Issue;
+    rdfs:domain :Ticket;
     rdfs:range sioc:User;
     rdfs:comment "the reporter of the bug"@en;
     .
 
 :assigned_to a owl:ObjectProperty ;
-    rdfs:domain :Issue;
+    rdfs:domain :Ticket;
     rdfs:range sioc:User ;
     rdfs:comment "the person the bug is assigned to"@en;
     .
 
 :interested a owl:ObjectProperty ;
-    rdfs:domain :Issue;
+    rdfs:domain :Ticket;
     rdfs:range sioc:User ;
         rdfs:comment "A user interested in changes to this issue"@en;
 .
 
 :qa_contact a owl:ObjectProperty ;
-    rdfs:domain :Issue;
+    rdfs:domain :Ticket;
     rdfs:range sioc:User ;
     rdfs:comment "A contact point"@en;
     skos:editorialNote "This was available on NetBeans issuezilla. Perhaps it would be better placed somewhere else."@en;
@@ -224,7 +217,7 @@
 
 :comment a owl:ObjectProperty ;
     rdfs:label "comment"@en;
-    rdfs:domain :Issue;
+    rdfs:domain :Ticket;
     rdfs:range sioc:Post ;
     rdfs:comment "A comment on an Issue"@en;
     .
@@ -276,18 +269,6 @@
 :name a owl:ObjectProperty ;
     skos:editorialNote "Used as an attribute on SoftwarePackage"@en;
     .
-#Don't use this
-:operating_system a owl:ObjectProperty, owl:DeprecatedProperty;
-    dct:isReplacedBy :environment;
-    :ewlNote "This property should not be used"@en;
-    :bblfishNote "Why should this not be used?"@en;
-    .
-
-#Don't use this
-:platform a owl:ObjectProperty, owl:DeprecatedProperty;
-    dct:isReplacedBy :environment;
-    :ewlNote "This property should not be used"@en;
-    .
 
 :environment a owl:DatatypeProperty ;
     rdfs:label "environment";
@@ -320,27 +301,12 @@
     :ewlNote "Add more info on this one?"@en ;
     .
 
-:created a owl:DatatypeProperty ;
-    rdfs:labed "created";
-    rdfs:range xsd:dateTime;
-    rdfs:domain :Issue;
-    rdfs:subPropertyOf dct:created;
-    rdfs:comment "Creation date of Issue";
-    skos:editorialNote "Should probably just use Dublin Core here";
-    .
-
-:updated a owl:DatatypeProperty ;
-    rdfs:labed "updated";
-    rdfs:range xsd:dateTime;
-    rdfs:domain :Issue;
-    rdfs:comment "date Issue was updated";
-    skos:editorialNote "Should probably just use Dublin Core here";
-    .
+# For created and modified use dcterms:created and dcterms:modified
 
 :due_date a owl:DatatypeProperty ;
     rdfs:labed "updated";
     rdfs:range xsd:dateTime;
-    rdfs:domain :Issue;
+    rdfs:domain :Ticket;
     rdfs:comment "date the task is due by";
     skos:editorialNote "Should probably have this be on the milestone relations";
     .
