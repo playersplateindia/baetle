@@ -23,7 +23,7 @@ Wanted to see how issues should be expressed with the new ontology..
 
   <http://www.netbeans.org/issues/show_bug.cgi?id=130267> a btl:Ticket ;
 
-    #Is this correctly formatted according to dcrwema?
+    #Is this correctly formatted according to dcterms?
     dcterms:created "Mon Mar 17 09:51:00 +0000 2008";
 
     btl:ticketState [ a btl:Resolved ];
