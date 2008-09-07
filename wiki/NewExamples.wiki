@@ -25,6 +25,14 @@ Wanted to see how issues should be expressed with the new ontology..
     btl:reporter [ a sioc:User;
                    foaf:accountName "novakm";
                  ] ;
+
+    btl:assigned_to [ a sioc:User;
+                      foaf:accountName "jrechtacek";
+                    ] ;
+
+    btl:qa_contact [ a sioc:User; 
+                      foaf:mbox <mailto:issues@autoupdate>;
+                    ] ;
     btl:comment
         [ a sioc:Post;
           dc:title "Created an attachment (id=58470)";
@@ -35,7 +43,7 @@ Wanted to see how issues should be expressed with the new ontology..
           sioc:attachment <http://www.netbeans.org/nonav/issues/showattachment.cgi/58470/>
         ] ;
     foaf:primaryTopic 
-          [ a btl:Bug ;
+        [ a btl:Bug ;
               btl:summary "AssertionError: Parent of D:\install\6.1_200803170003\userdir\update\deactivate\to_uninstall.txt exists and is directory.";
     
               btl:description """2Build: NetBeans IDE Dev (Build 200803170003) ...""";
@@ -44,32 +52,21 @@ Wanted to see how issues should be expressed with the new ontology..
 
               btl:environment "All" ;
 
+              btl:isMajorFor
+                  [ is <http://netbeans.org> ;
+                    a doap:Project ;
+                    doap:release [ a doap:Version ;
+                                     doap:revision "6.1" 
+                                  ];
+                  ];
 
-
-    btl:assigned_to [ a sioc:User;
-                      foaf:accountName "jrechtacek";
-                    ] ;
-
-    btl:qa_contact [ a sioc:User; 
-                      foaf:mbox <mailto:issues@autoupdate>;
-                    ] ;
-
-
-
-    btl:isMajorFor
-        [ is <http://netbeans.org> ;
-          a doap:Project ;
-          doap:release [ a doap:Version ;
-                         doap:revision "6.1" 
-                       ];
-        ];
-
-    btl:about [ a btl:SoftwarePackage ;
-                btl:name "autoupdate";
-                btl:contains [ a btl:SoftwarePackage; 
-                               btl:name "code";
-                             ] ;
-              ];
+              btl:about [ a btl:SoftwarePackage ;
+                          btl:name "autoupdate";
+                          btl:contains [ a btl:SoftwarePackage; 
+                                         btl:name "code";
+                                       ] ;
+                        ];
+         ];
 
   .
 }}}
