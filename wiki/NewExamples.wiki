@@ -16,12 +16,18 @@ Wanted to see how issues should be expressed with the new ontology..
   @prefix lifecycle: <http://purl.org/vocab/lifecycle/schema#> .
   @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
   @prefix dc: <http://purl.org/dc/elements/1.1/> .
-  @prefix dct: <http://purl.org/dc/terms/> .
+  @prefix dcterms: <http://purl.org/dc/terms/> .
   @prefix doap: <http://usefulinc.com/ns/doap#> .
   @prefix sioc: <http://rdfs.org/sioc/ns#> .
   @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
   <http://www.netbeans.org/issues/show_bug.cgi?id=130267> a btl:Ticket ;
+
+    #Is this correctly formatted according to dcrwema?
+    dcterms:created "Mon Mar 17 09:51:00 +0000 2008";
+
+    btl:ticketState [ a btl:Resolved ];
+
     btl:reporter [ a sioc:User;
                    foaf:accountName "novakm";
                  ] ;
@@ -42,8 +48,10 @@ Wanted to see how issues should be expressed with the new ontology..
                            ] ;
           sioc:attachment <http://www.netbeans.org/nonav/issues/showattachment.cgi/58470/>
         ] ;
+
     foaf:primaryTopic 
         [ a btl:Bug ;
+
               btl:summary "AssertionError: Parent of D:\install\6.1_200803170003\userdir\update\deactivate\to_uninstall.txt exists and is directory.";
     
               btl:description """2Build: NetBeans IDE Dev (Build 200803170003) ...""";
