@@ -1,0 +1,50 @@
+#summary Attempt at documenting EvoOnt BOM's mappings to other ontologies or bugtrackers data
+
+
+|| bom:Issue || An Issue is an entity defining a certain topic concerning the development of a software system. An issue can be classified or discussed about. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || ||
+||  ||  ||  ||  ||  ||  || Mappings ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  || Ontologies ||  || Bugtrackers ||  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  || Baetle ||  || Trac  || Jira || Bugzilla.dtd || Debbugs (Debian) ||
+||  || Attribute || type ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+||  || bugURL || string ||  ||  ||  ||  ||  ||  ||  ||  || Urlbase + bug_id ||  ||
+||  || dateOpened || dateTime ||  ||  ||  ||  || created  ||  || Created  || Created  || creation_ts ||  ||
+||  || description || string ||  ||  ||  ||  || description  ||  || (Full) Description  || Description  || long_desc ||  ||
+||  || keyword || string ||  ||  ||  ||  ||  ||  ||  ||  ||  || keywords ||
+||  || lastModified || dateTime ||  ||  ||  ||  || updated  ||  || last modified  || updated  ||  ||  ||
+||  || number || int ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  || Relation || reverse relation || related entity ||  ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  || blocks || dependsOn ? || Issue ||  || blocks  ||  || ?  || ?  || blocked || Blocks ||
+||  ||  ||  || dependsOn || blocks ? || Issue ||  || depends_on  ||  || -  || -  || dependson || Blocked-By ||
+||  ||  ||  || hasActivity || isActivityOf || Activity ||  ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  || hasAssignee || isAssigneeOf || ns:User ||  || assigned_to  ||  || Assigned to / Owner  || Assignee  || assigned_to ||  ||
+||  ||  ||  || hasAttachment || isAttachmentOf || Attachment ||  || sioc:attachment  ||  || Attachment  || Attachment  || attachment ||  ||
+||  ||  ||  || hasCcPerson || isCcPersonOf || foaf:Person ||  || interested  ||  || Cc  || Watchers  || cc ||  ||
+||  ||  ||  || hasComment || isCommentOf || Comment ||  || comment  ||  || Comment  || Comment  || attachment ? ||  ||
+||  ||  ||  || hasComputerSystem || isComputerSystemOf || ComputerSystem ||  || environment  ||  || -  || environment  ||  ||  ||
+||  ||  ||  || hasMilestone || isMilestoneOf || Milestone ||  || target_milestone  ||  || milestone  || -  || target_milestone ||  ||
+||  ||  ||  || hasReporter || isReporterOf || ns:User ||  || reporter  ||  || Reported by  || Reporter  || reporter || Submitter ||
+||  ||  ||  || hasResolution ||  || Resolution ||  || resolved_with  ||  || ?  || ?  || resolution ||  ||
+||  ||  ||  || hasSeverity ||  || Severity ||  ||  ||  || Severity (optional)  || -  || bug_severity || Severity ||
+||  ||  ||  || hasState ||  || flow:State ||  ||  ||  ||  ||  || bug_status || Status ||
+||  ||  ||  || inProject ||  || doap:Project ||  || project  ||  || (implicit)  || project  ||  ||  ||
+||  ||  ||  || isIssueOf ||  || Component ||  || about  ||  || Component  || Component  || component ||  ||
+||  ||  ||  || isFixedBy || fixes || doap:Version ||  || version  ||  || Version  || Fix version/s  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+|| Issue is subcalss of flow:Task ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+|| flow:Task ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  || Relations || reverse relations || related entity ||  ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  || hasPriority || isPriorityOf || Priority ||  ||  ||  ||  ||  || priority ||  ||
+||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  ||  ||  ||  || Missing elements in BOM ? : ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  || title  ||  || Summary  || Summary  || short_desc || Subject ||
+||  ||  ||  ||  ||  ||  ||  || due_date  ||  || (milestone due)  || due date  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  || category  ||  || ?  || ?  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  || qa_contact  ||  || -  || -  || qa_contact || Owner ? ||
+||  ||  ||  ||  ||  ||  ||  || duplicate  ||  || -  || -  ||  || Merged-With ||
+||  ||  ||  ||  ||  ||  ||  || causes  ||  || -  || -  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  || subtask  ||  || -  || -  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  || votes  ||  || -  || votes  || votes ||  ||
+||  ||  ||  ||  ||  ||  ||  ||  ||  || Ticket #  || Issue key  || bug_id || bug_num ||
+||  ||  ||  ||  ||  ||  ||  ||  ||  || -  || Custom fields  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  ||  ||  || -  || Fix version's  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || Package ||
