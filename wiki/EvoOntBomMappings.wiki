@@ -6,18 +6,18 @@ The resulting table was converted from spreadsheet doc to CSV, so not really pre
 
 Any comments much welcome. -- OlivierBerger
 
-|| bom:Issue || An Issue is an entity defining a certain topic concerning the development of a software system. An issue can be classified or discussed about. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || ||
-||  ||  ||  ||  ||  ||  || Mappings ||  ||  ||  ||  ||  ||  ||
-||  ||  ||  ||  ||  ||  ||  || Ontologies ||  || Bugtrackers ||  ||  ||  ||
-||  ||  ||  ||  ||  ||  ||  || Baetle ||  || Trac  || Jira || Bugzilla.dtd || Debbugs (Debian) ||
-||  || Attribute || type ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+|| *bom:Issue* || _An Issue is an entity defining a certain topic concerning the development of a software system. An issue can be classified or discussed about._ ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || ||
+||  ||  ||  ||  ||  ||  || *Mappings* ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  || *Ontologies* ||  || *Bugtrackers* ||  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  || *Baetle* ||  || *Trac*  || *Jira* || *Bugzilla.dtd* || *Debbugs (Debian)* ||
+||  || *Attribute* || *type* ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
 ||  || bugURL || string ||  ||  ||  ||  ||  ||  ||  ||  || Urlbase + bug_id ||  ||
 ||  || dateOpened || dateTime ||  ||  ||  ||  || created  ||  || Created  || Created  || creation_ts ||  ||
 ||  || description || string ||  ||  ||  ||  || description  ||  || (Full) Description  || Description  || long_desc ||  ||
 ||  || keyword || string ||  ||  ||  ||  ||  ||  ||  ||  ||  || keywords ||
 ||  || lastModified || dateTime ||  ||  ||  ||  || updated  ||  || last modified  || updated  ||  ||  ||
 ||  || number || int ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
-||  ||  ||  || Relation || reverse relation || related entity ||  ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  || *Relation* || *reverse relation* || *related entity* ||  ||  ||  ||  ||  ||  ||  ||
 ||  ||  ||  || blocks || dependsOn ? || Issue ||  || blocks  ||  || ?  || ?  || blocked || Blocks ||
 ||  ||  ||  || dependsOn || blocks ? || Issue ||  || depends_on  ||  || -  || -  || dependson || Blocked-By ||
 ||  ||  ||  || hasActivity || isActivityOf || Activity ||  ||  ||  ||  ||  ||  ||  ||
@@ -35,12 +35,12 @@ Any comments much welcome. -- OlivierBerger
 ||  ||  ||  || isIssueOf ||  || Component ||  || about  ||  || Component  || Component  || component ||  ||
 ||  ||  ||  || isFixedBy || fixes || doap:Version ||  || version  ||  || Version  || Fix version/s  ||  ||  ||
 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
-|| Issue is subcalss of flow:Task ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
-|| flow:Task ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
-||  ||  ||  || Relations || reverse relations || related entity ||  ||  ||  ||  ||  ||  ||  ||
+|| _Issue is subcalss of flow:Task_ ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+|| *flow:Task* ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  || *Relations* || *reverse relations* || *related entity* ||  ||  ||  ||  ||  ||  ||  ||
 ||  ||  ||  || hasPriority || isPriorityOf || Priority ||  ||  ||  ||  ||  || priority ||  ||
 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
-||  ||  ||  ||  ||  ||  || Missing elements in BOM ? : ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  ||  ||  ||  || *Missing elements in BOM ? :* ||  ||  ||  ||  ||  ||  ||
 ||  ||  ||  ||  ||  ||  ||  || title  ||  || Summary  || Summary  || short_desc || Subject ||
 ||  ||  ||  ||  ||  ||  ||  || due_date  ||  || (milestone due)  || due date  ||  ||  ||
 ||  ||  ||  ||  ||  ||  ||  || category  ||  || ?  || ?  ||  ||  ||
