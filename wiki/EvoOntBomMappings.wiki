@@ -1,5 +1,10 @@
 #summary Attempt at documenting EvoOnt BOM's mappings to other ontologies or bugtrackers data
 
+I've tried and integrate bits of Bugtrackers2baetleMappings with an analysis of EvoOnt BOM (v. 4.1), drawing from some work undertaken in the Nepomuk project (for the SWIM service deployed at Mandriva), and some P.O.C work done for the Helios project's WP3 to try and integrate Debian bugs in that same framework.
+
+The resulting table was converted from spreadsheet doc to CSV, so not really pretty for the moment.
+
+Any comments much welcome. -- OlivierBerger
 
 || bom:Issue || An Issue is an entity defining a certain topic concerning the development of a software system. An issue can be classified or discussed about. ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || ||
 ||  ||  ||  ||  ||  ||  || Mappings ||  ||  ||  ||  ||  ||  ||
