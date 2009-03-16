@@ -65,7 +65,7 @@ Is there too much complexity here? Some states should probably be merged? See th
 == Other baetle:Issue properties == 
 
 || *Baetle* || *Trac* || *Jira* || _please add other bugtrackers_ ||
-|| title || Summary || Summary || ||
+|| title/summary (depends which version : schema or .n3 spec) || Summary || Summary || ||
 || created || Created || Created || ||
 || updated || last modified || updated || ||
 || due_date || (milestone due) || due date || ||
