@@ -29,7 +29,7 @@ Any comments much welcome. -- OlivierBerger
 ||  ||  ||  || hasMilestone || isMilestoneOf || Milestone ||  || target_milestone  ||  || milestone  || -  || target_milestone ||  ||
 ||  ||  ||  || hasReporter || isReporterOf || ns:User ||  || reporter  ||  || Reported by  || Reporter  || reporter || Submitter ||
 ||  ||  ||  || hasResolution ||  || Resolution ||  || resolved_with  ||  || ?  || ?  || resolution ||  ||
-||  ||  ||  || hasSeverity ||  || Severity ||  ||  ||  || Severity (optional)  || -  || bug_severity || Severity ||
+||  ||  ||  || hasSeverity ||  || *Severity* (see bellow) ||  ||  ||  || Severity (optional)  || -  || bug_severity || Severity ||
 ||  ||  ||  || hasState ||  || flow:State ||  ||  ||  ||  ||  || bug_status || Status ||
 ||  ||  ||  || inProject ||  || doap:Project ||  || project  ||  || (implicit)  || project  ||  ||  ||
 ||  ||  ||  || isIssueOf ||  || Component ||  || about  ||  || Component  || Component  || component ||  ||
@@ -53,3 +53,20 @@ Any comments much welcome. -- OlivierBerger
 ||  ||  ||  ||  ||  ||  ||  ||  ||  || -  || Custom fields  ||  ||  ||
 ||  ||  ||  ||  ||  ||  ||  ||  ||  || -  || Fix version's  ||  ||  ||
 ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || Package ||
+
+|| *bom:Severity* subclasses ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || ||
+||  ||  ||  ||  ||  ||  || *Mappings* ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  || *Ontologies* ||  || *Bugtrackers* ||  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  || *Baetle* ||  || *Trac*  || *Jira* || *Bugzilla.dtd* || *Debbugs (Debian)* ||
+|| *Blocker* ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+|| *Critical* ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || critical ||
+|| *Feature* ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || wishlist ||
+|| *Major* ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+|| *Minor* ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || minor ||
+|| *Trivial* ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||
+||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || fixed ||
+||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || grave ||
+||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || normal ||
+||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || important ||
+||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  || serious ||
+
