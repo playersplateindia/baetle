@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="492" version="1.1" width="1036" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#ffffff" height="22" stroke="#ffffff" stroke-width="1" width="527" x="446" y="14"/>
+<rect fill="none" height="21" stroke="#000000" stroke-width="1" width="526" x="446" y="14"/>
+<text font-family="Dialog" font-size="12" x="450" y="29">
+foaf</text>
+<rect fill="#ffffff" height="235" stroke="#ffffff" stroke-width="1" width="576" x="446" y="35"/>
+<rect fill="none" height="234" stroke="#000000" stroke-width="1" width="575" x="446" y="35"/>
+<rect fill="#ffffff" height="68" stroke="#ffffff" stroke-width="1" width="120" x="486" y="62"/>
+<rect fill="#ffffff" height="0" stroke="#ffffff" stroke-width="1" width="120" x="486" y="62"/>
+<rect fill="none" height="0" stroke="#000000" stroke-width="1" width="120" x="486" y="62"/>
+<rect fill="#ffffff" height="22" stroke="#ffffff" stroke-width="1" width="120" x="486" y="62"/>
+<text font-family="Dialog" font-size="12" x="492" y="77">
+foaf:OnlineAccount</text>
+<rect fill="#ffffff" height="24" stroke="#ffffff" stroke-width="1" width="120" x="486" y="105"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="486" x2="605" y1="105" y2="105"/>
+<rect fill="#ffffff" height="21" stroke="#ffffff" stroke-width="1" width="120" x="486" y="84"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="486" x2="605" y1="84" y2="84"/>
+<rect fill="none" height="68" stroke="#000000" stroke-width="1" width="120" x="486" y="62"/>
+<rect fill="#ffffff" height="86" stroke="#ffffff" stroke-width="1" width="165" x="822" y="62"/>
+<rect fill="#ffffff" height="0" stroke="#ffffff" stroke-width="1" width="165" x="822" y="62"/>
+<rect fill="none" height="0" stroke="#000000" stroke-width="1" width="165" x="822" y="62"/>
+<rect fill="#ffffff" height="22" stroke="#ffffff" stroke-width="1" width="165" x="822" y="62"/>
+<text font-family="Dialog" font-size="12" x="875" y="77">
+foaf:Agent</text>
+<rect fill="#ffffff" height="24" stroke="#ffffff" stroke-width="1" width="165" x="822" y="123"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="822" x2="986" y1="123" y2="123"/>
+<rect fill="#ffffff" height="39" stroke="#ffffff" stroke-width="1" width="165" x="822" y="84"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="822" x2="986" y1="84" y2="84"/>
+<text font-family="Dialog" font-size="12" x="825" y="100">
+name : String</text>
+<text font-family="Dialog" font-size="12" x="825" y="115">
+mbox : MailtoEmailAddress</text>
+<rect fill="none" height="86" stroke="#000000" stroke-width="1" width="165" x="822" y="62"/>
+<rect fill="#ffffff" height="22" stroke="#ffffff" stroke-width="1" width="143" x="22" y="286"/>
+<rect fill="none" height="21" stroke="#000000" stroke-width="1" width="142" x="22" y="286"/>
+<text font-family="Dialog" font-size="12" x="26" y="301">
+bom</text>
+<rect fill="#ffffff" height="171" stroke="#ffffff" stroke-width="1" width="192" x="22" y="307"/>
+<rect fill="none" height="170" stroke="#000000" stroke-width="1" width="191" x="22" y="307"/>
+<rect fill="#ffffff" height="68" stroke="#ffffff" stroke-width="1" width="68" x="86" y="358"/>
+<rect fill="#ffffff" height="0" stroke="#ffffff" stroke-width="1" width="68" x="86" y="358"/>
+<rect fill="none" height="0" stroke="#000000" stroke-width="1" width="68" x="86" y="358"/>
+<rect fill="#ffffff" height="22" stroke="#ffffff" stroke-width="1" width="68" x="86" y="358"/>
+<text font-family="Dialog" font-size="12" x="90" y="373">
+bom:Issue</text>
+<rect fill="#ffffff" height="24" stroke="#ffffff" stroke-width="1" width="68" x="86" y="401"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="86" x2="153" y1="401" y2="401"/>
+<rect fill="#ffffff" height="21" stroke="#ffffff" stroke-width="1" width="68" x="86" y="380"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="86" x2="153" y1="380" y2="380"/>
+<rect fill="none" height="68" stroke="#000000" stroke-width="1" width="68" x="86" y="358"/>
+<rect fill="#ffffff" height="22" stroke="#ffffff" stroke-width="1" width="111" x="446" y="286"/>
+<rect fill="none" height="21" stroke="#000000" stroke-width="1" width="110" x="446" y="286"/>
+<text font-family="Dialog" font-size="12" x="450" y="301">
+sioc</text>
+<rect fill="#ffffff" height="171" stroke="#ffffff" stroke-width="1" width="160" x="446" y="307"/>
+<rect fill="none" height="170" stroke="#000000" stroke-width="1" width="159" x="446" y="307"/>
+<rect fill="#ffffff" height="71" stroke="#ffffff" stroke-width="1" width="102" x="478" y="366"/>
+<rect fill="#ffffff" height="0" stroke="#ffffff" stroke-width="1" width="102" x="478" y="366"/>
+<rect fill="none" height="0" stroke="#000000" stroke-width="1" width="102" x="478" y="366"/>
+<rect fill="#ffffff" height="22" stroke="#ffffff" stroke-width="1" width="102" x="478" y="366"/>
+<text font-family="Dialog" font-size="12" x="503" y="381">
+sioc:User</text>
+<rect fill="#ffffff" height="24" stroke="#ffffff" stroke-width="1" width="102" x="478" y="412"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="579" y1="412" y2="412"/>
+<rect fill="#ffffff" height="24" stroke="#ffffff" stroke-width="1" width="102" x="478" y="388"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="579" y1="388" y2="388"/>
+<text font-family="Dialog" font-size="12" x="481" y="404">
+email : String</text>
+<rect fill="none" height="71" stroke="#000000" stroke-width="1" width="102" x="478" y="366"/>
+<polyline fill="none" points="534,366 534,130" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="534,130 541,142 527,142" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="534,130 541,142 527,142" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="154,390 478,390" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="466" x2="478" y1="397" y2="390"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="466" x2="478" y1="383" y2="390"/>
+<text font-family="Dialog" font-size="12" x="271" y="373">
+hasReporter</text>
+<polyline fill="none" points="822,101 606,101" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="618" x2="606" y1="94" y2="101"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="618" x2="606" y1="108" y2="101"/>
+<text font-family="Dialog" font-size="12" x="678" y="91">
+holdsAccount</text>
+<rect fill="#ffffff" height="71" stroke="#ffffff" stroke-width="1" width="102" x="830" y="182"/>
+<rect fill="#ffffff" height="0" stroke="#ffffff" stroke-width="1" width="102" x="830" y="182"/>
+<rect fill="none" height="0" stroke="#000000" stroke-width="1" width="102" x="830" y="182"/>
+<rect fill="#ffffff" height="22" stroke="#ffffff" stroke-width="1" width="102" x="830" y="182"/>
+<text font-family="Dialog" font-size="12" x="848" y="197">
+foaf:Person</text>
+<rect fill="#ffffff" height="26" stroke="#ffffff" stroke-width="1" width="102" x="830" y="226"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="830" x2="931" y1="226" y2="226"/>
+<rect fill="#ffffff" height="22" stroke="#ffffff" stroke-width="1" width="102" x="830" y="204"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="830" x2="931" y1="204" y2="204"/>
+<rect fill="none" height="71" stroke="#000000" stroke-width="1" width="102" x="830" y="182"/>
+<polyline fill="none" points="878,182 878,148" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="878,148 885,160 871,160" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="878,148 885,160 871,160" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="14,30 417,30 427,40 427,261 14,261 14,30" stroke="#ffffff" stroke-width="1"/>
+<polyline fill="none" points="14,30 417,30 427,40 427,261 14,261 14,30" stroke="#000000" stroke-width="1"/>
+<polygon fill="#b2b2b2" points="417,30 427,40 417,40 417,30" stroke="#b2b2b2" stroke-width="1"/>
+<polyline fill="none" points="417,30 427,40 417,40 417,30" stroke="#000000" stroke-width="1"/>
+<text font-family="Dialog" font-size="12" x="16" y="47">
+A bom:Issue has a reporter (hasReporter) which corresponds to an </text>
+<text font-family="Dialog" font-size="12" x="16" y="62">
+account in a bugtracker (sioc:User / foaf:OnlineAccount).</text>
+<text font-family="Dialog" font-size="12" x="16" y="92">
+This account is a person's (foaf:Person).</text>
+<text font-family="Dialog" font-size="12" x="16" y="122">
+Several issues may be reported with different accounts which happen</text>
+<text font-family="Dialog" font-size="12" x="16" y="137">
+to have the same email : in the end, several accounts of the same </text>
+<text font-family="Dialog" font-size="12" x="16" y="152">
+person, but here these may need to be differentiated.</text>
+</svg>
