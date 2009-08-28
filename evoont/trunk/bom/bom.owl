@@ -71,14 +71,6 @@
     
 
 
-    <!-- http://rdfs.org/sioc/ns#email -->
-
-    <owl:ObjectProperty rdf:about="&ns;email">
-        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.ifi.uzh.ch/ddis/evoont/2008/11/bom#blocks -->
 
     <owl:ObjectProperty rdf:about="#blocks">
